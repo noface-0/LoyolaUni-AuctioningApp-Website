@@ -11,4 +11,4 @@ This is the repository for team jajeimo to develop their Auction application in 
 Jennifer Moutenot
 
 
-# Greyhounds Auctions
+# Greyhound Auctions

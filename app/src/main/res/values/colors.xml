@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="greyhoundGreen">#00694E</color>
+    <color name="greyhoundGrey">#CACAC8</color>
 </resources>
