@@ -8,4 +8,7 @@ This is the repository for team jajeimo to develop their Auction application in 
 4. Mollie Morrow (mo)
 
 # Team Lead
-Jennifer Moutenot 
+Jennifer Moutenot
+
+
+# Greyhounds Auctions
