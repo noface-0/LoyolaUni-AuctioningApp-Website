@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GreyhoundAuctions</string>
+    <string name="count_down">00:00:00</string>
 </resources>
