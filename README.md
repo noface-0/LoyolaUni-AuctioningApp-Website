@@ -12,3 +12,25 @@ Jennifer Moutenot
 
 
 # Greyhound Auctions
+
+## Classes
+1. User
+- String name
+- String email
+- String password
+- Boolean signedIn
+- List<Items> itemsBidOn
+- List<Items> itemsCurrentHighestBidderOn
+- bid()
+- Auto-bid()
+2. Admin?
+3. Item
+- String title
+- String description
+- List<String> tags
+- Double currentHighestBid
+- String currentHighestBidder
+4. AuctionItems
+- List<Item> items
+- sortByTag(String tag)
+- sortByTitle(String title)
