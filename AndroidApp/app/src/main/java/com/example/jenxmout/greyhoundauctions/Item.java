@@ -18,6 +18,7 @@ public class Item {
     protected String title;
     protected String description;
     protected Image image;
+    protected int minInc;
 
     protected LinkedList<String> tags;
 

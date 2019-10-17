@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android-jajeimo.iml" filepath="$PROJECT_DIR$/android-jajeimo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/482f19-jajeimo.iml" filepath="$PROJECT_DIR$/482f19-jajeimo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Software Engineering-482f19-jajeimo.iml" filepath="$PROJECT_DIR$/.idea/modules/Software Engineering-482f19-jajeimo.iml" group="482f19-jajeimo" />
     </modules>
   </component>
 </project>
