@@ -1,0 +1,26 @@
+{
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "Assignment 2 from CA",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kidc12/TechnicalChallenge.git%20--branch%20TechnicalChallenge3.0.git"
+  },
+  "author": "J.C Kitson",
+  "license": "MIT",
+  "dependencies": {
+    "connect": "^3.6.6",
+    "express": "^4.16.4",
+    "grunt": "latest",
+    "mysql": "github:mysqljs/mysql",
+    "router": "^1.3.3"
+  },
+  "bugs": {
+    "url": "https://github.com/kidc12/TechnicalChallenge.git/issues"
+  },
+  "homepage": "https://github.com/kidc12/TechnicalChallenge.git#readme"
+}
