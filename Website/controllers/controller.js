@@ -5,7 +5,16 @@ var con = mysql.createConnection({
     user: "jkitson",
     password: "1736438",
     database: "jajeimo",
-    port: 3306
+    port: 3306,
+    options: {
+        encrypt: true,
+        //useUTC: true
+    },
+    pool: {
+        max: 1000000000,
+        min: 100000,
+        idleTimeoutMillis: 60000
+    }
 });
 
 con.connect(function (err) {
