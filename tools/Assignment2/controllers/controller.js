@@ -1,9 +1,11 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: 'localhost',
-    user: 'test',
-    database: 'AnimDB'
+    host: "cs-database.cs.loyola.edu",
+    user: "jkitson",
+    password: "1736438",
+    database: "jajeimo",
+    port: 3306
 });
 
 con.connect(function (err) {
