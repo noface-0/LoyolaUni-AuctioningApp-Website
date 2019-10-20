@@ -11,7 +11,7 @@ This is the repository for team jajeimo to develop their Auction application in 
 Jennifer Moutenot
 
 
-# Greyhound Auctions
+# Greyhound Auctions Android App
 
 ## Classes
 1. User
@@ -34,3 +34,24 @@ Jennifer Moutenot
 - List<Item> items
 - sortByTag(String tag)
 - sortByTitle(String title)
+
+## Greyhound Auctions Website
+
+How to run
+* ~THIS WEBSITE WILL ONLY WORK IN THE LINUX LAB or THROUGH SSH~
+* Install Nodejs and npm if not installed
+* move to Website directory
+* run npm install
+* open localhost:3000 to view website
+
+## Structure
+* Config
+    * test
+* Controllers
+    * test
+* Public
+    * test
+* Routes
+    * test
+* Server
+    * test
