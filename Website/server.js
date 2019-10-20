@@ -1,7 +1,10 @@
 var express = require('./config/express');
 var pubFiles = require('express');
+var bodyParser = require('body-parser');
 var app = express();
-app.use(pubFiles.static('public'));
+app.use('/',pubFiles.static("public"));
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
 app.listen(3000);
 module.exports = app;
 console.log('Server running at http://localhost:3000/');
