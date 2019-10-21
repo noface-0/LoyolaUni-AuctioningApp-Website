@@ -23,5 +23,17 @@ public class Item {
     protected LinkedList<String> tags;
 
     protected double currentHighestBid;
-    protected String currentHightestBidder;
+    protected String currentHighestBidder;
+
+    public Item(String title, String desc, Image img, int minInc, LinkedList<String> tags,
+                double currentHighestBid){
+        this.title = title;
+        this.description = desc;
+        this.image = img;
+        this.minInc = minInc;
+        this.tags = tags;
+        this.currentHighestBid = currentHighestBid;
+        this.currentHighestBidder = "";
+
+    }
 }
