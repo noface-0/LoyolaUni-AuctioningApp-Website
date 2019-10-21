@@ -47,7 +47,7 @@ public class User {
         //set name, email, pwd and signed in flag for user
     }
 
-    public boolean bid(int amountBid, Item item) {
+    public boolean bid(double amountBid, Item item) {
         if(signedIn) {
             //if the bid is less than the current highest bid
             if (item.currentHighestBid > amountBid)
@@ -71,7 +71,7 @@ public class User {
         }
     }
 
-    public boolean autoBid(int inc, int maxBid, Item item) {
+    public boolean autoBid(double inc, double maxBid, Item item) {
         if(signedIn) {
             //if the bid is not the minimum increment more than the current highest bid
             if (inc < item.minInc)
