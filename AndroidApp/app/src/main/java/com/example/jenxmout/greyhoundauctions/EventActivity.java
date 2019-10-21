@@ -27,12 +27,12 @@ public class EventActivity extends AppCompatActivity {
         eventDescription.setText("This is a fundraiser to support the cleanliness of the Inner " +
                 "Harbor, all proceeds go towards keeping the Inner Harbor clean!");
 
-        Button eventButton = (Button) findViewById(R.id.homeButton);
-        eventButton.setOnClickListener(new View.OnClickListener(){
+        Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent eventIntent = new Intent(EventActivity.this, MainActivity.class);
-                startActivity(eventIntent);
+                Intent homeIntent = new Intent(EventActivity.this, MainActivity.class);
+                startActivity(homeIntent);
             }
         });
     }
