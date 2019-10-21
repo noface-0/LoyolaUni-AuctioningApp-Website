@@ -1,8 +1,11 @@
 package com.example.jenxmout.greyhoundauctions;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +26,15 @@ public class EventActivity extends AppCompatActivity {
 
         eventDescription.setText("This is a fundraiser to support the cleanliness of the Inner " +
                 "Harbor, all proceeds go towards keeping the Inner Harbor clean!");
+
+        Button eventButton = (Button) findViewById(R.id.homeButton);
+        eventButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent eventIntent = new Intent(EventActivity.this, MainActivity.class);
+                startActivity(eventIntent);
+            }
+        });
     }
 
 }
