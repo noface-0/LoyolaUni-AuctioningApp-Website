@@ -35,6 +35,15 @@ public class EventActivity extends AppCompatActivity {
                 startActivity(homeIntent);
             }
         });
+
+        Button accountButton = (Button) findViewById(R.id.loginSignUpButton);
+        accountButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent accountIntent = new Intent(EventActivity.this, AccountActivity.class);
+                startActivity(accountIntent);
+            }
+        });
     }
 
 }

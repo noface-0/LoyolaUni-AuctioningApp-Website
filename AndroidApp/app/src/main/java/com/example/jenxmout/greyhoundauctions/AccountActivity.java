@@ -23,15 +23,14 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        Button accountButton = (Button) findViewById(R.id.loginSignUpButton);
-        accountButton.setOnClickListener(new View.OnClickListener(){
+        Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                Intent accountIntent = new Intent(AccountActivity.this, AccountActivity.class);
-                startActivity(accountIntent);
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
+                startActivity(homeIntent);
             }
         });
-
 
     }
 
