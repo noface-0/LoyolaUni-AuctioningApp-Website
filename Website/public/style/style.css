@@ -61,7 +61,7 @@ h1 {
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  font-size: 5em;
+  font-size: 3vw;
 }
 
 h2 {
@@ -72,7 +72,7 @@ h2 {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   font-size: 2.5em;
-  margin-top: 6%;
+  margin-top: 7%;
 }
 
 
@@ -83,13 +83,13 @@ form {
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  margin-top: 7%;
+  margin-top: 8.5%;
   font-family: 'Open Sans', sans-serif;
 }
 
 input[type=text],
 input[type=password] {
-  width: 55%;
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -134,12 +134,11 @@ img.avatar {
 }
 
 span.psw {
-
   padding-top: 16px;
 }
 
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 30px) {
+/* @media screen and (max-width: 30px) {
   span.psw {
     display: block;
     float: none;
@@ -149,9 +148,20 @@ span.psw {
     width: 10%;
   }
 
-}
+} */
 
-@media only screen and (max-width: 1000px) {
+/*Phone sizes*/
+@media only screen and (max-width: 1050px) {
+
+  h1 {
+    z-index: 10;
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 6vw;
+  }
 
   h2 {
     z-index: 10;
@@ -160,8 +170,8 @@ span.psw {
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    font-size: 2.5em;
-    margin-top: 30%;
+    font-size: 5vw;
+    margin-top: 26%;
   }
 
   form {
@@ -170,7 +180,43 @@ span.psw {
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    margin-top: 35%;
+    margin-top: 28.5%;
     font-family: 'Open Sans', sans-serif;
   }
+
+  input[type=text],
+  input[type=password] {
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size:2vw;
+  }
+
+  b{
+    font-size: 3vw;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    font-size: 2vw;
+  }  
+
+  label{
+    font-size: 2vw;
+  }
+
+  span.psw {
+    font-size: 2vw;
+    padding-top: 16px;
+  }
+
 }

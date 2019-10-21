@@ -26,7 +26,7 @@ exports.auth = function (req, res) {
     username = req.body.username;
 	let password = req.body.password;
 	if (username && password) {
-		con.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		con.query('SELECT * FROM admins WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 			if (results.length > 0) {
 				loggedin = true;
 				res.redirect('/home');
@@ -52,11 +52,15 @@ exports.home = function (req, res) {
     }
 };
 
-exports.animList = function (req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    con.query("SELECT * FROM Animals", function (err, result) {
-        if (err) throw err;
-        let json = JSON.parse(JSON.stringify(result));
-        res.json(json);
-    });
+exports.newpass = function (req, res) {
+    res.send('new password');
 };
+
+// exports.animList = function (req, res) {
+//     res.setHeader('Content-Type', 'text/plain');
+//     con.query("SELECT * FROM Animals", function (err, result) {
+//         if (err) throw err;
+//         let json = JSON.parse(JSON.stringify(result));
+//         res.json(json);
+//     });
+// };

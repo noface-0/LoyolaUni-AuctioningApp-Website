@@ -8,5 +8,5 @@ module.exports = function (app) {
 
     app.get('/home', controller.home);
 
-    app.get('/animals', controller.animList);
+    app.get('/newpass', controller.newpass);
 };
