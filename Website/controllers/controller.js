@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var db_config = require('../config/dbaccess.js');
+var db_config = require('../db/dbaccess.js');
 
 var loggedin;
 var username;
