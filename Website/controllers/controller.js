@@ -58,12 +58,3 @@ exports.home = function (req, res) {
 exports.newpass = function (req, res) {
     res.send('new password');
 };
-
-// exports.animList = function (req, res) {
-//     res.setHeader('Content-Type', 'text/plain');
-//     con.query("SELECT * FROM Animals", function (err, result) {
-//         if (err) throw err;
-//         let json = JSON.parse(JSON.stringify(result));
-//         res.json(json);
-//     });
-// };
