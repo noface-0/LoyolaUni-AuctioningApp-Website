@@ -1,18 +1,21 @@
 var mysql = require('mysql');
+var db_config = require('../config/dbaccess.js');
 
 var loggedin;
 var username;
 
 var con = mysql.createConnection({
-    host: "cs-database.cs.loyola.edu",
-    user: "jkitson",
-    password: "1736438",
-    database: "jajeimo",
-    port: 3306
+    host: db_config.host,
+    user: db_config.user,
+    password: db_config.password,
+    database: db_config.database,
+    port: db_config.port
 });
 
 con.connect(function (err) {
-    if (err) throw err;
+    if (err){
+       throw err;
+    }
     console.log("Connection to JAJEIMO Successful!");
 });
 

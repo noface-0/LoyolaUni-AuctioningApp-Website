@@ -38,7 +38,7 @@ Jennifer Moutenot
 ## Greyhound Auctions Website
 
 How to run
-* ~THIS WEBSITE WILL ONLY WORK IN THE LINUX LAB or THROUGH SSH~
+* THIS WEBSITE WILL ONLY WORK IN THE LINUX LAB or THROUGH SSH
 * Install Nodejs and npm if not installed
 * move to Website directory
 * run npm install
