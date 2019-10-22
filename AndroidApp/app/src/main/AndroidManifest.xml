@@ -19,6 +19,7 @@
         <activity android:name=".EventActivity"></activity>
         <activity android:name=".AccountActivity"></activity>
         <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".ItemActivity"></activity>
     </application>
 
 </manifest>

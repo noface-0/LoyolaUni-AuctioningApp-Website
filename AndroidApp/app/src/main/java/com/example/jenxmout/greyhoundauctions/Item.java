@@ -17,19 +17,19 @@ public class Item {
 
     protected String title;
     protected String description;
-    protected Image image;
-    protected int minInc;
+    protected int resID;
+    protected double minInc;
 
     protected LinkedList<String> tags;
 
     protected double currentHighestBid;
     protected String currentHighestBidder;
 
-    public Item(String title, String desc, Image img, int minInc, LinkedList<String> tags,
+    public Item(String title, String desc, int resID, double minInc, LinkedList<String> tags,
                 double currentHighestBid){
         this.title = title;
         this.description = desc;
-        this.image = img;
+        this.resID = resID;
         this.minInc = minInc;
         this.tags = tags;
         this.currentHighestBid = currentHighestBid;

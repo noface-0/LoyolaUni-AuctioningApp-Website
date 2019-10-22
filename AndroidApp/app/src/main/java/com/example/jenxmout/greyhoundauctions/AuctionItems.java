@@ -15,6 +15,10 @@ public class AuctionItems {
 
     protected LinkedList<Item> items;
 
+    public AuctionItems(){
+        this.items = new LinkedList<>();
+    }
+
     //protected LinkedList<Item> sortByTag(String tag) {
 
 
