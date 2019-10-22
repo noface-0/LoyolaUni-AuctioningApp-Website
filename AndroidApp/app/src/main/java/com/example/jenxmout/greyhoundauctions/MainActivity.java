@@ -2,12 +2,14 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.content.Intent;
 import android.media.Image;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 
@@ -28,10 +30,16 @@ import androidx.navigation.Navigation;
  */
 public class MainActivity extends AppCompatActivity {
 
+    CountDownTimer timer = null;
+    long totalTime = 10; //in seconds   //multiply by 1000 to convert to ms before using
+    long timerInterval = 100; //in milliseconds so this is .1 seconds
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //startTimer(); //put whatever needed. its in main atm for testing
 
         Button eventButton = (Button) findViewById(R.id.eventButton);
         eventButton.setOnClickListener(new View.OnClickListener(){
@@ -75,4 +83,27 @@ public class MainActivity extends AppCompatActivity {
         ImageButton auctionItemButton = new ImageButton(this);
 
     }
+
+    /**
+    final TextView textTimer = (TextView) findViewById(R.id.countdown);
+
+    void startTimer(){
+        timer = new CountDownTimer(totalTime, timerInterval) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                String amountOfTime = millisUntilFinished + "";
+                textTimer.setText(amountOfTime); //text Timer is a textView in the xml
+            }
+
+            @Override
+            public void onFinish() {
+                textTimer.setText("00.00");
+                timer.cancel(); //use this method if entire activity is cancelled at any point
+
+            }
+        };
+        timer.start();
+    }
+
+     */
 }
