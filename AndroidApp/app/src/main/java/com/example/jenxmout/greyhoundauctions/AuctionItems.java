@@ -3,7 +3,7 @@ package com.example.jenxmout.greyhoundauctions;
 import java.util.LinkedList;
 
 /**
- * This is a Item class
+ * This is an Auction Items class that
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -13,15 +13,19 @@ import java.util.LinkedList;
  */
 public class AuctionItems {
 
+    /**
+     * The list of items that make up the auction
+     */
     protected LinkedList<Item> items;
 
+    /**
+     * AuctionItems Constructor
+     */
     public AuctionItems(){
         this.items = new LinkedList<>();
     }
 
     //protected LinkedList<Item> sortByTag(String tag) {
-
-
 
     //}
 }

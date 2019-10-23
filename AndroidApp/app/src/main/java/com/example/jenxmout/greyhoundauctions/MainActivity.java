@@ -30,10 +30,26 @@ import androidx.navigation.Navigation;
  */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * The timer countdown that keeps track of how much time is left in the event
+     */
     CountDownTimer timer = null;
+
+    /**
+     * The total amount of time in the event
+     */
     long totalTime = 10; //in seconds   //multiply by 1000 to convert to ms before using
+
+    /**
+     * How often the time gets updated on the screen, in intervals
+     */
     long timerInterval = 100; //in milliseconds so this is .1 seconds
 
+    /**
+     * Sets up the main screen view
+     *
+     * @param savedInstanceState the reference to a Bundle object that is passed
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
         Button eventButton = (Button) findViewById(R.id.eventButton);
         eventButton.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * EventActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent eventIntent = new Intent(MainActivity.this, EventActivity.class);
@@ -50,8 +74,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         Button accountButton = (Button) findViewById(R.id.loginButton);
         accountButton.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * AccountActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent accountIntent = new Intent(MainActivity.this, AccountActivity.class);

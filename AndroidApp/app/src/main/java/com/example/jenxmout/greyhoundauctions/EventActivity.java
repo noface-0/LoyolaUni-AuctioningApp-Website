@@ -9,11 +9,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * This is the Event Activity class that
+ *
+ * @author Jennifer Moutenot
+ * @author Mollie Morrow
+ * @author Ian Leppo
+ * @author Javon Kitson
+ * @version 1.0 10/21/19
+ */
 public class EventActivity extends AppCompatActivity {
 
+    /**
+     * Sets up the event info screen view
+     *
+     * @param savedInstanceState the reference to a Bundle object that is passed
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceStates) {
-        super.onCreate(savedInstanceStates);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fundraiser_info);
 
         final ImageView eventImg = (ImageView) findViewById(R.id.fundraiserImage);
@@ -29,6 +43,14 @@ public class EventActivity extends AppCompatActivity {
 
         Button homeButton = (Button) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * MainActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent homeIntent = new Intent(EventActivity.this, MainActivity.class);
@@ -38,6 +60,14 @@ public class EventActivity extends AppCompatActivity {
 
         Button accountButton = (Button) findViewById(R.id.loginButton);
         accountButton.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * AccountActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent accountIntent = new Intent(EventActivity.this, AccountActivity.class);
