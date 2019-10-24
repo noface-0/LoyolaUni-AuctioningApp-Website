@@ -1,22 +1,32 @@
 package com.example.jenxmout.greyhoundauctions;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.app.Application;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.lang.Double;
 
 /**
  * This is the Main Activity class that
@@ -35,13 +45,12 @@ public class MainActivity extends AppCompatActivity {
     // Search Bar & List View
     SearchView searchBar;
     ListView listView;
-    ArrayList<String> list;
     ArrayAdapter<String> adapter;
     String[] titles;
     String[] descriptions;
     int[] images;
     double[] currentHighestBids;
-    String[] currentHighestBidder;
+    String[] currentHighestBidders;
 
     // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
@@ -91,58 +100,61 @@ public class MainActivity extends AppCompatActivity {
         descriptions = new String[ais.items.size()];
         images = new int[ais.items.size()];
         currentHighestBids = new double[ais.items.size()];
-        currentHighestBidder = new String[ais.items.size()];
+        currentHighestBidders = new String[ais.items.size()];
 
         //populates all arrays with item info for display in UI
         for(int i = 0; i < titles.length; i++){
-            for(Item item : ais.items){
-                titles[i] = item.title;
-            }
+                titles[i] = ais.items.get(i).title;
         }
 
         for(int i = 0; i < descriptions.length; i++){
-            for(Item item : ais.items){
-                descriptions[i] = item.description;
-            }
+                descriptions[i] = ais.items.get(i).description;
         }
 
         for(int i = 0; i < images.length; i++){
-            for(Item item : ais.items){
-                images[i] = item.resID;
-            }
+                images[i] = ais.items.get(i).resID;
         }
 
         for(int i = 0; i < currentHighestBids.length; i++){
-            for(Item item : ais.items){
-                currentHighestBids[i] = item.currentHighestBid;
-            }
+                currentHighestBids[i] = ais.items.get(i).currentHighestBid;
         }
 
-        for(int i = 0; i < currentHighestBidder.length; i++){
-            for(Item item : ais.items){
-                currentHighestBidder[i] = item.currentHighestBidder;
-            }
+        for(int i = 0; i < currentHighestBidders.length; i++){
+                currentHighestBidders[i] = ais.items.get(i).currentHighestBidder;
         }
 
         //create
+        listView = (ListView)findViewById(R.id.list_of_items);
 
+        MyAdapter adptr = new MyAdapter(this, titles, descriptions, images, currentHighestBids,
+                currentHighestBidders);
+        listView.setAdapter(adptr);
 
-
-
-
-
-
-
-
-
-
-
+        // now set item click on list view
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position ==  0) {
+                    Intent item1Intent = new Intent(MainActivity.this, ItemActivity.class);
+                    startActivity(item1Intent);
+                }
+                if (position ==  1) {
+                    Intent item2Intent = new Intent(MainActivity.this, ItemActivity.class);
+                    startActivity(item2Intent);
+                }
+                if (position ==  2) {
+                    Intent item3Intent = new Intent(MainActivity.this, ItemActivity.class);
+                    startActivity(item3Intent);
+                }
+            }
+        });
+        // so item click is done now check list view
 
 
         // Search Bar
         searchBar = (SearchView)findViewById(R.id.search_bar);
-        listView = (ListView)findViewById(R.id.list_of_items);
 
+        /**
         list = new ArrayList<String>();
 
         list.add("Item 1");
@@ -151,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         listView.setAdapter(adapter);
+         */
 
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -365,4 +378,60 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    class MyAdapter extends ArrayAdapter<String> {
+
+        protected Context context;
+        protected String[] titles;
+        protected String[] descriptions;
+        protected int[] imgs;
+        protected double[] currentHighestBids;
+        protected String[] currentHighestBidder;
+
+        public MyAdapter(Context c, String[] titles, String[] descriptions, int[] images,
+                         double[] currentHighestBids, String[] currentHighestBidder) {
+            super(c, R.layout.row, R.id.item_title, titles);
+            this.context = c;
+            this.titles = titles;
+            this.descriptions = descriptions;
+            this.imgs = images;
+            this.currentHighestBids = currentHighestBids;
+            this.currentHighestBidder = currentHighestBidder;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row = layoutInflater.inflate(R.layout.row, parent, false);
+            ImageView images = row.findViewById(R.id.item_image);
+            TextView myTitle = row.findViewById(R.id.item_title);
+            TextView myDescription = row.findViewById(R.id.item_description);
+            TextView myCHB = row.findViewById(R.id.item_CHB);
+            TextView myCHBr = row.findViewById(R.id.item_CHBr);
+
+            // now set our resources on views
+            images.setImageResource(imgs[position]);
+            myTitle.setText(titles[position]);
+            myDescription.setText(descriptions[position]);
+            String cHBStr = "Current Highest Bid: " + String.valueOf(currentHighestBids[position]);
+            myCHB.setText(cHBStr);
+            myCHBr.setText("Current Highest Bidder: " + currentHighestBidder[position]);
+
+            return row;
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
