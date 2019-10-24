@@ -32,11 +32,16 @@ import java.util.Locale;
  */
 public class MainActivity extends AppCompatActivity {
 
-    // Search Bar
+    // Search Bar & List View
     SearchView searchBar;
     ListView listView;
     ArrayList<String> list;
     ArrayAdapter<String> adapter;
+    String[] titles;
+    String[] descriptions;
+    int[] images;
+    double[] currentHighestBids;
+    String[] currentHighestBidder;
 
     // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
@@ -57,6 +62,82 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //create items (first sprint)
+        String[] item1Tags = {"ipad", "apple"};
+        Item item1 = new Item("iPad",
+                "This is a brand new iPad Pro, it has 64GB memory and was donated by Campus " +
+                        "Ministry.", R.drawable.auction_item_ipad,
+                10, item1Tags, 1000);
+        String[] item2Tags = {"golf", "sports", "fathers day"};
+        Item item2 = new Item("Golf Clubs", "Looking for a Father's Day gift? We've got" +
+                " the gift for you! This is a six piece golf club set, bag included!",
+                R.drawable.auction_item_golf_clubs, 5, item2Tags, 50);
+        String[] item3Tags = {"basketball", "sports", "fathers day", "bball"};
+        Item item3 = new Item("Basketball Tickets", "Two tickets to the Philadelphia " +
+                "76ers vs the New Orleans Pelicans.", R.drawable.auction_item_tickets, 5,
+                item3Tags, 30);
+
+        //create auctionitems object with items created
+        AuctionItems ais = new AuctionItems();
+        ais.items.add(item1);
+        ais.items.add(item2);
+        ais.items.add(item3);
+
+        //instantiate titles, descriptions, images, currentHighestBid, and currentHighestBidder with
+        //size of auctionitems
+        titles = new String[ais.items.size()];
+        descriptions = new String[ais.items.size()];
+        images = new int[ais.items.size()];
+        currentHighestBids = new double[ais.items.size()];
+        currentHighestBidder = new String[ais.items.size()];
+
+        //populates all arrays with item info for display in UI
+        for(int i = 0; i < titles.length; i++){
+            for(Item item : ais.items){
+                titles[i] = item.title;
+            }
+        }
+
+        for(int i = 0; i < descriptions.length; i++){
+            for(Item item : ais.items){
+                descriptions[i] = item.description;
+            }
+        }
+
+        for(int i = 0; i < images.length; i++){
+            for(Item item : ais.items){
+                images[i] = item.resID;
+            }
+        }
+
+        for(int i = 0; i < currentHighestBids.length; i++){
+            for(Item item : ais.items){
+                currentHighestBids[i] = item.currentHighestBid;
+            }
+        }
+
+        for(int i = 0; i < currentHighestBidder.length; i++){
+            for(Item item : ais.items){
+                currentHighestBidder[i] = item.currentHighestBidder;
+            }
+        }
+
+        //create
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Search Bar
         searchBar = (SearchView)findViewById(R.id.search_bar);
@@ -144,72 +225,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(accountIntent);
             }
         });
-
-        // Item Buttons
-        ImageButton item1Button = (ImageButton) findViewById(R.id.auctionItem1Button);
-        item1Button.setOnClickListener(new View.OnClickListener(){
-
-            /**
-             * This method sets a click listener for the button in the UI
-             * When clicked, the user is taken to the next view
-             * ItemActivity
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v){
-                Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
-                startActivity(itemIntent);
-            }
-        });
-
-        ImageButton item2Button = (ImageButton) findViewById(R.id.auctionItem2Button);
-        item2Button.setOnClickListener(new View.OnClickListener(){
-
-            /**
-             * This method sets a click listener for the button in the UI
-             * When clicked, the user is taken to the next view
-             * ItemActivity
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v){
-                Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
-                startActivity(itemIntent);
-            }
-        });
-
-        ImageButton item3Button = (ImageButton) findViewById(R.id.auctionItem3Button);
-        item3Button.setOnClickListener(new View.OnClickListener(){
-
-            /**
-             * This method sets a click listener for the button in the UI
-             * When clicked, the user is taken to the next view
-             * ItemActivity
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v){
-                Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
-                startActivity(itemIntent);
-            }
-        });
-
-
-        // Loading up Items
-        String auctionItemStr = "auction_item_ipad";
-        int itemOneResID = getResources().getIdentifier(auctionItemStr, "drawable", getPackageName());
-        LinkedList<String> ipadTags = new LinkedList<>();
-        ipadTags.add("iPad");
-        ipadTags.add("technology");
-        ipadTags.add("Apple");
-        ipadTags.add("tablet");
-        Item iPad = new Item("iPad", "This is a 2019 iPad Pro with 64GB memory.",
-                itemOneResID, 5.00, ipadTags, 150.00);
-
-        ImageButton auctionItemButton = new ImageButton(this);
 
     }
 

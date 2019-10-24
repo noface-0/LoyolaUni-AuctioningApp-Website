@@ -38,7 +38,7 @@ public class Item {
     /**
      * The list of tags that pertain to an item
      */
-    protected LinkedList<String> tags;
+    protected String [] tags;
 
     /**
      * The value of the current highest bid on an item
@@ -59,7 +59,7 @@ public class Item {
      * @param tags the list of tags that pertain to an item
      * @param currentHighestBid the current highest bid of an item
      */
-    public Item(String title, String desc, int resID, double minInc, LinkedList<String> tags,
+    public Item(String title, String desc, int resID, double minInc, String [] tags,
                 double currentHighestBid){
         this.title = title;
         this.description = desc;

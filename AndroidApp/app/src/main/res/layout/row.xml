@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    >
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/auction_item_ipad"
+        android:id="@+id/image_item_1"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="iPad"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:id="@+id/item_title"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New iPad Pro 64GB"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:id="@+id/item_description"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Highest Bid: $1,000.00"
+            android:layout_margin="5dp"
+            android:textSize="13sp"
+            android:id="@+id/item_CHB"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Highest Bidder: Jen"
+            android:layout_margin="5dp"
+            android:textSize="13sp"
+            android:id="@+id/item_CHBr"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
