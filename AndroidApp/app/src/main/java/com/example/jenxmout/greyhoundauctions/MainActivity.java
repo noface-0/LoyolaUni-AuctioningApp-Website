@@ -14,19 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.app.Application;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
-import java.lang.Double;
+
 
 /**
  * This is the Main Activity class that
@@ -45,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     // Search Bar & List View
     SearchView searchBar;
     ListView listView;
-    ArrayAdapter<String> adapter;
     String[] titles;
     String[] descriptions;
     int[] images;
@@ -71,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //create items (first sprint)
         String[] item1Tags = {"ipad", "apple"};
@@ -103,28 +94,28 @@ public class MainActivity extends AppCompatActivity {
         currentHighestBidders = new String[ais.items.size()];
 
         //populates all arrays with item info for display in UI
-        for(int i = 0; i < titles.length; i++){
-                titles[i] = ais.items.get(i).title;
+        for (int i = 0; i < titles.length; i++) {
+            titles[i] = ais.items.get(i).title;
         }
 
-        for(int i = 0; i < descriptions.length; i++){
-                descriptions[i] = ais.items.get(i).description;
+        for (int i = 0; i < descriptions.length; i++) {
+            descriptions[i] = ais.items.get(i).description;
         }
 
-        for(int i = 0; i < images.length; i++){
-                images[i] = ais.items.get(i).resID;
+        for (int i = 0; i < images.length; i++) {
+            images[i] = ais.items.get(i).resID;
         }
 
-        for(int i = 0; i < currentHighestBids.length; i++){
-                currentHighestBids[i] = ais.items.get(i).currentHighestBid;
+        for (int i = 0; i < currentHighestBids.length; i++) {
+            currentHighestBids[i] = ais.items.get(i).currentHighestBid;
         }
 
-        for(int i = 0; i < currentHighestBidders.length; i++){
-                currentHighestBidders[i] = ais.items.get(i).currentHighestBidder;
+        for (int i = 0; i < currentHighestBidders.length; i++) {
+            currentHighestBidders[i] = ais.items.get(i).currentHighestBidder;
         }
 
         //create
-        listView = (ListView)findViewById(R.id.list_of_items);
+        listView = (ListView) findViewById(R.id.list_of_items);
 
         MyAdapter adptr = new MyAdapter(this, titles, descriptions, images, currentHighestBids,
                 currentHighestBidders);
@@ -134,15 +125,15 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position ==  0) {
+                if (position == 0) {
                     Intent item1Intent = new Intent(MainActivity.this, ItemActivity.class);
                     startActivity(item1Intent);
                 }
-                if (position ==  1) {
+                if (position == 1) {
                     Intent item2Intent = new Intent(MainActivity.this, ItemActivity.class);
                     startActivity(item2Intent);
                 }
-                if (position ==  2) {
+                if (position == 2) {
                     Intent item3Intent = new Intent(MainActivity.this, ItemActivity.class);
                     startActivity(item3Intent);
                 }
@@ -152,32 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Search Bar
-        searchBar = (SearchView)findViewById(R.id.search_bar);
 
-        /**
-        list = new ArrayList<String>();
-
-        list.add("Item 1");
-        list.add("Item 2");
-
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-
-        listView.setAdapter(adapter);
-         */
-
-        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String search) {
-
-                adapter.getFilter().filter(search);
-                return false;
-            }
-        });
 
         // Countdown Clock
         textViewCountDown = findViewById(R.id.countdown);
@@ -204,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Event Button
         Button eventButton = (Button) findViewById(R.id.eventButton);
-        eventButton.setOnClickListener(new View.OnClickListener(){
+        eventButton.setOnClickListener(new View.OnClickListener() {
 
             /**
              * This method sets a click listener for the button in the UI
@@ -214,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
              * @param v the view of the current state
              */
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent eventIntent = new Intent(MainActivity.this, EventActivity.class);
                 startActivity(eventIntent);
             }
@@ -223,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Account Button
         Button accountButton = (Button) findViewById(R.id.loginButton);
-        accountButton.setOnClickListener(new View.OnClickListener(){
+        accountButton.setOnClickListener(new View.OnClickListener() {
 
             /**
              * This method sets a click listener for the button in the UI
@@ -233,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
              * @param v the view of the current state
              */
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent accountIntent = new Intent(MainActivity.this, AccountActivity.class);
                 startActivity(accountIntent);
             }
@@ -241,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    // Countdown Clock
     /**
      * Start countdown clock
      */
@@ -378,6 +344,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // For List
     class MyAdapter extends ArrayAdapter<String> {
 
         protected Context context;
