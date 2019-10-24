@@ -113,16 +113,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-        ImageButton itemButton = (ImageButton) findViewById(R.id.acutionItem1Button);
-        itemButton.setOnClickListener(new View.OnClickListener(){
+
+        ImageButton item1Button = (ImageButton) findViewById(R.id.auctionItem1Button);
+        item1Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
                 startActivity(itemIntent);
             }
         });
-         */
+
+        ImageButton item2Button = (ImageButton) findViewById(R.id.auctionItem2Button);
+        item2Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
+                startActivity(itemIntent);
+            }
+        });
+
+        ImageButton item3Button = (ImageButton) findViewById(R.id.auctionItem3Button);
+        item3Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
+                startActivity(itemIntent);
+            }
+        });
+
 
         String auctionItemStr = "auction_item_ipad";
         int itemOneResID = getResources().getIdentifier(auctionItemStr, "drawable", getPackageName());

@@ -55,7 +55,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/acutionItem1Button"
+                    android:id="@+id/auctionItem1Button"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="0dp"
@@ -114,7 +114,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/auctionItem3Button"
+                    android:id="@+id/auctionItem2Button"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="0dp"
@@ -132,21 +132,21 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/auctionItem2Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Golf Clubs" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/auctionItem2CHB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="$100" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/auctionItem2CHBr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -160,7 +160,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/auctionItem2Button"
+                    android:id="@+id/auctionItem3Button"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="0dp"
@@ -179,21 +179,21 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/auctionItem3Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Basketball Tickets" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/auctionItem3CHB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="$80" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/auctionItem3CHBr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
