@@ -156,16 +156,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * Start countdown clock
+     */
     private void startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
 
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            /**
+             * ....
+             * @param millisUntilFinished
+             */
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
 
+            /**
+             * ....
+             */
             @Override
             public void onFinish() {
                 mTimerRunning = false;
@@ -177,19 +188,27 @@ public class MainActivity extends AppCompatActivity {
         updateButtons();
     }
 
-
+    /**
+     * Pause the countdown clock
+     */
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
         updateButtons();
     }
 
+    /**
+     * Reset the countdown clock to original time
+     */
     private void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
         updateButtons();
     }
 
+    /**
+     * Update the current time on the countdown clock
+     */
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -199,6 +218,9 @@ public class MainActivity extends AppCompatActivity {
         mTextViewCountDown.setText(timeLeftFormatted);
     }
 
+    /**
+     * Update the appearance of the buttons to control the countdown
+     */
     private void updateButtons() {
         if (mTimerRunning) {
             mButtonReset.setVisibility(View.INVISIBLE);
@@ -220,6 +242,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * When the app is stopped...
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -238,6 +263,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * When the app is started...
+     */
     @Override
     protected void onStart() {
         super.onStart();
