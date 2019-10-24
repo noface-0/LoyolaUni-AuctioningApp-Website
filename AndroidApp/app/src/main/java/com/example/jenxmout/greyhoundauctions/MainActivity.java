@@ -2,21 +2,21 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 /**
  * This is the Main Activity class that
@@ -32,18 +32,21 @@ import androidx.navigation.Navigation;
  */
 public class MainActivity extends AppCompatActivity {
 
+    // Search Bar
+    SearchView searchBar;
+    ListView listView;
+    ArrayList<String> list;
+    ArrayAdapter<String> adapter;
+
+    // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
-
-    private TextView mTextViewCountDown;
-    private Button mButtonStartPause;
-    private Button mButtonReset;
-
-    private CountDownTimer mCountDownTimer;
-
-    private boolean mTimerRunning;
-
-    private long mTimeLeftInMillis;
-    private long mEndTime;
+    private TextView textViewCountDown;
+    private Button buttonStartPause;
+    private Button buttonReset;
+    private CountDownTimer countDownTimer;
+    private boolean timerRunning;
+    private long timeLeftInMillis;
+    private long endTime;
 
     /**
      * Sets up the main screen view
@@ -55,15 +58,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextViewCountDown = findViewById(R.id.countdown);
+        // Search Bar
+        searchBar = (SearchView)findViewById(R.id.search_bar);
+        listView = (ListView)findViewById(R.id.list_of_items);
 
-        mButtonStartPause = findViewById(R.id.countdownButton);
-        mButtonReset = findViewById(R.id.button_reset);
+        list = new ArrayList<String>();
 
-        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
+        list.add("Item 1");
+        list.add("Item 2");
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+
+        listView.setAdapter(adapter);
+
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String search) {
+
+                adapter.getFilter().filter(search);
+                return false;
+            }
+        });
+
+        // Countdown Clock
+        textViewCountDown = findViewById(R.id.countdown);
+        buttonStartPause = findViewById(R.id.countdownButton);
+        buttonReset = findViewById(R.id.button_reset);
+
+        buttonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mTimerRunning) {
+                if (timerRunning) {
                     pauseTimer();
                 } else {
                     startTimer();
@@ -71,13 +101,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonReset.setOnClickListener(new View.OnClickListener() {
+        buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetTimer();
             }
         });
 
+        // Event Button
         Button eventButton = (Button) findViewById(R.id.eventButton);
         eventButton.setOnClickListener(new View.OnClickListener(){
 
@@ -96,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // Account Button
         Button accountButton = (Button) findViewById(R.id.loginButton);
         accountButton.setOnClickListener(new View.OnClickListener(){
 
@@ -113,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // Item Buttons
         ImageButton item1Button = (ImageButton) findViewById(R.id.auctionItem1Button);
         item1Button.setOnClickListener(new View.OnClickListener(){
 
@@ -166,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // Loading up Items
         String auctionItemStr = "auction_item_ipad";
         int itemOneResID = getResources().getIdentifier(auctionItemStr, "drawable", getPackageName());
         LinkedList<String> ipadTags = new LinkedList<>();
@@ -185,16 +218,16 @@ public class MainActivity extends AppCompatActivity {
      * Start countdown clock
      */
     private void startTimer() {
-        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+        endTime = System.currentTimeMillis() + timeLeftInMillis;
 
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
             /**
              * ....
              * @param millisUntilFinished
              */
             @Override
             public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
+                timeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
 
@@ -203,12 +236,12 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public void onFinish() {
-                mTimerRunning = false;
+                timerRunning = false;
                 updateButtons();
             }
         }.start();
 
-        mTimerRunning = true;
+        timerRunning = true;
         updateButtons();
     }
 
@@ -216,8 +249,8 @@ public class MainActivity extends AppCompatActivity {
      * Pause the countdown clock
      */
     private void pauseTimer() {
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
+        countDownTimer.cancel();
+        timerRunning = false;
         updateButtons();
     }
 
@@ -225,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
      * Reset the countdown clock to original time
      */
     private void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        timeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
         updateButtons();
     }
@@ -234,34 +267,34 @@ public class MainActivity extends AppCompatActivity {
      * Update the current time on the countdown clock
      */
     private void updateCountDownText() {
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
 
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
-        mTextViewCountDown.setText(timeLeftFormatted);
+        textViewCountDown.setText(timeLeftFormatted);
     }
 
     /**
      * Update the appearance of the buttons to control the countdown
      */
     private void updateButtons() {
-        if (mTimerRunning) {
-            mButtonReset.setVisibility(View.INVISIBLE);
-            mButtonStartPause.setText("Pause");
+        if (timerRunning) {
+            buttonReset.setVisibility(View.INVISIBLE);
+            buttonStartPause.setText("Pause");
         } else {
-            mButtonStartPause.setText("Start");
+            buttonStartPause.setText("Start");
 
-            if (mTimeLeftInMillis < 1000) {
-                mButtonStartPause.setVisibility(View.INVISIBLE);
+            if (timeLeftInMillis < 1000) {
+                buttonStartPause.setVisibility(View.INVISIBLE);
             } else {
-                mButtonStartPause.setVisibility(View.VISIBLE);
+                buttonStartPause.setVisibility(View.VISIBLE);
             }
 
-            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-                mButtonReset.setVisibility(View.VISIBLE);
+            if (timeLeftInMillis < START_TIME_IN_MILLIS) {
+                buttonReset.setVisibility(View.VISIBLE);
             } else {
-                mButtonReset.setVisibility(View.INVISIBLE);
+                buttonReset.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -276,14 +309,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putLong("millisLeft", mTimeLeftInMillis);
-        editor.putBoolean("timerRunning", mTimerRunning);
-        editor.putLong("endTime", mEndTime);
+        editor.putLong("millisLeft", timeLeftInMillis);
+        editor.putBoolean("timerRunning", timerRunning);
+        editor.putLong("endTime", endTime);
 
         editor.apply();
 
-        if (mCountDownTimer != null) {
-            mCountDownTimer.cancel();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
         }
     }
 
@@ -296,19 +329,19 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
 
-        mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
-        mTimerRunning = prefs.getBoolean("timerRunning", false);
+        timeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
+        timerRunning = prefs.getBoolean("timerRunning", false);
 
         updateCountDownText();
         updateButtons();
 
-        if (mTimerRunning) {
-            mEndTime = prefs.getLong("endTime", 0);
-            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+        if (timerRunning) {
+            endTime = prefs.getLong("endTime", 0);
+            timeLeftInMillis = endTime - System.currentTimeMillis();
 
-            if (mTimeLeftInMillis < 0) {
-                mTimeLeftInMillis = 0;
-                mTimerRunning = false;
+            if (timeLeftInMillis < 0) {
+                timeLeftInMillis = 0;
+                timerRunning = false;
                 updateCountDownText();
                 updateButtons();
             } else {
