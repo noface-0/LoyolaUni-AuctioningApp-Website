@@ -116,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton item1Button = (ImageButton) findViewById(R.id.auctionItem1Button);
         item1Button.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * ItemActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
@@ -125,6 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton item2Button = (ImageButton) findViewById(R.id.auctionItem2Button);
         item2Button.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * ItemActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
@@ -134,6 +150,14 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton item3Button = (ImageButton) findViewById(R.id.auctionItem3Button);
         item3Button.setOnClickListener(new View.OnClickListener(){
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * ItemActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
