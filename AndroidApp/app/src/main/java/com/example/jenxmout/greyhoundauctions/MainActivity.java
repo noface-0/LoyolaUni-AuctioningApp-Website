@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private long timeLeftInMillis;
     private long endTime;
 
+    protected User you;
+
     /**
      * Sets up the main screen view
      *
@@ -64,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Creating User
+        you = new User();
+
+
 
         //create items (first sprint)
         String[] item1Tags = {"ipad", "apple", "tech"};

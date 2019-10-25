@@ -30,6 +30,25 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Login Button
+        Button loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * AccountActivity
+             *
+             * @param v the view of the current state
+             */
+            @Override
+            public void onClick(View v) {
+                Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
+
+                startActivity(accountIntent);
+            }
+        });
+
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
         sendEmailButton.setOnClickListener(new View.OnClickListener(){
             /**
@@ -60,6 +79,9 @@ public class AccountActivity extends AppCompatActivity {
         public void onClick(View v){
             Intent signUpIntent = new Intent(AccountActivity.this, SignUpActivity.class);
             startActivity(signUpIntent);
+
+
+
         }
     });
 
