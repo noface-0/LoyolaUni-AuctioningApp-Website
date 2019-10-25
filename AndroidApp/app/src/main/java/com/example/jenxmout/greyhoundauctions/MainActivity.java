@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     int[] images;
     double[] currentHighestBids;
     String[] currentHighestBidders;
+    String[][] tags;
 
     // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
@@ -65,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //create items (first sprint)
-        String[] item1Tags = {"ipad", "apple"};
-        Item item1 = new Item("iPad",
+        String[] item1Tags = {"ipad", "apple", "tech"};
+        final Item item1 = new Item("iPad",
                 "This is a brand new iPad Pro, it has 64GB memory and was donated by Campus " +
                         "Ministry.", R.drawable.auction_item_ipad,
                 10, item1Tags, 1000);
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 item3Tags, 30);
 
         //create auctionitems object with items created
-        AuctionItems ais = new AuctionItems();
+        final AuctionItems ais = new AuctionItems();
         ais.items.add(item1);
         ais.items.add(item2);
         ais.items.add(item3);
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         images = new int[ais.items.size()];
         currentHighestBids = new double[ais.items.size()];
         currentHighestBidders = new String[ais.items.size()];
+        tags = new String[ais.items.size()][];
 
         //populates all arrays with item info for display in UI
         for (int i = 0; i < titles.length; i++) {
@@ -127,14 +129,54 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     Intent item1Intent = new Intent(MainActivity.this, ItemActivity.class);
+                    item1Intent.putExtra("itemTitle", titles[0]);
+                    item1Intent.putExtra("itemImage", images[0]);
+                    item1Intent.putExtra("itemCHB", currentHighestBids[0]);
+                    item1Intent.putExtra("itemDesc", descriptions[0]);
+                    item1Intent.putExtra("itemCHBr", currentHighestBidders[0]);
+
+                    String tagsStr = "";
+                    for(String tag : ais.items.get(0).tags){
+                        tagsStr += "#" + tag + " ";
+                    }
+
+                    item1Intent.putExtra("itemTags", tagsStr);
+
                     startActivity(item1Intent);
+
                 }
                 if (position == 1) {
                     Intent item2Intent = new Intent(MainActivity.this, ItemActivity.class);
+
+                    item2Intent.putExtra("itemTitle", titles[1]);
+                    item2Intent.putExtra("itemImage", images[1]);
+                    item2Intent.putExtra("itemCHB", currentHighestBids[1]);
+                    item2Intent.putExtra("itemDesc", descriptions[1]);
+                    item2Intent.putExtra("itemCHBr", currentHighestBidders[1]);
+
+                    String tagsStr = "";
+                    for(String tag : ais.items.get(1).tags){
+                        tagsStr += "#" + tag + " ";
+                    }
+
+                    item2Intent.putExtra("itemTags", tagsStr);
                     startActivity(item2Intent);
                 }
                 if (position == 2) {
                     Intent item3Intent = new Intent(MainActivity.this, ItemActivity.class);
+
+                    item3Intent.putExtra("itemTitle", titles[2]);
+                    item3Intent.putExtra("itemImage", images[2]);
+                    item3Intent.putExtra("itemCHB", currentHighestBids[2]);
+                    item3Intent.putExtra("itemDesc", descriptions[2]);
+                    item3Intent.putExtra("itemCHBr", currentHighestBidders[2]);
+
+                    String tagsStr = "";
+                    for(String tag : ais.items.get(2).tags){
+                        tagsStr += "#" + tag + " ";
+                    }
+
+                    item3Intent.putExtra("itemTags", tagsStr);
                     startActivity(item3Intent);
                 }
             }
