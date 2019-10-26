@@ -63,8 +63,8 @@
 
     <Button
         android:id="@+id/itemsHighestButton"
-        android:layout_width="65dp"
-        android:layout_height="0dp"
+        android:layout_width="93dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="212dp"
@@ -89,8 +89,8 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="65dp"
-        android:layout_height="0dp"
+        android:layout_width="95dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="280dp"
@@ -115,8 +115,8 @@
 
     <Button
         android:id="@+id/eventButton"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="136dp"
