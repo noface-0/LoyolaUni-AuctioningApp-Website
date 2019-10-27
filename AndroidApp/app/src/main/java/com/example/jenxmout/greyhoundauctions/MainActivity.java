@@ -33,6 +33,7 @@ import java.util.Locale;
  * @author Javon Kitson
  * @version 1.0 10/21/19
  */
+
 public class MainActivity extends AppCompatActivity {
 
     // Search Bar & List View
