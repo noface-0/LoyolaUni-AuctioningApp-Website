@@ -8,19 +8,6 @@
     android:background="@color/greyhoundGreen"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/count_down"
-        android:textColor="@color/greyhoundGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="347dp"

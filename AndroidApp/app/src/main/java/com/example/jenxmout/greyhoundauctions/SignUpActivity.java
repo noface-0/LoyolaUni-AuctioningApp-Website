@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This is the SignUp Activity class that
@@ -65,11 +66,11 @@ public class SignUpActivity extends AppCompatActivity {
                 String userPasswordConfirm = String.valueOf(passwordConfirmInput.getText());
 
                 if(!userPassword.equals(userPasswordConfirm)){
-                    //throw toast to say passwords dont match
+                    Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
                 }
                 else {
                     //set user name, email, password, set signedIn flag using signUp method
-                    //throw welcome toast
+                    Toast.makeText(SignUpActivity.this, "Welcome", Toast.LENGTH_LONG).show();
 
                     //bring to home
                     Intent homeIntent = new Intent(SignUpActivity.this, MainActivity.class);
