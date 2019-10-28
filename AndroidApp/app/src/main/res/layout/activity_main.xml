@@ -12,7 +12,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-65dp">
 
         <ImageView
             android:id="@+id/logo"
@@ -24,14 +26,14 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:queryHint="Search for Tag Here"
-            android:iconifiedByDefault="false">
+            android:iconifiedByDefault="false"
+            android:queryHint="Search for Tag Here">
 
         </SearchView>
 
         <LinearLayout
             android:layout_width="224dp"
-            android:layout_height="383dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="20dp"
@@ -44,7 +46,7 @@
             <ListView
                 android:id="@+id/list_of_items"
                 android:layout_width="match_parent"
-                android:layout_height="380dp"></ListView>
+                android:layout_height="550dp"></ListView>
         </LinearLayout>
     </LinearLayout>
 
@@ -67,7 +69,7 @@
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="203dp"
         android:text="Highest"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -80,7 +82,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="300dp"
         android:text="Bids"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -93,7 +95,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="253dp"
         android:text="Account"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -106,7 +108,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="110dp"
         android:text="Home"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -115,11 +117,11 @@
 
     <Button
         android:id="@+id/eventButton"
-        android:layout_width="85dp"
-        android:layout_height="46dp"
+        android:layout_width="71dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="158dp"
         android:text="Event"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -132,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="348dp"
         android:text="Start/Stop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -145,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="448dp"
+        android:layout_marginTop="397dp"
         android:text="Reset"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
