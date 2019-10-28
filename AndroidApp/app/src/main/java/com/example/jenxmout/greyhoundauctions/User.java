@@ -21,7 +21,7 @@ public class User {
     /**
      * The email of the bidder
      */
-    protected String email;
+    private String email;
 
     /**
      * The password of the bidder

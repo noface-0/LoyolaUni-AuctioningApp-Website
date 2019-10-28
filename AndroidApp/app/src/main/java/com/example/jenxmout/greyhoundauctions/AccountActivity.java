@@ -49,6 +49,18 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
+        // Home Button
+        Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
+
+                startActivity(homeIntent);
+            }
+
+        });
+        //forgot password button
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
         sendEmailButton.setOnClickListener(new View.OnClickListener(){
             /**
