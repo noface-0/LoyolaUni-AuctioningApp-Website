@@ -25,7 +25,9 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:queryHint="Search for Tag Here"
-             android:iconifiedByDefault="false">
+             android:iconifiedByDefault="false"
+             android:clickable="true">
+
 
          </SearchView>
 
@@ -44,6 +46,7 @@
              <ListView
                  android:id="@+id/list_of_items"
                  android:layout_width="match_parent"
+                 android:textColor="@color/greyhoundGrey"
                  android:layout_height="380dp"></ListView>
          </LinearLayout>
      </LinearLayout>

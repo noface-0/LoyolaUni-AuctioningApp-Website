@@ -1,9 +1,13 @@
 package com.example.jenxmout.greyhoundauctions;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This is the Item Activity class that
@@ -40,16 +44,26 @@ public class ItemActivity extends AppCompatActivity {
                 getIntent().getStringExtra("itemCHBr") + "\n\n" +
                 getIntent().getStringExtra("itemTags"));
 
+        // Bid Info Button
+        Button bidInfoButton = (Button) findViewById(R.id.helpButton);
+        bidInfoButton.setOnClickListener(new View.OnClickListener() {
 
-
-
-        /**
-         * This method sets a click listener for the button in the UI
-         * When clicked, the user is taken to the next view
-         * EventActivity
-         *
-         * @param v the view of the current state
-         */
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * EventActivity
+             *
+             * @param v the view of the current state
+             */
+            @Override
+            public void onClick(View v) {
+                for (int i=0; i < 2; i++) {
+                    Toast.makeText(ItemActivity.this, "Set Auto-Bid amount at a specific " +
+                            "increment every time another bidder bids up until a certain maximum " +
+                            "amount.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 }

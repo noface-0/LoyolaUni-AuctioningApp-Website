@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import java.util.LinkedList;
 import java.util.Locale;
 
 
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Search Bar & List View
     SearchView searchBar;
+    MyAdapter adapter;
     ListView listView;
     String[] titles;
     String[] descriptions;
@@ -126,8 +132,15 @@ public class MainActivity extends AppCompatActivity {
         //create
         listView = (ListView) findViewById(R.id.list_of_items);
 
-        MyAdapter adptr = new MyAdapter(this, titles, descriptions, images, currentHighestBids,
-                currentHighestBidders);
+        //tags list for adapter's filter method
+        LinkedList<String> tagsList = new LinkedList<>();
+        for(int i = 0; i < ais.items.size(); i++) {
+            for (String tag : ais.items.get(i).tags){
+                tagsList.add(tag);
+            }
+        }
+
+        final MyAdapter adptr = new MyAdapter(this, titles, ais.items);
         listView.setAdapter(adptr);
 
         // now set item click on list view
@@ -192,6 +205,27 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Search Bar
+        // Locate the EditText in listview_main.xml
+        searchBar = (SearchView) findViewById(R.id.search_bar);
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (TextUtils.isEmpty(s)){
+                    adptr.filter("");
+                    listView.clearTextFilter();
+                }
+                else {
+                    adptr.filter(s);
+                }
+                return true;
+            }
+        });
+
 
 
         // Countdown Clock
@@ -253,8 +287,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(accountIntent);
             }
         });
-
     }
+
+
+
+    // Filter Class
+
+
 
     // Countdown Clock
     /**
@@ -397,21 +436,15 @@ public class MainActivity extends AppCompatActivity {
     class MyAdapter extends ArrayAdapter<String> {
 
         protected Context context;
-        protected String[] titles;
-        protected String[] descriptions;
-        protected int[] imgs;
-        protected double[] currentHighestBids;
-        protected String[] currentHighestBidder;
+        protected LinkedList<Item> items;
+        protected LinkedList<Item> itemsList;
 
-        public MyAdapter(Context c, String[] titles, String[] descriptions, int[] images,
-                         double[] currentHighestBids, String[] currentHighestBidder) {
+        public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
             this.context = c;
-            this.titles = titles;
-            this.descriptions = descriptions;
-            this.imgs = images;
-            this.currentHighestBids = currentHighestBids;
-            this.currentHighestBidder = currentHighestBidder;
+            this.items = items;
+            this.itemsList = new LinkedList<>();
+            this.itemsList.addAll(items);
         }
 
         @NonNull
@@ -425,16 +458,35 @@ public class MainActivity extends AppCompatActivity {
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
 
-            // now set our resources on views
-            images.setImageResource(imgs[position]);
-            myTitle.setText(titles[position]);
-            myDescription.setText(descriptions[position]);
-            String cHBStr = "Current Highest Bid: " + String.valueOf(currentHighestBids[position]);
-            myCHB.setText(cHBStr);
-            myCHBr.setText("Current Highest Bidder: " + currentHighestBidder[position]);
+            images.setImageResource(items.get(position).resID);
+            myTitle.setText(items.get(position).title);
+            myDescription.setText(items.get(position).description);
+            myCHB.setText(String.valueOf(items.get(position).currentHighestBid));
+            myCHBr.setText(items.get(position).currentHighestBidder);
 
             return row;
         }
+
+        public void filter(String charText) {
+            Log.w(charText, "this is what is being searched");
+            charText = charText.toLowerCase(Locale.getDefault());
+            Log.w(charText, "made to lower case");
+            items.clear();
+            if (charText.length() == 0) {
+                Log.w("testing search length", "found to be 0, displaying all items");
+                items.addAll(itemsList);
+            } else {
+                for (Item item : itemsList) {
+                    for(int i = 0; i < item.tags.length; i++) {
+                        if(item.tags[i].toLowerCase(Locale.getDefault()).contains(charText)) {
+                            items.add(item);
+                        }
+                    }
+                }
+            }
+            notifyDataSetChanged();
+        }
+
     }
 
 }
