@@ -8,4 +8,6 @@
     <color name="greyhoundGrey">#CACAC8</color>
     <color name="countDownRed">#FF0000</color>
     <color name="silver">#C0C0C0</color>
+    <color name="backgroundGreen">#B5E5CC</color>
+    <color name="backgroundLightGreen">#F0F9F4</color>
 </resources>

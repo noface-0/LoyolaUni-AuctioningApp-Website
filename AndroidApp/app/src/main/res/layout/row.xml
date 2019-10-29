@@ -7,12 +7,12 @@
     android:orientation="horizontal"
     android:padding="16dp"
     >
+
     <ImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/auction_item_ipad"
         android:id="@+id/item_image"
-        />
+        android:layout_width="77dp"
+        android:layout_height="125dp"
+        android:src="@drawable/auction_item_ipad" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
