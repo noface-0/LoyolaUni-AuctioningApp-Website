@@ -26,15 +26,16 @@
              android:layout_height="wrap_content"
              android:queryHint="Search for Tag Here"
              android:iconifiedByDefault="false"
+             android:background="@color/greyhoundGrey"
              android:clickable="true">
 
 
          </SearchView>
 
          <LinearLayout
-             android:layout_width="224dp"
-             android:layout_height="383dp"
-             android:layout_marginStart="130dp"
+             android:layout_width="255dp"
+             android:layout_height="393dp"
+             android:layout_marginStart="70dp"
              android:layout_marginLeft="0dp"
              android:layout_marginTop="20dp"
              android:orientation="vertical"
@@ -45,10 +46,11 @@
 
              <ListView
                  android:id="@+id/list_of_items"
-                 android:layout_width="match_parent"
-                 android:textColor="@color/greyhoundGrey"
+                 android:layout_width="256dp"
+                 android:layout_height="420dp"
+                 android:layout_marginLeft="0dp"
                  android:background="@color/greyhoundGrey"
-                 android:layout_height="380dp"></ListView>
+                 android:textColor="@color/greyhoundGrey"></ListView>
          </LinearLayout>
      </LinearLayout>
 
@@ -67,11 +69,12 @@
 
     <Button
         android:id="@+id/itemsHighestButton"
-        android:layout_width="93dp"
-        android:layout_height="49dp"
+        android:layout_width="51dp"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="155dp"
+        android:textSize="6dp"
         android:text="Highest"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -80,12 +83,13 @@
 
     <Button
         android:id="@+id/whatIBidOnButton"
-        android:layout_width="65dp"
-        android:layout_height="0dp"
+        android:layout_width="51dp"
+        android:layout_height="31dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="205dp"
         android:text="Bids"
+        android:textSize="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,12 +97,13 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="95dp"
-        android:layout_height="48dp"
+        android:layout_width="51dp"
+        android:layout_height="31dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="180dp"
         android:text="Account"
+        android:textSize="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,12 +111,13 @@
 
     <Button
         android:id="@+id/homeButton"
-        android:layout_width="70dp"
-        android:layout_height="0dp"
+        android:layout_width="51dp"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="105dp"
         android:text="Home"
+        android:textSize="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,12 +125,13 @@
 
     <Button
         android:id="@+id/eventButton"
-        android:layout_width="85dp"
-        android:layout_height="46dp"
+        android:layout_width="51dp"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="130dp"
         android:text="Event"
+        android:textSize="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,12 +139,13 @@
 
     <Button
         android:id="@+id/countdownButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="51dp"
+        android:layout_height="31dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="230dp"
         android:text="Start/Stop"
+        android:textSize="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,12 +153,13 @@
 
     <Button
         android:id="@+id/button_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="51dp"
+        android:layout_height="31dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="448dp"
+        android:layout_marginTop="255dp"
         android:text="Reset"
+        android:textSize="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
