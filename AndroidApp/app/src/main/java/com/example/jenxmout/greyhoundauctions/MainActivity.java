@@ -148,57 +148,22 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Intent item1Intent = new Intent(MainActivity.this, ItemActivity.class);
-                    item1Intent.putExtra("itemTitle", titles[0]);
-                    item1Intent.putExtra("itemImage", images[0]);
-                    item1Intent.putExtra("itemCHB", currentHighestBids[0]);
-                    item1Intent.putExtra("itemDesc", descriptions[0]);
-                    item1Intent.putExtra("itemCHBr", currentHighestBidders[0]);
+                for(int i = 0; i < ais.items.size();i++){
+                    Log.w("item", titles[i]);
+                    Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
+                    itemIntent.putExtra("itemTitle", titles[i]);
+                    itemIntent.putExtra("itemImage", images[i]);
+                    itemIntent.putExtra("itemCHB", currentHighestBids[i]);
+                    itemIntent.putExtra("itemDesc", descriptions[i]);
+                    itemIntent.putExtra("itemCHBr", currentHighestBidders[i]);
 
                     String tagsStr = "";
-                    for(String tag : ais.items.get(0).tags){
+                    for(String tag : ais.items.get(i).tags){
                         tagsStr += "#" + tag + " ";
                     }
 
-                    item1Intent.putExtra("itemTags", tagsStr);
-
-                    startActivity(item1Intent);
-
-                }
-                if (position == 1) {
-                    Intent item2Intent = new Intent(MainActivity.this, ItemActivity.class);
-
-                    item2Intent.putExtra("itemTitle", titles[1]);
-                    item2Intent.putExtra("itemImage", images[1]);
-                    item2Intent.putExtra("itemCHB", currentHighestBids[1]);
-                    item2Intent.putExtra("itemDesc", descriptions[1]);
-                    item2Intent.putExtra("itemCHBr", currentHighestBidders[1]);
-
-                    String tagsStr = "";
-                    for(String tag : ais.items.get(1).tags){
-                        tagsStr += "#" + tag + " ";
-                    }
-
-                    item2Intent.putExtra("itemTags", tagsStr);
-                    startActivity(item2Intent);
-                }
-                if (position == 2) {
-                    Intent item3Intent = new Intent(MainActivity.this, ItemActivity.class);
-
-                    item3Intent.putExtra("itemTitle", titles[2]);
-                    item3Intent.putExtra("itemImage", images[2]);
-                    item3Intent.putExtra("itemCHB", currentHighestBids[2]);
-                    item3Intent.putExtra("itemDesc", descriptions[2]);
-                    item3Intent.putExtra("itemCHBr", currentHighestBidders[2]);
-
-                    String tagsStr = "";
-                    for(String tag : ais.items.get(2).tags){
-                        tagsStr += "#" + tag + " ";
-                    }
-
-                    item3Intent.putExtra("itemTags", tagsStr);
-                    startActivity(item3Intent);
+                    itemIntent.putExtra("itemTags", tagsStr);
+                    startActivity(itemIntent);
                 }
             }
         });
@@ -458,32 +423,42 @@ public class MainActivity extends AppCompatActivity {
             TextView myDescription = row.findViewById(R.id.item_description);
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
+            Log.w("items size", "size= " + items.size());
 
-            images.setImageResource(items.get(position).resID);
-            myTitle.setText(items.get(position).title);
-            myDescription.setText(items.get(position).description);
-            myCHB.setText(String.valueOf(items.get(position).currentHighestBid));
-            myCHBr.setText(items.get(position).currentHighestBidder);
-
+            if(position < items.size()) {
+                images.setImageResource(items.get(position).resID);
+                myTitle.setText(items.get(position).title);
+                myDescription.setText(items.get(position).description);
+                myCHB.setText(String.valueOf(items.get(position).currentHighestBid));
+                myCHBr.setText(items.get(position).currentHighestBidder);
+            }
             return row;
         }
 
         public void filter(String charText) {
-            Log.w(charText, "this is what is being searched");
+            Log.w(charText, "this is what is being searched " + charText);
             charText = charText.toLowerCase(Locale.getDefault());
-            Log.w(charText, "made to lower case");
+            Log.w(charText, "made to lower case " + charText);
             items.clear();
             if (charText.length() == 0) {
                 Log.w("testing search length", "found to be 0, displaying all items");
                 items.addAll(itemsList);
             } else {
                 for (Item item : itemsList) {
+                    Log.w("item", "current item = " + item.title);
                     for(int i = 0; i < item.tags.length; i++) {
+                        Log.w("tag#", "tag num " + i);
                         if(item.tags[i].toLowerCase(Locale.getDefault()).contains(charText)) {
                             items.add(item);
+                            Log.w("adding item:", item.title);
                         }
                     }
                 }
+                String str = "";
+                for(int i =0; i < items.size(); i++){
+                    str+=items.get(i).title;
+                }
+                Log.w("items in list", str);
             }
             notifyDataSetChanged();
         }
