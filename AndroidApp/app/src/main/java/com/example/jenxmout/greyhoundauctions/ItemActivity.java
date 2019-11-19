@@ -34,15 +34,21 @@ public class ItemActivity extends AppCompatActivity {
         TextView titleView = findViewById(R.id.itemTitleView);
         titleView.setText(getIntent().getStringExtra("itemTitle"));
 
+        TextView highestBid = findViewById(R.id.highestBid);
+        highestBid.setText("Current Highest Bid: $" + getIntent().getDoubleExtra("itemCHB",
+                0.0) + "0");
+
+        TextView minBid = findViewById(R.id.minNextBid);
+        minBid.setText("Min Next Bid: $" + (getIntent().getDoubleExtra("itemCHB",
+                0.0) + getIntent().getDoubleExtra("itemMinInc", 0.0)) + "0");
+
         ImageView imgView = findViewById(R.id.itemImage);
         imgView.setImageResource(getIntent().getIntExtra("itemImage", -1));
 
         TextView infoView = findViewById(R.id.itemDescription);
         infoView.setText(getIntent().getStringExtra("itemDesc") +
-                "\nCurrent Highest Bid: " + getIntent().getDoubleExtra("itemCHB",
-                0.0) + "\nCurrentHighestBidder: " +
-                getIntent().getStringExtra("itemCHBr") + "\n\n" +
-                getIntent().getStringExtra("itemTags"));
+                 "\nCurrentHighestBidder: " + getIntent().getStringExtra("itemCHBr") +
+                "\n\n" + getIntent().getStringExtra("itemTags"));
 
         // Bid Info Button
         Button bidInfoButton = (Button) findViewById(R.id.helpButton);
