@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter adapter;
     ListView listView;
     String[] titles;
-    protected AuctionItems ais;
+    protected static AuctionItems ais;
 
     // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
@@ -59,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private long timeLeftInMillis;
     private long endTime;
 
-    protected User you;
+    protected static User you;
+
+    protected User getUser(){ return you;}
 
     /**
      * Sets up the main screen view
@@ -72,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Creating User
-        you = new User();
-
-
+        you = getUser();
 
         //create items (first sprint)
         String[] item1Tags = {"ipad", "apple", "tech"};
@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     itemIntent.putExtra("itemDesc", ais.items.get(position).description);
                     itemIntent.putExtra("itemCHBr", ais.items.get(position).currentHighestBidder);
                     itemIntent.putExtra("itemMinInc", ais.items.get(position).minInc);
+                    itemIntent.putExtra("itemPosition", position);
 
                     String tagsStr = "";
                     for (String tag : ais.items.get(position).tags) {

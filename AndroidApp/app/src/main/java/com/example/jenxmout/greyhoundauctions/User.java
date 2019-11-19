@@ -83,8 +83,8 @@ public class User{
      * @param pwd the password of the bidder's account
      */
     public void logIn(String email, String pwd){
-        //if the email matches email in bd and pwd matches recorded pwd for that email,
-        //set name, email, pwd and signed in flag for user
+        this.email = email;
+        this.password = pwd;
     }
 
     /**
@@ -96,13 +96,6 @@ public class User{
      */
     public boolean bid(double amountBid, Item item) {
         if(signedIn) {
-            //if the bid is less than the current highest bid
-            if (item.currentHighestBid > amountBid)
-                return false;
-                //if the bid is not the minimum increment more than the current highest bid
-            else if (amountBid - item.currentHighestBid < item.minInc)
-                return false;
-            else {
                 //set current highest bid to user's bid
                 item.currentHighestBid = amountBid;
                 //user is now the current highest bidder
@@ -110,10 +103,8 @@ public class User{
                 //add the item to the user's itemsBidOn
                 this.itemsBidOn.add(item);
                 return true;
-            }
         }
         else{
-            //navigate to log-in page
             return false;
         }
     }
