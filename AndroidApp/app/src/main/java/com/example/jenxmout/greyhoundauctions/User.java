@@ -1,5 +1,8 @@
 package com.example.jenxmout.greyhoundauctions;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.LinkedList;
 
 /**
@@ -11,7 +14,7 @@ import java.util.LinkedList;
  * @author Ian Leppo
  * @version 1.0 10/15/19
  */
-public class User {
+public class User{
 
     /**
      * The name of the bidder
@@ -51,6 +54,7 @@ public class User {
         this.itemsBidOn = new LinkedList<Item>();
         this.itemsCurrentHighestBidderOn = new LinkedList<Item>();
     }
+
 
     /**
      * Signs a bidder create an account, allowing them to bid
