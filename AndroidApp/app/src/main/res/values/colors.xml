@@ -10,4 +10,6 @@
     <color name="silver">#C0C0C0</color>
     <color name="backgroundGreen">#B5E5CC</color>
     <color name="backgroundLightGreen">#F0F9F4</color>
+    <color name="darkGrey">#555555</color>
+    <color name ="countdownRed">#fa7470</color>
 </resources>

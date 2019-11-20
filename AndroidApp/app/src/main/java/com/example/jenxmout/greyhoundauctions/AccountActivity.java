@@ -60,6 +60,8 @@ public class AccountActivity extends AppCompatActivity {
                         MainActivity.you.firstName = "John";
                         MainActivity.you.lastName = "Doe";
                         startActivity(accountIntent);
+                        Toast.makeText(AccountActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
+
                     }
                     else{
                         Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
@@ -67,7 +69,7 @@ public class AccountActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(AccountActivity.this,
-                            "We don't recognise your email, try making a new account!",
+                            "We don't recognize your email, try making a new account!",
                             Toast.LENGTH_LONG).show();
                 }
             }

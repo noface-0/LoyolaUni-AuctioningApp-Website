@@ -53,8 +53,11 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText nameInput = (EditText) findViewById(R.id.name);
-                String userName = String.valueOf(nameInput.getText());
+                EditText firstNameInput = (EditText) findViewById(R.id.firstName);
+                String firstName = String.valueOf(firstNameInput.getText());
+
+                EditText lastNameInput = (EditText) findViewById(R.id.lastName);
+                String lastName = String.valueOf(lastNameInput.getText());
 
                 EditText emailInput = (EditText) findViewById(R.id.email);
                 String userEmail = String.valueOf(emailInput.getText());
