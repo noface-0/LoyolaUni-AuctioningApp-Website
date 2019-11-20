@@ -3,8 +3,10 @@ package com.example.jenxmout.greyhoundauctions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,15 +36,21 @@ public class ItemActivity extends AppCompatActivity {
         TextView titleView = findViewById(R.id.itemTitleView);
         titleView.setText(getIntent().getStringExtra("itemTitle"));
 
+        TextView highestBid = findViewById(R.id.highestBid);
+        highestBid.setText("Current Highest Bid: $" + getIntent().getDoubleExtra("itemCHB",
+                0.0) + "0");
+
+        TextView minBid = findViewById(R.id.minNextBid);
+        minBid.setText("Min Next Bid: $" + (getIntent().getDoubleExtra("itemCHB",
+                0.0) + getIntent().getDoubleExtra("itemMinInc", 0.0)) + "0");
+
         ImageView imgView = findViewById(R.id.itemImage);
         imgView.setImageResource(getIntent().getIntExtra("itemImage", -1));
 
         TextView infoView = findViewById(R.id.itemDescription);
         infoView.setText(getIntent().getStringExtra("itemDesc") +
-                "\nCurrent Highest Bid: " + getIntent().getDoubleExtra("itemCHB",
-                0.0) + "\nCurrentHighestBidder: " +
-                getIntent().getStringExtra("itemCHBr") + "\n\n" +
-                getIntent().getStringExtra("itemTags"));
+                 "\nCurrentHighestBidder: " + getIntent().getStringExtra("itemCHBr") +
+                "\n\n" + getIntent().getStringExtra("itemTags"));
 
         // Bid Info Button
         Button bidInfoButton = (Button) findViewById(R.id.helpButton);
@@ -64,6 +72,34 @@ public class ItemActivity extends AppCompatActivity {
                 }
             }
         });
+
+        boolean signedIn = false;
+        if(MainActivity.you != null)
+            signedIn = true;
+        Log.w("user signed in",String.valueOf(signedIn));
+
+        TextView bidET = findViewById(R.id.bidAmount);
+        String bid = bidET.toString();
+        Log.w("bid", bid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

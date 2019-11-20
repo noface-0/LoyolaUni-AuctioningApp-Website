@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -19,6 +20,9 @@ import android.widget.Toast;
  * @version 1.0 10/21/19
  */
 public class AccountActivity extends AppCompatActivity {
+    //hardcoded account info
+    private String hcEmail = "jdoe@yahoo.com";
+    private String hcPassword = "password";
 
     /**
      * Sets up the account screen view
@@ -43,9 +47,29 @@ public class AccountActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
+                MainActivity.you = new User();
+                TextView emailTV = findViewById(R.id.email);
+                TextView passwordTV = findViewById(R.id.password);
+                String userEmail = String.valueOf(emailTV.getText());
+                String userPwd = String.valueOf(passwordTV.getText());
 
-                startActivity(accountIntent);
+                if(userEmail.equals(hcEmail)){
+                    if(hcPassword.equals(userPwd)){
+                        Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
+                        MainActivity.you.logIn(userEmail, userPwd);
+                        MainActivity.you.firstName = "John";
+                        MainActivity.you.lastName = "Doe";
+                        startActivity(accountIntent);
+                    }
+                    else{
+                        Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else{
+                    Toast.makeText(AccountActivity.this,
+                            "We don't recognise your email, try making a new account!",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 

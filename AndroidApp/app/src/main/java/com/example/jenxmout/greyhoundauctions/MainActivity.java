@@ -39,6 +39,7 @@ import java.util.Locale;
  * @version 1.0 10/21/19
  */
 
+
 public class MainActivity extends AppCompatActivity {
 
     // Search Bar & List View
@@ -46,11 +47,7 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter adapter;
     ListView listView;
     String[] titles;
-    String[] descriptions;
-    int[] images;
-    double[] currentHighestBids;
-    String[] currentHighestBidders;
-    String[][] tags;
+    protected static AuctionItems ais;
 
     // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
@@ -62,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private long timeLeftInMillis;
     private long endTime;
 
-    protected User you;
+    protected static User you;
+
+    protected User getUser(){ return you;}
 
     /**
      * Sets up the main screen view
@@ -75,71 +74,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Creating User
-        you = new User();
-
-
+        you = getUser();
 
         //create items (first sprint)
         String[] item1Tags = {"ipad", "apple", "tech"};
         final Item item1 = new Item("iPad",
                 "This is a brand new iPad Pro, it has 64GB memory and was donated by Campus " +
                         "Ministry.", R.drawable.auction_item_ipad,
-                10, item1Tags, 1000);
+                10, item1Tags, 1000.00);
         String[] item2Tags = {"golf", "sports", "fathers day"};
         Item item2 = new Item("Golf Clubs", "Looking for a Father's Day gift? We've got" +
                 " the gift for you! This is a six piece golf club set, bag included!",
-                R.drawable.auction_item_golf_clubs, 5, item2Tags, 50);
+                R.drawable.auction_item_golf_clubs, 5, item2Tags, 50.00);
         String[] item3Tags = {"basketball", "sports", "fathers day", "bball"};
         Item item3 = new Item("Basketball Tickets", "Two tickets to the Philadelphia " +
                 "76ers vs the New Orleans Pelicans.", R.drawable.auction_item_tickets, 5,
-                item3Tags, 30);
+                item3Tags, 30.00);
 
         //create auctionitems object with items created
-        final AuctionItems ais = new AuctionItems();
+        this.ais = new AuctionItems();
         ais.items.add(item1);
-        ais.items.add(item2);
         ais.items.add(item3);
+        ais.items.add(item2);
 
-        //instantiate titles, descriptions, images, currentHighestBid, and currentHighestBidder with
-        //size of auctionitems
+        //instantiate titles
         titles = new String[ais.items.size()];
-        descriptions = new String[ais.items.size()];
-        images = new int[ais.items.size()];
-        currentHighestBids = new double[ais.items.size()];
-        currentHighestBidders = new String[ais.items.size()];
-        tags = new String[ais.items.size()][];
-
-        //populates all arrays with item info for display in UI
-        for (int i = 0; i < titles.length; i++) {
-            titles[i] = ais.items.get(i).title;
-        }
-
-        for (int i = 0; i < descriptions.length; i++) {
-            descriptions[i] = ais.items.get(i).description;
-        }
-
-        for (int i = 0; i < images.length; i++) {
-            images[i] = ais.items.get(i).resID;
-        }
-
-        for (int i = 0; i < currentHighestBids.length; i++) {
-            currentHighestBids[i] = ais.items.get(i).currentHighestBid;
-        }
-
-        for (int i = 0; i < currentHighestBidders.length; i++) {
-            currentHighestBidders[i] = ais.items.get(i).currentHighestBidder;
-        }
-
         //create
         listView = (ListView) findViewById(R.id.list_of_items);
-
-        //tags list for adapter's filter method
-        LinkedList<String> tagsList = new LinkedList<>();
-        for(int i = 0; i < ais.items.size(); i++) {
-            for (String tag : ais.items.get(i).tags){
-                tagsList.add(tag);
-            }
-        }
 
         final MyAdapter adptr = new MyAdapter(this, titles, ais.items);
         listView.setAdapter(adptr);
@@ -148,17 +109,21 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for(int i = 0; i < ais.items.size();i++){
-                    Log.w("item", titles[i]);
+                Log.w("items size", ais.items.size() + " items");
+                Log.w("position", "index " + position);
+                if (ais.items.size() >= position+1) {
                     Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
-                    itemIntent.putExtra("itemTitle", titles[i]);
-                    itemIntent.putExtra("itemImage", images[i]);
-                    itemIntent.putExtra("itemCHB", currentHighestBids[i]);
-                    itemIntent.putExtra("itemDesc", descriptions[i]);
-                    itemIntent.putExtra("itemCHBr", currentHighestBidders[i]);
+                    //information from each item to populate the custom item intent
+                    itemIntent.putExtra("itemTitle", ais.items.get(position).title);
+                    itemIntent.putExtra("itemImage", ais.items.get(position).resID);
+                    itemIntent.putExtra("itemCHB", ais.items.get(position).currentHighestBid);
+                    itemIntent.putExtra("itemDesc", ais.items.get(position).description);
+                    itemIntent.putExtra("itemCHBr", ais.items.get(position).currentHighestBidder);
+                    itemIntent.putExtra("itemMinInc", ais.items.get(position).minInc);
+                    itemIntent.putExtra("itemPosition", position);
 
                     String tagsStr = "";
-                    for(String tag : ais.items.get(i).tags){
+                    for (String tag : ais.items.get(position).tags) {
                         tagsStr += "#" + tag + " ";
                     }
 
@@ -423,43 +388,36 @@ public class MainActivity extends AppCompatActivity {
             TextView myDescription = row.findViewById(R.id.item_description);
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
-            Log.w("items size", "size= " + items.size());
 
             if(position < items.size()) {
                 images.setImageResource(items.get(position).resID);
                 myTitle.setText(items.get(position).title);
                 myDescription.setText(items.get(position).description);
-                myCHB.setText(String.valueOf(items.get(position).currentHighestBid));
+                myCHB.setText("$" + items.get(position).currentHighestBid + "0");
                 myCHBr.setText(items.get(position).currentHighestBidder);
             }
             return row;
         }
 
         public void filter(String charText) {
-            Log.w(charText, "this is what is being searched " + charText);
             charText = charText.toLowerCase(Locale.getDefault());
-            Log.w(charText, "made to lower case " + charText);
             items.clear();
             if (charText.length() == 0) {
-                Log.w("testing search length", "found to be 0, displaying all items");
                 items.addAll(itemsList);
             } else {
                 for (Item item : itemsList) {
-                    Log.w("item", "current item = " + item.title);
                     for(int i = 0; i < item.tags.length; i++) {
-                        Log.w("tag#", "tag num " + i);
+                        //check if the tags contain anything being searched
                         if(item.tags[i].toLowerCase(Locale.getDefault()).contains(charText)) {
-                            items.add(item);
-                            Log.w("adding item:", item.title);
+                            //dont double add an item
+                            if(!items.contains(item))
+                                items.add(item);
                         }
                     }
                 }
-                String str = "";
-                for(int i =0; i < items.size(); i++){
-                    str+=items.get(i).title;
-                }
-                Log.w("items in list", str);
             }
+            //refresh ais.items for onClick method
+            ais.items = items;
             notifyDataSetChanged();
         }
 

@@ -1,5 +1,8 @@
 package com.example.jenxmout.greyhoundauctions;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.LinkedList;
 
 /**
@@ -11,13 +14,17 @@ import java.util.LinkedList;
  * @author Ian Leppo
  * @version 1.0 10/15/19
  */
-public class User {
+public class User{
 
     /**
-     * The name of the bidder
+     * The first name of the bidder
      */
-    protected String name;
+    protected String firstName;
 
+    /**
+     * The last name of the bidder
+     */
+    protected String lastName;
     /**
      * The email of the bidder
      */
@@ -52,15 +59,18 @@ public class User {
         this.itemsCurrentHighestBidderOn = new LinkedList<Item>();
     }
 
+
     /**
      * Signs a bidder create an account, allowing them to bid
      *
-     * @param name the name of the bidder
+     * @param fName the first name of the bidder
+     * @param lName the last name of the bidder
      * @param email the email of the bidder
      * @param pwd the password of the bidder's new account
      */
-    public void signUp(String name, String email, String pwd){
-        this.name = name;
+    public void signUp(String fName, String lName, String email, String pwd){
+        this.firstName = fName;
+        this.lastName = lName;
         this.email = email;
         this.password = pwd;
         this.signedIn = true;
@@ -73,8 +83,8 @@ public class User {
      * @param pwd the password of the bidder's account
      */
     public void logIn(String email, String pwd){
-        //if the email matches email in bd and pwd matches recorded pwd for that email,
-        //set name, email, pwd and signed in flag for user
+        this.email = email;
+        this.password = pwd;
     }
 
     /**
@@ -86,24 +96,15 @@ public class User {
      */
     public boolean bid(double amountBid, Item item) {
         if(signedIn) {
-            //if the bid is less than the current highest bid
-            if (item.currentHighestBid > amountBid)
-                return false;
-                //if the bid is not the minimum increment more than the current highest bid
-            else if (amountBid - item.currentHighestBid < item.minInc)
-                return false;
-            else {
                 //set current highest bid to user's bid
                 item.currentHighestBid = amountBid;
                 //user is now the current highest bidder
-                item.currentHighestBidder = this.name;
+                item.currentHighestBidder = this.firstName + " " + this.lastName;
                 //add the item to the user's itemsBidOn
                 this.itemsBidOn.add(item);
                 return true;
-            }
         }
         else{
-            //navigate to log-in page
             return false;
         }
     }
@@ -123,7 +124,7 @@ public class User {
                 return false;
             //while the user is not the current highest bidder and the current highest bid is less
             //than the user's max bid, bid the current highest bid + the user's increment
-            while (!item.currentHighestBidder.equals(this.name) && item.currentHighestBid < maxBid) {
+            while (!item.currentHighestBidder.equals(this.firstName + " " + this.lastName) && item.currentHighestBid < maxBid) {
                 this.bid(item.currentHighestBid + inc, item);
             }
             return true;
