@@ -93,13 +93,22 @@ public class ItemActivity extends AppCompatActivity {
                 if(Double.valueOf(bid) >= minNextBid) {
 
                     if (MainActivity.you != null) {
-                        MainActivity.you.bid(Double.valueOf(bid), MainActivity.ais.items.get(position));
-                        Log.w("Sucess?", "bid succeeded");
-                        Toast.makeText(ItemActivity.this, "Bid placed!",
-                                Toast.LENGTH_LONG).show();
-                        Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
-                        startActivity(homeIntent);
-                    } else {
+                        if (MainActivity.you.signedIn) {
+                            MainActivity.you.bid(Double.valueOf(bid), MainActivity.ais.items.get(position));
+                            Log.w("Sucess?", "bid succeeded");
+                            Toast.makeText(ItemActivity.this, "Bid placed!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                            startActivity(homeIntent);
+                        }
+                        else{
+                            Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
+                    }
+                    else {
                         Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);

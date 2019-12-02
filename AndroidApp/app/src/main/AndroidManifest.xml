@@ -20,6 +20,8 @@
         <activity android:name=".AccountActivity"></activity>
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".ItemActivity"></activity>
+        <activity android:name=".BidsActivity"></activity>
+        <activity android:name=".HighestActivity"></activity>
     </application>
 
 </manifest>

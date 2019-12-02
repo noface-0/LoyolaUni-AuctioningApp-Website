@@ -86,6 +86,20 @@ public class AccountActivity extends AppCompatActivity {
             }
 
         });
+
+        //Log Out Button
+        Button logOutButton = (Button) findViewById(R.id.logOutButton);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.you.logOut();
+                Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
+
+                startActivity(homeIntent);
+                Toast.makeText(AccountActivity.this, "Logging Out!", Toast.LENGTH_LONG).show();
+            }
+        });
+
         //forgot password button
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
         sendEmailButton.setOnClickListener(new View.OnClickListener(){
