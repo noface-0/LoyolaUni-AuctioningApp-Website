@@ -89,8 +89,15 @@ public class User{
         this.signedIn = true;
     }
 
+    /**
+     * Logs bidder out of their account
+     */
     public void logOut(){
-
+        this.signedIn = false;
+        this.email = "";
+        this.password = "";
+        this.lastName = "";
+        this.lastName = "";
     }
 
     /**
@@ -98,7 +105,7 @@ public class User{
      *
      * @param amountBid the amount the bidder would like to place a bid on an item
      * @param item the item the bidder would like to bid on
-     * @return true if the ...
+     * @return true if the user is signed in, false if they are not signed in
      */
     public boolean bid(double amountBid, Item item) {
         if(signedIn) {
@@ -122,7 +129,7 @@ public class User{
      *
      * @param maxBid the maximum amount the bidder would like to increment their bid to
      * @param item the item the bidder would like to bid on
-     * @return true if...
+     * @return true if the user is signed in, false if they are not signed in
      */
     public boolean autoBid(double maxBid, Item item) {
         if(signedIn) {
