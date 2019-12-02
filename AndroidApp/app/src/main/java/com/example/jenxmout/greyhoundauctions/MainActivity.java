@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Locale;
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         // so item click is done now check list view
 
 
+
         // Search Bar
         searchBar = (SearchView) findViewById(R.id.search_bar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
@@ -200,13 +202,91 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(accountIntent);
             }
         });
+
+        // Display User Bids Button
+        Button userBidButton = (Button) findViewById(R.id.whatIBidOnButton);
+        userBidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (you != null){
+                    if(you.signedIn){
+                        Intent userBidIntent = new Intent(MainActivity.this, BidsActivity.class);
+                        startActivity(userBidIntent);
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Log in or sign up to view!",
+                                Toast.LENGTH_LONG).show();
+                        Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
+                        startActivity(loginIntent);
+
+                    }
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Log in or sign up to view!",
+                            Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
+                    startActivity(loginIntent);
+
+                }
+
+            }
+        });
+
+        // Display User Highest Bids Button
+        Button userHighestBidButton = (Button) findViewById(R.id.itemsHighestButton);
+        userHighestBidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (you != null){
+                    if(you.signedIn){
+                        Intent userHighestBidIntent = new Intent(MainActivity.this, HighestActivity.class);
+                        startActivity(userHighestBidIntent);
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Log in or sign up to view!",
+                                Toast.LENGTH_LONG).show();
+                        Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
+                        startActivity(loginIntent);
+
+                    }
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Log in or sign up to view!",
+                            Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
+                    startActivity(loginIntent);
+
+                }
+
+            }
+        });
     }
 
 
 
-    // Filter Class
+    /**
+     * Update the appearance of the buttons to control the countdown
+     */
+    private void updateButtons() {
+        if (timerRunning) {
+            buttonReset.setVisibility(View.INVISIBLE);
+            buttonStartPause.setText("Pause");
+        } else {
+            buttonStartPause.setText("Start");
 
+            if (timeLeftInMillis < 1000) {
+                buttonStartPause.setVisibility(View.INVISIBLE);
+            } else {
+                buttonStartPause.setVisibility(View.VISIBLE);
+            }
 
+            if (timeLeftInMillis < START_TIME_IN_MILLIS) {
+                buttonReset.setVisibility(View.VISIBLE);
+            } else {
+                buttonReset.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
 
     // Countdown Clock
     /**
@@ -268,30 +348,6 @@ public class MainActivity extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
         textViewCountDown.setText(timeLeftFormatted);
-    }
-
-    /**
-     * Update the appearance of the buttons to control the countdown
-     */
-    private void updateButtons() {
-        if (timerRunning) {
-            buttonReset.setVisibility(View.INVISIBLE);
-            buttonStartPause.setText("Pause");
-        } else {
-            buttonStartPause.setText("Start");
-
-            if (timeLeftInMillis < 1000) {
-                buttonStartPause.setVisibility(View.INVISIBLE);
-            } else {
-                buttonStartPause.setVisibility(View.VISIBLE);
-            }
-
-            if (timeLeftInMillis < START_TIME_IN_MILLIS) {
-                buttonReset.setVisibility(View.VISIBLE);
-            } else {
-                buttonReset.setVisibility(View.INVISIBLE);
-            }
-        }
     }
 
     /**
