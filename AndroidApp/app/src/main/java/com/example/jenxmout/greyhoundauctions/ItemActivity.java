@@ -78,6 +78,8 @@ public class ItemActivity extends AppCompatActivity {
             signedIn = true;
         Log.w("user signed in",String.valueOf(signedIn));
 
+
+
         //Bid Button functionality
         Button bidButton = (Button) findViewById(R.id.bidButton);
         bidButton.setOnClickListener(new View.OnClickListener() {
@@ -86,11 +88,13 @@ public class ItemActivity extends AppCompatActivity {
                 int position = getIntent().getIntExtra("itemPosition", 0);
                 EditText bidET = findViewById(R.id.bidAmount);
                 String bid = String.valueOf(bidET.getText());
+
+
                 double minNextBid = getIntent().getDoubleExtra("itemCHB",
                         0.0) + getIntent().getDoubleExtra("itemMinInc",
                         0.0);
 
-                if(Double.valueOf(bid) >= minNextBid) {
+                if (Double.valueOf(bid) >= minNextBid) {
 
                     if (MainActivity.you != null) {
                         if (MainActivity.you.signedIn) {
@@ -100,25 +104,23 @@ public class ItemActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                             startActivity(homeIntent);
-                        }
-                        else{
+                        } else {
                             Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
                                     Toast.LENGTH_LONG).show();
                             Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
                             startActivity(loginIntent);
                         }
-                    }
-                    else {
+                    } else {
                         Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
                     }
-                }
-                else
+                } else
                     Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
                             String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
             }
+
         });
 
 
