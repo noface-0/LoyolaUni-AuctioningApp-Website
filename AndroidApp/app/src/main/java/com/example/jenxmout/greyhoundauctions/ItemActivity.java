@@ -78,9 +78,74 @@ public class ItemActivity extends AppCompatActivity {
             signedIn = true;
         Log.w("user signed in",String.valueOf(signedIn));
 
-        TextView bidET = findViewById(R.id.bidAmount);
-        String bid = bidET.toString();
-        Log.w("bid", bid);
+        //Bid Button functionality
+        Button bidButton = (Button) findViewById(R.id.bidButton);
+        bidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = getIntent().getIntExtra("itemPosition", 0);
+                EditText bidET = findViewById(R.id.bidAmount);
+                String bid = String.valueOf(bidET.getText());
+                double minNextBid = getIntent().getDoubleExtra("itemCHB",
+                        0.0) + getIntent().getDoubleExtra("itemMinInc",
+                        0.0);
+
+                if(Double.valueOf(bid) >= minNextBid) {
+
+                    if (MainActivity.you != null) {
+                        MainActivity.you.bid(Double.valueOf(bid), MainActivity.ais.items.get(position));
+                        Log.w("Sucess?", "bid succeeded");
+                        Toast.makeText(ItemActivity.this, "Bid placed!",
+                                Toast.LENGTH_LONG).show();
+                        Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                        startActivity(homeIntent);
+                    } else {
+                        Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                Toast.LENGTH_LONG).show();
+                        Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                        startActivity(loginIntent);
+                    }
+                }
+                else
+                    Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
+                            String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        //auto-bid button functionality
+        Button autoBidButton = (Button) findViewById(R.id.autoBidButton);
+        autoBidButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                int position = getIntent().getIntExtra("itemPosition", 0);
+                EditText maxBidET = findViewById(R.id.maxBid);
+                double maxBid = Double.valueOf(String.valueOf(maxBidET.getText()));
+                double minNextBid = getIntent().getDoubleExtra("itemCHB",
+                        0.0) + getIntent().getDoubleExtra("itemMinInc",
+                        0.0);
+
+                if(maxBid >= minNextBid){
+                    if(MainActivity.you.autoBid(maxBid, MainActivity.ais.items.get(position))){
+                        Toast.makeText(ItemActivity.this, "Bid placed!",
+                                Toast.LENGTH_LONG).show();
+                        Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                        startActivity(homeIntent);
+                    }
+                    else{
+                        Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                Toast.LENGTH_LONG).show();
+                        Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                        startActivity(loginIntent);
+                    }
+                }
+                else
+                    Toast.makeText(ItemActivity.this, "Max bid must be greater than or "
+                            + "equal to $" + String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
 
 
