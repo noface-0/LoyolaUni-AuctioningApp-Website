@@ -81,6 +81,19 @@ public class MainActivity extends AppCompatActivity {
         // grab existing static user and items
         you = getUser();
         ais = getAis();
+
+        if(you != null){
+            if(you.itemsBidOn.size() > 0){
+                for(Item i : you.itemsBidOn){
+                    if(i.currentHighestBidder.equals(you.firstName + " " + you.lastName))
+                        you.itemsCurrentHighestBidderOn.add(i);
+                }
+            }
+        }
+
+
+
+
         //instantiate titles
         titles = new String[ais.items.size()];
         //create list view
