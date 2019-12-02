@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Locale;
@@ -26,6 +27,7 @@ public class HighestActivity extends AppCompatActivity {
     SearchView searchBar;
     ListView listView;
     String[] titles;
+
 
     /**
      * Sets up the bids screen view
@@ -155,7 +157,34 @@ public class HighestActivity extends AppCompatActivity {
             }
         });
 
-        // Your Bids Button
+        // Display User Bids Button
+        Button userBidButton = (Button) findViewById(R.id.whatIBidOnButton);
+        userBidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.you != null){
+                    if(MainActivity.you.signedIn){
+                        Intent userBidIntent = new Intent(HighestActivity.this, BidsActivity.class);
+                        startActivity(userBidIntent);
+                    }
+                    else{
+                        Toast.makeText(HighestActivity.this, "Log in or sign up to view!",
+                                Toast.LENGTH_LONG).show();
+                        Intent loginIntent = new Intent(HighestActivity.this, AccountActivity.class);
+                        startActivity(loginIntent);
+
+                    }
+                }
+                else {
+                    Toast.makeText(HighestActivity.this, "Log in or sign up to view!",
+                            Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(HighestActivity.this, AccountActivity.class);
+                    startActivity(loginIntent);
+
+                }
+
+            }
+        });
 
     }
 

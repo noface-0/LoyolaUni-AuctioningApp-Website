@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Locale;
@@ -155,6 +156,35 @@ public class BidsActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent homeIntent = new Intent(BidsActivity.this, MainActivity.class);
                 startActivity(homeIntent);
+            }
+        });
+
+        // Display User Highest Bids Button
+        Button userHighestBidButton = (Button) findViewById(R.id.itemsHighestButton);
+        userHighestBidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.you != null){
+                    if(MainActivity.you.signedIn){
+                        Intent userHighestBidIntent = new Intent(BidsActivity.this, HighestActivity.class);
+                        startActivity(userHighestBidIntent);
+                    }
+                    else{
+                        Toast.makeText(BidsActivity.this, "Log in or sign up to view!",
+                                Toast.LENGTH_LONG).show();
+                        Intent loginIntent = new Intent(BidsActivity.this, AccountActivity.class);
+                        startActivity(loginIntent);
+
+                    }
+                }
+                else {
+                    Toast.makeText(BidsActivity.this, "Log in or sign up to view!",
+                            Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(BidsActivity.this, AccountActivity.class);
+                    startActivity(loginIntent);
+
+                }
+
             }
         });
     }
