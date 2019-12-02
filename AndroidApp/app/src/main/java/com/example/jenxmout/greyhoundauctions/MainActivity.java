@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter adapter;
     ListView listView;
     String[] titles;
-    protected static AuctionItems ais;
+    protected static AuctionItems ais = new AuctionItems();
 
     // CountDown Timer
     private static final long START_TIME_IN_MILLIS = 600000;
@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
     protected User getUser(){ return you;}
 
+    protected AuctionItems getAis(){return ais;}
+
+
+
     /**
      * Sets up the main screen view
      *
@@ -73,35 +77,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Creating User
+        // grab existing static user and items
         you = getUser();
-
-        //create items (first sprint)
-        String[] item1Tags = {"ipad", "apple", "tech"};
-        final Item item1 = new Item("iPad",
-                "This is a brand new iPad Pro, it has 64GB memory and was donated by Campus " +
-                        "Ministry.", R.drawable.auction_item_ipad,
-                10, item1Tags, 1000.00);
-        String[] item2Tags = {"golf", "sports", "fathers day"};
-        Item item2 = new Item("Golf Clubs", "Looking for a Father's Day gift? We've got" +
-                " the gift for you! This is a six piece golf club set, bag included!",
-                R.drawable.auction_item_golf_clubs, 5, item2Tags, 50.00);
-        String[] item3Tags = {"basketball", "sports", "fathers day", "bball"};
-        Item item3 = new Item("Basketball Tickets", "Two tickets to the Philadelphia " +
-                "76ers vs the New Orleans Pelicans.", R.drawable.auction_item_tickets, 5,
-                item3Tags, 30.00);
-
-        //create auctionitems object with items created
-        this.ais = new AuctionItems();
-        ais.items.add(item1);
-        ais.items.add(item3);
-        ais.items.add(item2);
-
+        ais = getAis();
         //instantiate titles
         titles = new String[ais.items.size()];
-        //create
+        //create list view
         listView = (ListView) findViewById(R.id.list_of_items);
-
+        //adapter for scroll view
         final MyAdapter adptr = new MyAdapter(this, titles, ais.items);
         listView.setAdapter(adptr);
 
@@ -136,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Search Bar
-        // Locate the EditText in listview_main.xml
         searchBar = (SearchView) findViewById(R.id.search_bar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override

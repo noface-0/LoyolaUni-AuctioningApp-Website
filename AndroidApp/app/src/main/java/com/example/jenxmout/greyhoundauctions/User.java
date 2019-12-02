@@ -2,6 +2,7 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.LinkedList;
 
@@ -85,6 +86,11 @@ public class User{
     public void logIn(String email, String pwd){
         this.email = email;
         this.password = pwd;
+        this.signedIn = true;
+    }
+
+    public void logOut(){
+
     }
 
     /**
@@ -96,15 +102,17 @@ public class User{
      */
     public boolean bid(double amountBid, Item item) {
         if(signedIn) {
+            Log.w("signedIn", "true");
                 //set current highest bid to user's bid
-                item.currentHighestBid = amountBid;
+            item.currentHighestBid = amountBid;
                 //user is now the current highest bidder
-                item.currentHighestBidder = this.firstName + " " + this.lastName;
+            item.currentHighestBidder = this.firstName + " " + this.lastName;
                 //add the item to the user's itemsBidOn
-                this.itemsBidOn.add(item);
-                return true;
+            this.itemsBidOn.add(item);
+            return true;
         }
         else{
+            Log.w("signedIn", "false");
             return false;
         }
     }
@@ -112,20 +120,16 @@ public class User{
     /**
      * Bidder places an auto-bid on an item
      *
-     * @param inc the amount the bidder would like to increment their bid by on an item
      * @param maxBid the maximum amount the bidder would like to increment their bid to
      * @param item the item the bidder would like to bid on
      * @return true if...
      */
-    public boolean autoBid(double inc, double maxBid, Item item) {
+    public boolean autoBid(double maxBid, Item item) {
         if(signedIn) {
-            //if the bid is not the minimum increment more than the current highest bid
-            if (inc < item.minInc)
-                return false;
             //while the user is not the current highest bidder and the current highest bid is less
             //than the user's max bid, bid the current highest bid + the user's increment
             while (!item.currentHighestBidder.equals(this.firstName + " " + this.lastName) && item.currentHighestBid < maxBid) {
-                this.bid(item.currentHighestBid + inc, item);
+                this.bid(item.currentHighestBid + item.minInc, item);
             }
             return true;
         }
