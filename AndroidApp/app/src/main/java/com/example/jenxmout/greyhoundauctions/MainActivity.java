@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 /**
@@ -51,21 +52,23 @@ public class MainActivity extends AppCompatActivity {
     protected static AuctionItems ais = new AuctionItems();
 
     // CountDown Timer
-    private static final long START_TIME_IN_MILLIS = 600000;
+    private static long START_TIME_IN_MILLIS;
     private TextView textViewCountDown;
-    private Button buttonStartPause;
-    private Button buttonReset;
     private CountDownTimer countDownTimer;
-    private boolean timerRunning;
+    private boolean timerRunning = false;
     private long timeLeftInMillis;
     private long endTime;
+    private long interval = 1000;
 
     protected static User you;
 
-    protected User getUser(){ return you;}
+    protected User getUser() {
+        return you;
+    }
 
-    protected AuctionItems getAis(){return ais;}
-
+    protected AuctionItems getAis() {
+        return ais;
+    }
 
 
     /**
@@ -82,17 +85,15 @@ public class MainActivity extends AppCompatActivity {
         you = getUser();
         ais = getAis();
 
-        if(you != null){
-            if(you.itemsBidOn.size() > 0){
-                for(Item i : you.itemsBidOn){
-                    if(i.currentHighestBidder.equals(you.firstName + " " + you.lastName))
+        if (you != null) {
+            if (you.itemsBidOn.size() > 0) {
+                you.itemsCurrentHighestBidderOn = new LinkedList<>();
+                for (Item i : you.itemsBidOn) {
+                    if (i.currentHighestBidder.equals(you.firstName + " " + you.lastName))
                         you.itemsCurrentHighestBidderOn.add(i);
                 }
             }
         }
-
-
-
 
         //instantiate titles
         titles = new String[ais.items.size()];
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.w("items size", ais.items.size() + " items");
                 Log.w("position", "index " + position);
-                if (ais.items.size() >= position+1) {
+                if (ais.items.size() >= position + 1) {
                     Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
                     //information from each item to populate the custom item intent
                     itemIntent.putExtra("itemTitle", ais.items.get(position).title);
@@ -132,10 +133,9 @@ public class MainActivity extends AppCompatActivity {
         // so item click is done now check list view
 
 
-
         // Search Bar
         searchBar = (SearchView) findViewById(R.id.search_bar);
-        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
@@ -143,41 +143,34 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (TextUtils.isEmpty(s)){
+                if (TextUtils.isEmpty(s)) {
                     adptr.filter("");
                     listView.clearTextFilter();
-                }
-                else {
+                } else {
                     adptr.filter(s);
                 }
                 return true;
             }
         });
 
+        // Creating Countdown Clock
+        FundraiserInfo fInfo = new FundraiserInfo(R.drawable.inner_harbor_info_pic, "desc",
+                "2019/12/03 03:23", "2019/12/03 03:30");
+        START_TIME_IN_MILLIS = fInfo.startTimeMillis();
+        endTime = fInfo.endTimeMillis();
+        Log.w("number of milis", "start:" + START_TIME_IN_MILLIS);
+        //TimeZone tz = TimeZone.getTimeZone("EST");
+        Log.w("end time - start time", String.valueOf(System.currentTimeMillis()));
 
-
-        // Countdown Clock
         textViewCountDown = findViewById(R.id.countdown);
-        buttonStartPause = findViewById(R.id.countdownButton);
-        buttonReset = findViewById(R.id.button_reset);
 
-        buttonStartPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (timerRunning) {
-                    pauseTimer();
-                } else {
-                    startTimer();
-                }
-            }
-        });
-
-        buttonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetTimer();
-            }
-        });
+        if (!timerRunning) {
+            startTimer();
+            timerRunning = true;
+        } else {
+            countDownTimer.cancel();
+            timerRunning = false;
+        }
 
         // Event Button
         Button eventButton = (Button) findViewById(R.id.eventButton);
@@ -221,20 +214,18 @@ public class MainActivity extends AppCompatActivity {
         userBidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (you != null){
-                    if(you.signedIn){
+                if (you != null) {
+                    if (you.signedIn) {
                         Intent userBidIntent = new Intent(MainActivity.this, BidsActivity.class);
                         startActivity(userBidIntent);
-                    }
-                    else{
+                    } else {
                         Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
 
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                             Toast.LENGTH_LONG).show();
                     Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
@@ -250,20 +241,18 @@ public class MainActivity extends AppCompatActivity {
         userHighestBidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (you != null){
-                    if(you.signedIn){
+                if (you != null) {
+                    if (you.signedIn) {
                         Intent userHighestBidIntent = new Intent(MainActivity.this, HighestActivity.class);
                         startActivity(userHighestBidIntent);
-                    }
-                    else{
+                    } else {
                         Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
 
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                             Toast.LENGTH_LONG).show();
                     Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
@@ -275,144 +264,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
-    /**
-     * Update the appearance of the buttons to control the countdown
-     */
-    private void updateButtons() {
-        if (timerRunning) {
-            buttonReset.setVisibility(View.INVISIBLE);
-            buttonStartPause.setText("Pause");
-        } else {
-            buttonStartPause.setText("Start");
-
-            if (timeLeftInMillis < 1000) {
-                buttonStartPause.setVisibility(View.INVISIBLE);
-            } else {
-                buttonStartPause.setVisibility(View.VISIBLE);
-            }
-
-            if (timeLeftInMillis < START_TIME_IN_MILLIS) {
-                buttonReset.setVisibility(View.VISIBLE);
-            } else {
-                buttonReset.setVisibility(View.INVISIBLE);
-            }
-        }
-    }
-
-    // Countdown Clock
-    /**
-     * Start countdown clock
-     */
-    private void startTimer() {
-        endTime = System.currentTimeMillis() + timeLeftInMillis;
-
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
-            /**
-             * ....
-             * @param millisUntilFinished
-             */
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
-
-            /**
-             * ....
-             */
-            @Override
-            public void onFinish() {
-                timerRunning = false;
-                updateButtons();
-            }
-        }.start();
-
-        timerRunning = true;
-        updateButtons();
-    }
-
-    /**
-     * Pause the countdown clock
-     */
-    private void pauseTimer() {
-        countDownTimer.cancel();
-        timerRunning = false;
-        updateButtons();
-    }
-
-    /**
-     * Reset the countdown clock to original time
-     */
-    private void resetTimer() {
-        timeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
-        updateButtons();
-    }
-
-    /**
-     * Update the current time on the countdown clock
-     */
-    private void updateCountDownText() {
-        int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        int seconds = (int) (timeLeftInMillis / 1000) % 60;
-
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-        textViewCountDown.setText(timeLeftFormatted);
-    }
-
-    /**
-     * When the app is stopped...
-     */
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putLong("millisLeft", timeLeftInMillis);
-        editor.putBoolean("timerRunning", timerRunning);
-        editor.putLong("endTime", endTime);
-
-        editor.apply();
-
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
-    }
-
-    /**
-     * When the app is started...
-     */
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-
-        timeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
-        timerRunning = prefs.getBoolean("timerRunning", false);
-
-        updateCountDownText();
-        updateButtons();
-
-        if (timerRunning) {
-            endTime = prefs.getLong("endTime", 0);
-            timeLeftInMillis = endTime - System.currentTimeMillis();
-
-            if (timeLeftInMillis < 0) {
-                timeLeftInMillis = 0;
-                timerRunning = false;
-                updateCountDownText();
-                updateButtons();
-            } else {
-                startTimer();
-            }
-        }
-    }
 
     // For List
     class MyAdapter extends ArrayAdapter<String> {
@@ -440,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
 
-            if(position < items.size()) {
+            if (position < items.size()) {
                 images.setImageResource(items.get(position).resID);
                 myTitle.setText(items.get(position).title);
                 myDescription.setText(items.get(position).description);
@@ -457,11 +308,11 @@ public class MainActivity extends AppCompatActivity {
                 items.addAll(itemsList);
             } else {
                 for (Item item : itemsList) {
-                    for(int i = 0; i < item.tags.length; i++) {
+                    for (int i = 0; i < item.tags.length; i++) {
                         //check if the tags contain anything being searched
-                        if(item.tags[i].toLowerCase(Locale.getDefault()).contains(charText)) {
+                        if (item.tags[i].toLowerCase(Locale.getDefault()).contains(charText)) {
                             //dont double add an item
-                            if(!items.contains(item))
+                            if (!items.contains(item))
                                 items.add(item);
                         }
                     }
@@ -474,7 +325,103 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * Start countdown clock
+     */
+    private void startTimer() {
+
+        Log.w("state", "in start timer");
+        endTime = System.currentTimeMillis() + timeLeftInMillis;
+
+        countDownTimer = new CountDownTimer(START_TIME_IN_MILLIS, interval) {
+            /**
+             * ....
+             * @param millisUntilFinished
+             */
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            /**
+             * ....
+             */
+            @Override
+            public void onFinish() {
+                timerRunning = false;
+                textViewCountDown.setText(("Time's Up!"));
+            }
+        }.start();
+
+        timerRunning = true;
+    }
+
+    private void updateCountDownText() {
+
+        Log.w("state", "in update countdown text");
+
+        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        textViewCountDown.setText(timeLeftFormatted);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.w("state", "in on stop");
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putLong("millisLeft", timeLeftInMillis);
+        editor.putBoolean("timerRunning", timerRunning);
+        editor.putLong("endTime", endTime);
+
+        editor.apply();
+
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+         Log.w("state", "in on start");
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+
+        timeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
+        timerRunning = prefs.getBoolean("timerRunning", false);
+
+        updateCountDownText();
+
+
+        if (timerRunning) {
+            endTime = prefs.getLong("endTime", 0);
+            timeLeftInMillis = endTime - System.currentTimeMillis();
+
+            if (timeLeftInMillis < 0) {
+                timeLeftInMillis = 0;
+                timerRunning = false;
+                updateCountDownText();
+            } else {
+                startTimer();
+            }
+        }
+    }
+
+
 }
+
+
+
 
 
 

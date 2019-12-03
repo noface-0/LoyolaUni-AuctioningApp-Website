@@ -49,6 +49,14 @@ public class HighestActivity extends AppCompatActivity {
             }
         }
 
+
+        TextView bidTotalTV = (TextView) findViewById(R.id.totalBidText);
+        double bidTotal = 0;
+        for(Item i : MainActivity.you.itemsCurrentHighestBidderOn){
+            bidTotal += i.currentHighestBid;
+        }
+        bidTotalTV.setText("Total: $" + bidTotal + "0");
+
         //create list view
         listView = (ListView) findViewById(R.id.list_of_items);
         //adapter for scroll view
