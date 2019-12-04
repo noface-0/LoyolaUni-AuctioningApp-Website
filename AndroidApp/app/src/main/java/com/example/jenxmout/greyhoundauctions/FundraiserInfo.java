@@ -47,7 +47,7 @@ public class FundraiserInfo {
         this.endTime = end;
     }
 
-    public long endTimeMillis(){
+    public long getEndTimeMillis(){
         SimpleDateFormat endDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         long endTimeMillis = System.currentTimeMillis();
         try {
@@ -64,7 +64,7 @@ public class FundraiserInfo {
 
     }
 
-    public long startTimeMillis(){
+    public long getStartTimeMillis(){
         SimpleDateFormat startDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         long startTimeMillis = System.currentTimeMillis();
         try {

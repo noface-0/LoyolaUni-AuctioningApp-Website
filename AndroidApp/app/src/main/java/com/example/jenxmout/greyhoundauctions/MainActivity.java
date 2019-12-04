@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -155,15 +156,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Creating Countdown Clock
         FundraiserInfo fInfo = new FundraiserInfo(R.drawable.inner_harbor_info_pic, "desc",
-                "2019/12/03 03:23", "2019/12/03 03:30");
-        START_TIME_IN_MILLIS = fInfo.startTimeMillis();
-        endTime = fInfo.endTimeMillis();
+                "2019/12/03 03:00", "2019/12/03 03:30");
+        START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
+        endTime = fInfo.getEndTimeMillis();
         Log.w("number of milis", "start:" + START_TIME_IN_MILLIS);
-        //TimeZone tz = TimeZone.getTimeZone("EST");
-        Log.w("end time - start time", String.valueOf(System.currentTimeMillis()));
+
+        timeLeftInMillis = endTime - START_TIME_IN_MILLIS;
 
         textViewCountDown = findViewById(R.id.countdown);
 
+        MyCount counter = new MyCount(timeLeftInMillis, 1000);
+        counter.start();
+
+        /*
         if (!timerRunning) {
             startTimer();
             timerRunning = true;
@@ -171,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
             countDownTimer.cancel();
             timerRunning = false;
         }
+        */
 
         // Event Button
         Button eventButton = (Button) findViewById(R.id.eventButton);
@@ -326,38 +332,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Start countdown clock
-     */
-    private void startTimer() {
+    // countdowntimer is an abstract class, so extend it and fill in methods
+    public class MyCount extends CountDownTimer {
+        MyCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
 
-        Log.w("state", "in start timer");
-        endTime = System.currentTimeMillis() + timeLeftInMillis;
+        @Override
+        public void onFinish() {
+            textViewCountDown.setText("done!");
+        }
 
-        countDownTimer = new CountDownTimer(START_TIME_IN_MILLIS, interval) {
-            /**
-             * ....
-             * @param millisUntilFinished
-             */
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
+        @Override
+        public void onTick(long millisUntilFinished) {
+            long millis = millisUntilFinished;
+            String hms = (TimeUnit.MILLISECONDS.toDays(millis)) + " Days "
+                    + (TimeUnit.MILLISECONDS.toHours(millis) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millis)) + ":")
+                    + (TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)) + ":"
+                    + (TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
 
-            /**
-             * ....
-             */
-            @Override
-            public void onFinish() {
-                timerRunning = false;
-                textViewCountDown.setText(("Time's Up!"));
-            }
-        }.start();
-
-        timerRunning = true;
+            textViewCountDown.setText(/*context.getString(R.string.ends_in) + " " +*/ hms);
+        }
     }
 
+
+    // this is not doing anything
     private void updateCountDownText() {
 
         Log.w("state", "in update countdown text");
@@ -369,6 +368,8 @@ public class MainActivity extends AppCompatActivity {
 
         textViewCountDown.setText(timeLeftFormatted);
     }
+
+    //not sure if this is doing anything
 
     @Override
     protected void onStop() {
@@ -412,11 +413,12 @@ public class MainActivity extends AppCompatActivity {
                 timerRunning = false;
                 updateCountDownText();
             } else {
-                startTimer();
+                timerRunning = true; //
+                // NEED TO FIX THIS ELSE STATEMENT!
+                // counter.start();
             }
         }
     }
-
 
 }
 
