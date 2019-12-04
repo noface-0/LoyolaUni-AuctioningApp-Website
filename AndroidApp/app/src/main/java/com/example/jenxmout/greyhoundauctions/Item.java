@@ -5,7 +5,7 @@ import android.media.Image;
 import java.util.LinkedList;
 
 /**
- * This is a Item class
+ * This is a Item class...
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow

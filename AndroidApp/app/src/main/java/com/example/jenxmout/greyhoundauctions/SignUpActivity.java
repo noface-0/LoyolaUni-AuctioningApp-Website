@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This is the SignUp Activity class that
+ * This is the SignUp Activity class that...
  *
  *
  * @author Jennifer Moutenot
@@ -80,9 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     startActivity(homeIntent);
                 }
-
             }
         });
-
     }
 }

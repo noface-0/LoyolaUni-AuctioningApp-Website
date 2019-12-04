@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * This is the Event Activity class that
+ * This is the Event Activity class that...
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -30,10 +30,17 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fundraiser_info);
 
+        /**
+         * The fundraiser event's image
+         */
         final ImageView eventImg = (ImageView) findViewById(R.id.fundraiserImage);
+
+        /**
+         * The fundraiser event's description
+         */
         final TextView eventDescription = (TextView) findViewById(R.id.fundraiserDescription);
 
-        //grabs the resId for the event image and sets the ImageView to that image
+        // Grabs the resId for the event image and sets the ImageView to that image
         int resID = getResources().getIdentifier("inner_harbor_info_pic", "drawable",
                 getPackageName());
         eventImg.setImageResource(resID);
@@ -75,5 +82,4 @@ public class EventActivity extends AppCompatActivity {
             }
         });
     }
-
 }

@@ -28,7 +28,6 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * This is the Main Activity class that
  * displays the items up for auction
@@ -42,35 +41,95 @@ import java.util.concurrent.TimeUnit;
  * @version 1.0 10/21/19
  */
 
-
 public class MainActivity extends AppCompatActivity {
 
     // Search Bar & List View
+    /**
+     * The search bar to search item by tag
+     */
     SearchView searchBar;
+
+    /**
+     * The adapter to update the list view when scrolling
+     */
     MyAdapter adapter;
+
+    /**
+     * The list that holds all the items
+     */
     ListView listView;
+
+    /**
+     * An array of the titles of items
+     */
     String[] titles;
+
+    /**
+     * The list of auctioned items
+     */
     protected static AuctionItems ais = new AuctionItems();
 
     // CountDown Timer
+    /**
+     * The start time of the fundraiser
+     */
     private static long START_TIME_IN_MILLIS;
+
+    /**
+     * The countdown clock text view
+     */
     private TextView textViewCountDown;
+
+    /**
+     * The CountDownTimer object that keeps track
+     * of time
+     */
     private CountDownTimer countDownTimer;
+
+    /**
+     * Boolean to see if the timer is currently
+     * running or not
+     */
     private boolean timerRunning = false;
+
+    /**
+     * The time left for the fundraiser
+     */
     private long timeLeftInMillis;
+
+    /**
+     * The end time for the fundraiser
+     */
     private long endTime;
+
+    /**
+     * The time interval in between seconds for the
+     * CountDownTimer object
+     */
     private long interval = 1000;
 
+    /**
+     * The user
+     */
     protected static User you;
 
+    /**
+     * To get the user's information
+     *
+     * @return you the User object
+     */
     protected User getUser() {
         return you;
     }
 
+    /**
+     * To get the list of auctioned items
+     *
+     * @return ais the AuctionItems object
+     */
     protected AuctionItems getAis() {
         return ais;
     }
-
 
     /**
      * Sets up the main screen view
@@ -106,6 +165,16 @@ public class MainActivity extends AppCompatActivity {
 
         // now set item click on list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            /**
+             * This method sets a click listener for when an item is clicked, which takes
+             * the user to that item's page in order to bid/auto-bid
+             *
+             * @param parent the parent...
+             * @param view the view of the current state
+             * @param position the position of the item
+             * @param id the id of the ....
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.w("items size", ais.items.size() + " items");
@@ -131,17 +200,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        // so item click is done now check list view
-
 
         // Search Bar
         searchBar = (SearchView) findViewById(R.id.search_bar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            /**
+             * NOTES...
+             *
+             * @param s
+             * @return false if ...
+             */
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
 
+            /**
+             * NOTES...
+             *
+             * @param s
+             * @return true if...
+             */
             @Override
             public boolean onQueryTextChange(String s) {
                 if (TextUtils.isEmpty(s)) {
@@ -167,16 +247,6 @@ public class MainActivity extends AppCompatActivity {
 
         MyCount counter = new MyCount(timeLeftInMillis, 1000);
         counter.start();
-
-        /*
-        if (!timerRunning) {
-            startTimer();
-            timerRunning = true;
-        } else {
-            countDownTimer.cancel();
-            timerRunning = false;
-        }
-        */
 
         // Event Button
         Button eventButton = (Button) findViewById(R.id.eventButton);
@@ -218,6 +288,13 @@ public class MainActivity extends AppCompatActivity {
         // Display User Bids Button
         Button userBidButton = (Button) findViewById(R.id.whatIBidOnButton);
         userBidButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             *This method sets a click listener for the new game button in the UI
+             * When clicked, user can see the bids they have placed
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 if (you != null) {
@@ -229,22 +306,27 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
-
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                             Toast.LENGTH_LONG).show();
                     Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                     startActivity(loginIntent);
-
                 }
-
             }
         });
 
         // Display User Highest Bids Button
         Button userHighestBidButton = (Button) findViewById(R.id.itemsHighestButton);
         userHighestBidButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             *This method sets a click listener for the new game button in the UI
+             * When clicked, user can see the bids they have placed that are
+             * currently winning or are the highest bidder
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 if (you != null) {
@@ -256,28 +338,46 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
-
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                             Toast.LENGTH_LONG).show();
                     Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                     startActivity(loginIntent);
-
                 }
-
             }
         });
     }
 
 
     // For List
+    /**
+     * This MyAdapter class that updates the ListView
+     * when scrolling
+     */
     class MyAdapter extends ArrayAdapter<String> {
 
+        /**
+         * The context
+         */
         protected Context context;
+
+        /**
+         * The linked list of items
+         */
         protected LinkedList<Item> items;
+
+        /**
+         * The items list????
+         */
         protected LinkedList<Item> itemsList;
 
+        /**
+         * MyAdapter Constructor
+         * @param c .....
+         * @param titles .....
+         * @param items .....
+         */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
             this.context = c;
@@ -286,6 +386,14 @@ public class MainActivity extends AppCompatActivity {
             this.itemsList.addAll(items);
         }
 
+        /**
+         * NOTES
+         *
+         * @param position ...
+         * @param convertView ...
+         * @param parent ....
+         * @return the View ...
+         */
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -307,6 +415,11 @@ public class MainActivity extends AppCompatActivity {
             return row;
         }
 
+        /**
+         * To filter....
+         *
+         * @param charText
+         */
         public void filter(String charText) {
             charText = charText.toLowerCase(Locale.getDefault());
             items.clear();
@@ -328,21 +441,41 @@ public class MainActivity extends AppCompatActivity {
             ais.items = items;
             notifyDataSetChanged();
         }
-
     }
 
 
+
     // countdowntimer is an abstract class, so extend it and fill in methods
+
+    /**
+     * The MyCount class to keep track of the time of
+     * the fundraiser event
+     */
     public class MyCount extends CountDownTimer {
+
+        /**
+         * MyCount Constructor
+         *
+         * @param millisInFuture
+         * @param countDownInterval
+         */
         MyCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
 
+        /**
+         * To set the text to "done!" when the fundraiser is finished
+         */
         @Override
         public void onFinish() {
             textViewCountDown.setText("done!");
         }
 
+        /**
+         * To update the countdown timer text view
+         * on every second tick
+         * @param millisUntilFinished
+         */
         @Override
         public void onTick(long millisUntilFinished) {
             long millis = millisUntilFinished;
@@ -419,7 +552,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }
 
 

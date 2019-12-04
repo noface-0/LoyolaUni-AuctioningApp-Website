@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This is the Item Activity class that
+ * This is the Item Activity class that...
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -73,29 +73,33 @@ public class ItemActivity extends AppCompatActivity {
             }
         });
 
+        // ....
         boolean signedIn = false;
         if(MainActivity.you != null)
             signedIn = true;
         Log.w("user signed in",String.valueOf(signedIn));
 
-
-
         //Bid Button functionality
         Button bidButton = (Button) findViewById(R.id.bidButton);
         bidButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user places a bid on the current item
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 int position = getIntent().getIntExtra("itemPosition", 0);
                 EditText bidET = findViewById(R.id.bidAmount);
                 String bid = String.valueOf(bidET.getText());
 
-
                 double minNextBid = getIntent().getDoubleExtra("itemCHB",
                         0.0) + getIntent().getDoubleExtra("itemMinInc",
                         0.0);
 
                 if (Double.valueOf(bid) >= minNextBid) {
-
                     if (MainActivity.you != null) {
                         if (MainActivity.you.signedIn) {
                             MainActivity.you.bid(Double.valueOf(bid), MainActivity.ais.items.get(position));
@@ -120,13 +124,19 @@ public class ItemActivity extends AppCompatActivity {
                     Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
                             String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
             }
-
         });
 
 
         //auto-bid button functionality
         Button autoBidButton = (Button) findViewById(R.id.autoBidButton);
-        autoBidButton.setOnClickListener(new View.OnClickListener(){
+        autoBidButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user places an auto-bid on the current item
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v){
                 int position = getIntent().getIntExtra("itemPosition", 0);
@@ -155,27 +165,5 @@ public class ItemActivity extends AppCompatActivity {
                             + "equal to $" + String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

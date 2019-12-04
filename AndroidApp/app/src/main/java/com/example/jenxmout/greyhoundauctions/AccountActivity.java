@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This is the Account Activity class that
+ * This is the Account Activity class that...
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -20,8 +20,10 @@ import android.widget.Toast;
  * @version 1.0 10/21/19
  */
 public class AccountActivity extends AppCompatActivity {
+
     //hardcoded account info
     private String hcEmail = "jdoe@yahoo.com";
+    //hardcoded account info
     private String hcPassword = "password";
 
     /**
@@ -40,8 +42,7 @@ public class AccountActivity extends AppCompatActivity {
 
             /**
              * This method sets a click listener for the button in the UI
-             * When clicked, the user is taken to the next view
-             * AccountActivity
+             * When clicked, the user is logged into their account
              *
              * @param v the view of the current state
              */
@@ -53,21 +54,20 @@ public class AccountActivity extends AppCompatActivity {
                 String userEmail = String.valueOf(emailTV.getText());
                 String userPwd = String.valueOf(passwordTV.getText());
 
-                if(userEmail.equals(hcEmail)){
-                    if(hcPassword.equals(userPwd)){
+                if(userEmail.equals(hcEmail)) {
+                    if(hcPassword.equals(userPwd)) {
                         Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
                         MainActivity.you.logIn(userEmail, userPwd);
                         MainActivity.you.firstName = "John";
                         MainActivity.you.lastName = "Doe";
                         startActivity(accountIntent);
                         Toast.makeText(AccountActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
-
                     }
-                    else{
+                    else {
                         Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
                     }
                 }
-                else{
+                else {
                     Toast.makeText(AccountActivity.this,
                             "We don't recognize your email, try making a new account!",
                             Toast.LENGTH_LONG).show();
@@ -78,6 +78,14 @@ public class AccountActivity extends AppCompatActivity {
         // Home Button
         Button homeButton = (Button) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the home screen or
+             * MainActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
@@ -90,6 +98,13 @@ public class AccountActivity extends AppCompatActivity {
         //Log Out Button
         Button logOutButton = (Button) findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is logged out of their account
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 MainActivity.you.logOut();
@@ -100,25 +115,26 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        //forgot password button
+        //Forgot Password button
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
-        sendEmailButton.setOnClickListener(new View.OnClickListener(){
+        sendEmailButton.setOnClickListener(new View.OnClickListener() {
+
             /**
              * This method sets a click listener for the button in the UI
              * When clicked, the user is sent an email according to the
-             * text they put in the email text view
+             * email they put in the email Text View
              *
              * @param v the view of the current state
              */
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 sendEmail();
             }
         });
 
 
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
-        signUpButton.setOnClickListener(new View.OnClickListener(){
+        signUpButton.setOnClickListener(new View.OnClickListener() {
 
         /**
          * This method sets a click listener for the button in the UI
@@ -131,14 +147,13 @@ public class AccountActivity extends AppCompatActivity {
         public void onClick(View v){
             Intent signUpIntent = new Intent(AccountActivity.this, SignUpActivity.class);
             startActivity(signUpIntent);
-
-
-
-        }
-    });
-
+            }
+        });
     }
 
+    /**
+     * To send an email to if forgot password is clicked
+     */
     protected void sendEmail() {
         Log.i("Send email", "");
         String[] TO = {""};
@@ -160,5 +175,4 @@ public class AccountActivity extends AppCompatActivity {
             Toast.makeText(AccountActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

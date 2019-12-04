@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.LinkedList;
 
 /**
- * This is a User class that
+ * This is a User class that...
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -59,7 +59,6 @@ public class User{
         this.itemsBidOn = new LinkedList<Item>();
         this.itemsCurrentHighestBidderOn = new LinkedList<Item>();
     }
-
 
     /**
      * Signs a bidder create an account, allowing them to bid
@@ -145,5 +144,4 @@ public class User{
             return false;
         }
     }
-
 }

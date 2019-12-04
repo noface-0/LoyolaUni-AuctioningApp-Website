@@ -23,11 +23,32 @@ import android.widget.Toast;
 import java.util.LinkedList;
 import java.util.Locale;
 
+/**
+ * This is the Highest Activity class that...
+ *
+ * @author Jennifer Moutenot
+ * @author Mollie Morrow
+ * @author Ian Leppo
+ * @author Javon Kitson
+ * @version 1.0 10/21/19
+ */
 public class HighestActivity extends AppCompatActivity {
-    SearchView searchBar;
-    ListView listView;
-    String[] titles;
 
+    /**
+     * The search bar to search items by tag
+     */
+    SearchView searchBar;
+
+    /**
+     * The list to view all the items that are in it
+     */
+    ListView listView;
+
+    /**
+     * An array of the titles of items
+     * the user has bid on
+     */
+    String[] titles;
 
     /**
      * Sets up the bids screen view
@@ -42,29 +63,41 @@ public class HighestActivity extends AppCompatActivity {
         Log.w("open bids view", "true");
 
         this.titles = new String[MainActivity.you.itemsCurrentHighestBidderOn.size()];
-        //instantiate titles
+
         for(Item i : MainActivity.you.itemsCurrentHighestBidderOn){
             for(int j = 0; j < MainActivity.you.itemsCurrentHighestBidderOn.size(); j++){
                 titles[j] = i.title;
             }
         }
 
-
         TextView bidTotalTV = (TextView) findViewById(R.id.totalBidText);
         double bidTotal = 0;
+
         for(Item i : MainActivity.you.itemsCurrentHighestBidderOn){
             bidTotal += i.currentHighestBid;
         }
+
         bidTotalTV.setText("Total: $" + bidTotal + "0");
 
-        //create list view
+        /* Instantiate the listview for the items to be in a list */
         listView = (ListView) findViewById(R.id.list_of_items);
-        //adapter for scroll view
+
+        /* Instantiate the adapter for updating the listview of items */
         final HighestActivity.MyAdapter adptr = new HighestActivity.MyAdapter(this, titles, MainActivity.you.itemsCurrentHighestBidderOn);
         listView.setAdapter(adptr);
 
-        // now set item click on list view
+        // Set item click on the ListView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            /**
+             * This method sets a click listener for when an item is clicked, which takes
+             * the user to that item's page in order to bid/auto-bid
+             *
+             * @param parent the parent...
+             * @param view the view of the current state
+             * @param position the position of the item
+             * @param id the id of the ....
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.w("items size", MainActivity.you.itemsCurrentHighestBidderOn.size() + " items");
@@ -90,18 +123,26 @@ public class HighestActivity extends AppCompatActivity {
                 }
             }
         });
-        // so item click is done now check list view
-
-
 
         // Search Bar
         searchBar = (SearchView) findViewById(R.id.search_bar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            /**
+             * NOTES...
+             * @param s ...
+             * @return false if ...
+             */
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
 
+            /**
+             * NOTES...
+             * @param s
+             * @return true if....
+             */
             @Override
             public boolean onQueryTextChange(String s) {
                 if (TextUtils.isEmpty(s)){
@@ -114,9 +155,6 @@ public class HighestActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
 
         // Event Button
         Button eventButton = (Button) findViewById(R.id.eventButton);
@@ -158,6 +196,14 @@ public class HighestActivity extends AppCompatActivity {
         //Home Button
         Button homeButton = (Button) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user is taken to the next view
+             * MainActivity
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 Intent homeIntent = new Intent(HighestActivity.this, MainActivity.class);
@@ -168,6 +214,13 @@ public class HighestActivity extends AppCompatActivity {
         // Display User Bids Button
         Button userBidButton = (Button) findViewById(R.id.whatIBidOnButton);
         userBidButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             *This method sets a click listener for the new game button in the UI
+             * When clicked, user can see the bids they have placed
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 if (MainActivity.you != null){
@@ -180,7 +233,6 @@ public class HighestActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(HighestActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
-
                     }
                 }
                 else {
@@ -188,22 +240,39 @@ public class HighestActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                     Intent loginIntent = new Intent(HighestActivity.this, AccountActivity.class);
                     startActivity(loginIntent);
-
                 }
-
             }
         });
-
     }
 
-
     // For List
+    /**
+     * This is the MyAdapter class that updates the ListView
+     * when scrolling
+     */
     class MyAdapter extends ArrayAdapter<String> {
 
+        /**
+         * The context
+         */
         protected Context context;
+
+        /**
+         * The linked list of items
+         */
         protected LinkedList<Item> items;
+
+        /**
+         * The items list???
+         */
         protected LinkedList<Item> itemsList;
 
+        /**
+         * MyAdapter Constructor
+         * @param c .....
+         * @param titles .....
+         * @param items .....
+         */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
             this.context = c;
@@ -212,6 +281,14 @@ public class HighestActivity extends AppCompatActivity {
             this.itemsList.addAll(items);
         }
 
+        /**
+         * NOTES
+         *
+         * @param position ...
+         * @param convertView ...
+         * @param parent ....
+         * @return the View ...
+         */
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -233,6 +310,11 @@ public class HighestActivity extends AppCompatActivity {
             return row;
         }
 
+        /**
+         * To filter...
+         *
+         * @param charText
+         */
         public void filter(String charText) {
             charText = charText.toLowerCase(Locale.getDefault());
             items.clear();
@@ -254,6 +336,5 @@ public class HighestActivity extends AppCompatActivity {
             MainActivity.you.itemsCurrentHighestBidderOn = items;
             notifyDataSetChanged();
         }
-
     }
 }

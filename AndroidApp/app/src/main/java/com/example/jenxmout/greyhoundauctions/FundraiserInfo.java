@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * This is the Fundraiser Info class that
+ * This is the Fundraiser Info class that...
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -40,6 +40,13 @@ public class FundraiserInfo {
      */
     protected String endTime;
 
+    /**
+     * FundraiserInfo Constructor
+     * @param resID the image int red id to represent the fundraiser
+     * @param desc the descripion for the fundraiser
+     * @param start the start time of the fundraiser
+     * @param end the end time of the fundraiser
+     */
     public FundraiserInfo(int resID, String desc, String start, String end){
         this.fundraiserImage = resID;
         this.description = desc;
@@ -47,6 +54,11 @@ public class FundraiserInfo {
         this.endTime = end;
     }
 
+    /**
+     * Getter to get the end time in milliseconds
+     *
+     * @return endTimeMillis the date of the end time in milliseconds
+     */
     public long getEndTimeMillis(){
         SimpleDateFormat endDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         long endTimeMillis = System.currentTimeMillis();
@@ -64,6 +76,11 @@ public class FundraiserInfo {
 
     }
 
+    /**
+     * Getter to get the start time in milliseconds
+     *
+     * @return startTimeMillis the date of the start time in milliseconds
+     */
     public long getStartTimeMillis(){
         SimpleDateFormat startDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         long startTimeMillis = System.currentTimeMillis();
@@ -78,8 +95,4 @@ public class FundraiserInfo {
         Log.w("start time millis", String.valueOf(startTimeMillis));
         return startTimeMillis;
     }
-
-
-
-
 }
