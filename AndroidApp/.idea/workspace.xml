@@ -10,15 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72b67262-0d36-47b9-b814-5c9c21e15cac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AccountActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AccountActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,19 +60,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="145" selection-end-column="9" />
+            <state relative-caret-position="159">
+              <caret line="411" column="12" selection-start-line="411" selection-start-column="12" selection-end-line="420" selection-end-column="13" />
               <folding>
                 <element signature="e#2734#2735#0" expanded="true" />
                 <element signature="e#2760#2761#0" expanded="true" />
                 <element signature="e#2907#2908#0" expanded="true" />
                 <element signature="e#2933#2934#0" expanded="true" />
+                <element signature="e#16018#16019#0" expanded="true" />
+                <element signature="e#16076#16077#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="94">
@@ -89,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="311">
-              <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+              <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -97,17 +105,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="67" selection-end-column="9" />
+            <state relative-caret-position="291">
+              <caret line="303" column="12" selection-start-line="303" selection-start-column="12" selection-end-line="312" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+            <state relative-caret-position="384">
+              <caret line="315" column="13" selection-start-line="315" selection-start-column="13" selection-end-line="315" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -148,7 +156,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AuctionItems.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/FundraiserInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MyAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_fundraiser_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
@@ -157,12 +164,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/SignUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AccountActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/row.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AccountActivity.java" />
       </list>
     </option>
   </component>
@@ -197,6 +205,17 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="greyhoundauctions" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidApp" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="AndroidApp" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="AndroidApp" type="1abcf292:AndroidViewProjectNode" />
@@ -549,7 +568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575324882961</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="autobid actually works this time... for real">
+      <created>1575502130347</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1575502130348</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -565,14 +591,15 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" weight="0.32956383" />
       <window_info id="Capture Tool" order="8" />
-      <window_info active="true" anchor="bottom" id="Run" order="0" visible="true" weight="0.29589042" />
+      <window_info anchor="bottom" id="Messages" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.29589042" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.32876712" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.08219178" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.3780822" />
+      <window_info active="true" anchor="bottom" id="Build" order="7" visible="true" weight="0.3780822" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32876712" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -638,7 +665,8 @@
     <MESSAGE value="search bar works completely and doesnt fail at all" />
     <MESSAGE value="fixing UI colors, text sizes, and making everything look in tact" />
     <MESSAGE value="fixed updating for CHB" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed updating for CHB" />
+    <MESSAGE value="autobid actually works this time... for real" />
+    <option name="LAST_COMMIT_MESSAGE" value="autobid actually works this time... for real" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/auction_item_golf_clubs.jpg">
@@ -704,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -759,7 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/example/jenxmout/greyhoundauctions/BuildConfig 2.java" />
     <entry file="file://$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/r/androidx/versionedparcelable/R 2.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/User.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -782,34 +801,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
-          <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="145" selection-end-column="9" />
-          <folding>
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2760#2761#0" expanded="true" />
-            <element signature="e#2907#2908#0" expanded="true" />
-            <element signature="e#2933#2934#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="67" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -829,6 +821,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/example/jenxmout/greyhoundauctions/BuildConfig 2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="411" column="12" selection-start-line="411" selection-start-column="12" selection-end-line="420" selection-end-column="13" />
+          <folding>
+            <element signature="e#2734#2735#0" expanded="true" />
+            <element signature="e#2760#2761#0" expanded="true" />
+            <element signature="e#2907#2908#0" expanded="true" />
+            <element signature="e#2933#2934#0" expanded="true" />
+            <element signature="e#16018#16019#0" expanded="true" />
+            <element signature="e#16076#16077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="303" column="12" selection-start-line="303" selection-start-column="12" selection-end-line="312" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="315" column="13" selection-start-line="315" selection-start-column="13" selection-end-line="315" selection-end-column="13" />
         </state>
       </provider>
     </entry>

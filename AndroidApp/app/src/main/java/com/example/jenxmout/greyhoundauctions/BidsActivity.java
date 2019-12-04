@@ -301,6 +301,17 @@ public class BidsActivity extends AppCompatActivity{
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
 
+            if(MainActivity.you != null) {
+                if (MainActivity.you.signedIn) {
+                    if(MainActivity.you.itemsBidOn.contains(MainActivity.ais.items.get(position))) {
+                        if (MainActivity.you.itemsCurrentHighestBidderOn.contains(MainActivity.ais.items.get(position)))
+                            row.setBackgroundColor(getResources().getColor(R.color.greyhoundGreen));
+                        else
+                            row.setBackgroundColor(getResources().getColor(R.color.countDownRed));
+                    }
+                }
+            }
+
             if(position < items.size()) {
                 images.setImageResource(items.get(position).resID);
                 myTitle.setText(items.get(position).title);

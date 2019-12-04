@@ -409,6 +409,18 @@ public class MainActivity extends AppCompatActivity {
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
 
+            if(you != null) {
+                if (you.signedIn) {
+                    if(you.itemsBidOn.contains(ais.items.get(position))) {
+                        if (you.itemsCurrentHighestBidderOn.contains(ais.items.get(position)))
+                            row.setBackgroundColor(getResources().getColor(R.color.greyhoundGreen));
+                        else
+                            row.setBackgroundColor(getResources().getColor(R.color.countDownRed));
+                    }
+                }
+            }
+
+
             if (position < items.size()) {
                 images.setImageResource(items.get(position).resID);
                 myTitle.setText(items.get(position).title);
