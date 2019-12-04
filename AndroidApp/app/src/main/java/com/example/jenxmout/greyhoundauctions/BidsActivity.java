@@ -63,6 +63,10 @@ public class BidsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        for(Item i: MainActivity.ais.items){
+            i.updateAutoBid();
+        }
+
         Log.w("open bids view", "true");
         
         this.titles = new String[MainActivity.you.itemsBidOn.size()];

@@ -31,6 +31,8 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
+        int position = getIntent().getIntExtra("itemPosition", 0);
+        MainActivity.ais.items.get(position).updateAutoBid();
 
         //set up item display
         TextView titleView = findViewById(R.id.itemTitleView);
@@ -146,12 +148,22 @@ public class ItemActivity extends AppCompatActivity {
                         0.0) + getIntent().getDoubleExtra("itemMinInc",
                         0.0);
 
-                if(maxBid >= minNextBid){
-                    if(MainActivity.you.autoBid(maxBid, MainActivity.ais.items.get(position))){
-                        Toast.makeText(ItemActivity.this, "Bid placed!",
-                                Toast.LENGTH_LONG).show();
-                        Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
-                        startActivity(homeIntent);
+                if(maxBid >= minNextBid && maxBid != MainActivity.ais.items.get(position).autoBidMax[0]
+                        && maxBid != MainActivity.ais.items.get(position).autoBidMax[1]){
+                    if(MainActivity.you != null) {
+                        if(MainActivity.you.signedIn) {
+                            if (MainActivity.ais.items.get(position).addAutoBid(MainActivity.you, maxBid)) {
+                                Toast.makeText(ItemActivity.this, "Bid placed!",
+                                        Toast.LENGTH_LONG).show();
+                                MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
+                                Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                                startActivity(homeIntent);
+                            }
+                            else{
+                                Toast.makeText(ItemActivity.this, "You've been outbid!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
                     }
                     else{
                         Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
@@ -162,7 +174,7 @@ public class ItemActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(ItemActivity.this, "Max bid must be greater than or "
-                            + "equal to $" + String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+                            + "equal to $" + String.valueOf(minNextBid) , Toast.LENGTH_LONG).show();
             }
         });
     }

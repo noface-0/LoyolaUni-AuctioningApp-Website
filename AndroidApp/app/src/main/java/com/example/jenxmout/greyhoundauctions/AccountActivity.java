@@ -22,9 +22,11 @@ import android.widget.Toast;
 public class AccountActivity extends AppCompatActivity {
 
     //hardcoded account info
-    private String hcEmail = "jdoe@yahoo.com";
+    private String [] hcEmail = new String[]{"jdoe@yahoo.com", "admin@loyola.edu", "test@gmail.com"};
     //hardcoded account info
-    private String hcPassword = "password";
+    private String [] hcPassword = new String[]{"password", "password", "password"};
+    private String [] hcFName = new String[]{"John", "Admin", "Test"};
+    private String [] hcLName = new String[]{"Doe", "Admin", "Test"};
 
     /**
      * Sets up the account screen view
@@ -54,23 +56,27 @@ public class AccountActivity extends AppCompatActivity {
                 String userEmail = String.valueOf(emailTV.getText());
                 String userPwd = String.valueOf(passwordTV.getText());
 
-                if(userEmail.equals(hcEmail)) {
-                    if(hcPassword.equals(userPwd)) {
-                        Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
-                        MainActivity.you.logIn(userEmail, userPwd);
-                        MainActivity.you.firstName = "John";
-                        MainActivity.you.lastName = "Doe";
-                        startActivity(accountIntent);
-                        Toast.makeText(AccountActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
+                for(int i = 0; i < hcEmail.length; i++) {
+                    String em = hcEmail[i];
+                    if (userEmail.equals(em)) {
+                        if (hcPassword[i].equals(userPwd)) {
+                            Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
+                            MainActivity.you.logIn(userEmail, userPwd);
+                            MainActivity.you.firstName = hcFName[i];
+                            MainActivity.you.lastName = hcLName[i];
+                            startActivity(accountIntent);
+                            Toast.makeText(AccountActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
+                            break;
+                        } else {
+                            Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                            break;
+                        }
                     }
                     else {
-                        Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AccountActivity.this,
+                                "We don't recognize your email, try making a new account!",
+                                Toast.LENGTH_LONG).show();
                     }
-                }
-                else {
-                    Toast.makeText(AccountActivity.this,
-                            "We don't recognize your email, try making a new account!",
-                            Toast.LENGTH_LONG).show();
                 }
             }
         });

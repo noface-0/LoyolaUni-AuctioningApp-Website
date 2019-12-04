@@ -141,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        for(Item i: ais.items){
+            i.updateAutoBid();
+        }
+
         // grab existing static user and items
         you = getUser();
         ais = getAis();
