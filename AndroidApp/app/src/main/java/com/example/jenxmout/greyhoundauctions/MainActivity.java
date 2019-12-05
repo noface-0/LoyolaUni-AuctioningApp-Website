@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -245,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Creating Countdown Clock
         FundraiserInfo fInfo = new FundraiserInfo(R.drawable.inner_harbor_info_pic, "desc",
-                "2019.12.05 12:40:00 EST", "2019.12.05 13:00:00 EST");
+                "2019.12.05 12:40:00 EST", "2019.12.08 13:30:00 EST");
         START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
         endTime = fInfo.getEndTimeMillis();
 
@@ -272,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
         counter.start();
 
         // Event Button
-        Button eventButton = (Button) findViewById(R.id.eventButton);
+        ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
         eventButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -291,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Account Button
-        Button accountButton = (Button) findViewById(R.id.loginButton);
+        ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
         accountButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -309,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Display User Bids Button
-        Button userBidButton = (Button) findViewById(R.id.whatIBidOnButton);
+        ImageButton userBidButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
         userBidButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -340,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Display User Highest Bids Button
-        Button userHighestBidButton = (Button) findViewById(R.id.itemsHighestButton);
+        ImageButton userHighestBidButton = (ImageButton) findViewById(R.id.itemsHighestButton);
         userHighestBidButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -434,9 +435,9 @@ public class MainActivity extends AppCompatActivity {
                 if (you.signedIn) {
                     if(you.itemsBidOn.contains(ais.items.get(position))) {
                         if (you.itemsCurrentHighestBidderOn.contains(ais.items.get(position)))
-                            row.setBackgroundColor(getResources().getColor(R.color.greyhoundGreen));
+                            row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
                         else
-                            row.setBackgroundColor(getResources().getColor(R.color.countDownRed));
+                            row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
                     }
                 }
             }
@@ -503,7 +504,7 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public void onFinish() {
-            textViewCountDown.setText("done!");
+            textViewCountDown.setText("Auction Over!");
         }
 
         /**
@@ -514,8 +515,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTick(long millisUntilFinished) {
             long millis = millisUntilFinished;
-            String hms = (TimeUnit.MILLISECONDS.toDays(millis)) + " Days "
-                    + (TimeUnit.MILLISECONDS.toHours(millis) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millis)) + ":")
+            String hms = ((TimeUnit.MILLISECONDS.toDays(millis) * 24)
+                    + (TimeUnit.MILLISECONDS.toHours(millis) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millis))) + ":")
                     + (TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)) + ":"
                     + (TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
 

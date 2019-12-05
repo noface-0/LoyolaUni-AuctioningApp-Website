@@ -6,10 +6,13 @@
     <color name="colorAccent">#FF4081</color>
     <color name="greyhoundGreen">#00694E</color>
     <color name="greyhoundGrey">#CACAC8</color>
-    <color name="countDownRed">#FF0000</color>
+    <color name="countDownRed">#ff4c4c</color>
     <color name="silver">#C0C0C0</color>
     <color name="backgroundGreen">#B5E5CC</color>
     <color name="backgroundLightGreen">#F0F9F4</color>
     <color name="darkGrey">#555555</color>
     <color name ="countdownRed">#fa7470</color>
+    <color name="darkSilver">#4c4c4c</color>
+    <color name ="losingBidRed">#ff9999</color>
+    <color name="winningBidGreen">#99cc99</color>
 </resources>
