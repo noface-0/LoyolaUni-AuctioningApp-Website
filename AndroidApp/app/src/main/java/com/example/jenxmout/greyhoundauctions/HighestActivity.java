@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -161,7 +162,7 @@ public class HighestActivity extends AppCompatActivity {
         });
 
         // Event Button
-        Button eventButton = (Button) findViewById(R.id.eventButton);
+        ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
         eventButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -180,7 +181,7 @@ public class HighestActivity extends AppCompatActivity {
 
 
         // Account Button
-        Button accountButton = (Button) findViewById(R.id.loginButton);
+        ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
         accountButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -198,7 +199,7 @@ public class HighestActivity extends AppCompatActivity {
         });
 
         //Home Button
-        Button homeButton = (Button) findViewById(R.id.homeButton);
+        ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -216,7 +217,7 @@ public class HighestActivity extends AppCompatActivity {
         });
 
         // Display User Bids Button
-        Button userBidButton = (Button) findViewById(R.id.whatIBidOnButton);
+        ImageButton userBidButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
         userBidButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -308,9 +309,9 @@ public class HighestActivity extends AppCompatActivity {
                 if (MainActivity.you.signedIn) {
                     if(MainActivity.you.itemsBidOn.contains(MainActivity.ais.items.get(position))) {
                         if (MainActivity.you.itemsCurrentHighestBidderOn.contains(MainActivity.ais.items.get(position)))
-                            row.setBackgroundColor(getResources().getColor(R.color.greyhoundGreen));
+                            row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
                         else
-                            row.setBackgroundColor(getResources().getColor(R.color.countDownRed));
+                            row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
                     }
                 }
             }
