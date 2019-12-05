@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Creating Countdown Clock
         FundraiserInfo fInfo = new FundraiserInfo(R.drawable.inner_harbor_info_pic, "desc",
-                "2019.12.04 07:30:00 EST", "2019.12.04 08:00:00 EST");
+                "2019.12.05 12:40:00 EST", "2019.12.05 13:00:00 EST");
         START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
         endTime = fInfo.getEndTimeMillis();
 
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         Log.w("number of milis", "end:" + endTime);
         Log.w("number of milis", "current:" + currentTime);
 
-        timeLeftInMillis = (endTime - START_TIME_IN_MILLIS);
+        timeLeftInMillis = (endTime - currentTimeMillis);
 
         Log.w("number of milis", "time left:" + timeLeftInMillis);
 

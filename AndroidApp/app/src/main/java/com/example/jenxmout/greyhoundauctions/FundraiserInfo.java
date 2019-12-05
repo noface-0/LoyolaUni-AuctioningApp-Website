@@ -62,8 +62,8 @@ public class FundraiserInfo {
      * @return endTimeMillis the date of the end time in milliseconds
      */
     public long getEndTimeMillis(){
-        SimpleDateFormat endDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm a", Locale.ENGLISH);
-        endDateFormatted.setTimeZone(TimeZone.getTimeZone("ET"));
+        SimpleDateFormat endDateFormatted = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z", Locale.US);
+        endDateFormatted.setTimeZone(TimeZone.getTimeZone("EST"));
         long endTimeMillis = System.currentTimeMillis();
         try {
             Date endDateObj = endDateFormatted.parse(endTime);
