@@ -6,6 +6,8 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * This is the Fundraiser Info class that...
@@ -60,7 +62,8 @@ public class FundraiserInfo {
      * @return endTimeMillis the date of the end time in milliseconds
      */
     public long getEndTimeMillis(){
-        SimpleDateFormat endDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat endDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm a", Locale.ENGLISH);
+        endDateFormatted.setTimeZone(TimeZone.getTimeZone("ET"));
         long endTimeMillis = System.currentTimeMillis();
         try {
             Date endDateObj = endDateFormatted.parse(endTime);
@@ -82,7 +85,8 @@ public class FundraiserInfo {
      * @return startTimeMillis the date of the start time in milliseconds
      */
     public long getStartTimeMillis(){
-        SimpleDateFormat startDateFormatted = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat startDateFormatted = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z", Locale.US);
+        startDateFormatted.setTimeZone(TimeZone.getTimeZone("EST"));
         long startTimeMillis = System.currentTimeMillis();
         try {
             Date startDateObj = startDateFormatted.parse(startTime);

@@ -23,10 +23,15 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * This is the Main Activity class that
@@ -236,12 +241,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Creating Countdown Clock
         FundraiserInfo fInfo = new FundraiserInfo(R.drawable.inner_harbor_info_pic, "desc",
-                "2019/12/03 03:00", "2019/12/03 03:30");
+                "2019.12.04 07:30:00 EST", "2019.12.04 08:00:00 EST");
         START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
         endTime = fInfo.getEndTimeMillis();
-        Log.w("number of milis", "start:" + START_TIME_IN_MILLIS);
 
-        timeLeftInMillis = endTime - START_TIME_IN_MILLIS;
+        long currentTimeMillis = System.currentTimeMillis();
+
+        String currentTime = DateFormat.getInstance().format(currentTimeMillis);
+        String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
+        String stringEndTime = DateFormat.getInstance().format(endTime);
+
+        Log.w("number of milis", "start:" + stringStartTime);
+        Log.w("number of milis", "end:" + stringEndTime);
+
+        Log.w("number of milis", "start:" + START_TIME_IN_MILLIS);
+        Log.w("number of milis", "end:" + endTime);
+        Log.w("number of milis", "current:" + currentTime);
+
+        timeLeftInMillis = (endTime - START_TIME_IN_MILLIS);
+
+        Log.w("number of milis", "time left:" + timeLeftInMillis);
 
         textViewCountDown = findViewById(R.id.countdown);
 
@@ -351,6 +370,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // For List
+
     /**
      * This MyAdapter class that updates the ListView
      * when scrolling
@@ -374,9 +394,10 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * MyAdapter Constructor
-         * @param c .....
+         *
+         * @param c      .....
          * @param titles .....
-         * @param items .....
+         * @param items  .....
          */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
@@ -389,9 +410,9 @@ public class MainActivity extends AppCompatActivity {
         /**
          * NOTES
          *
-         * @param position ...
+         * @param position    ...
          * @param convertView ...
-         * @param parent ....
+         * @param parent      ....
          * @return the View ...
          */
         @NonNull
@@ -442,8 +463,6 @@ public class MainActivity extends AppCompatActivity {
             notifyDataSetChanged();
         }
     }
-
-
 
     // countdowntimer is an abstract class, so extend it and fill in methods
 
@@ -524,34 +543,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-         Log.w("state", "in on start");
 
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-
-        timeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
-        timerRunning = prefs.getBoolean("timerRunning", false);
-
-        updateCountDownText();
-
-
-        if (timerRunning) {
-            endTime = prefs.getLong("endTime", 0);
-            timeLeftInMillis = endTime - System.currentTimeMillis();
-
-            if (timeLeftInMillis < 0) {
-                timeLeftInMillis = 0;
-                timerRunning = false;
-                updateCountDownText();
-            } else {
-                timerRunning = true; //
-                // NEED TO FIX THIS ELSE STATEMENT!
-                // counter.start();
-            }
-        }
-    }
 }
 
 
