@@ -63,6 +63,10 @@ public class BidsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        for(Item i: MainActivity.ais.items){
+            i.updateAutoBid();
+        }
+
         Log.w("open bids view", "true");
         
         this.titles = new String[MainActivity.you.itemsBidOn.size()];
@@ -296,6 +300,17 @@ public class BidsActivity extends AppCompatActivity{
             TextView myDescription = row.findViewById(R.id.item_description);
             TextView myCHB = row.findViewById(R.id.item_CHB);
             TextView myCHBr = row.findViewById(R.id.item_CHBr);
+
+            if(MainActivity.you != null) {
+                if (MainActivity.you.signedIn) {
+                    if(MainActivity.you.itemsBidOn.contains(MainActivity.ais.items.get(position))) {
+                        if (MainActivity.you.itemsCurrentHighestBidderOn.contains(MainActivity.ais.items.get(position)))
+                            row.setBackgroundColor(getResources().getColor(R.color.greyhoundGreen));
+                        else
+                            row.setBackgroundColor(getResources().getColor(R.color.countDownRed));
+                    }
+                }
+            }
 
             if(position < items.size()) {
                 images.setImageResource(items.get(position).resID);
