@@ -29,6 +29,7 @@ public class AccountActivity extends AppCompatActivity {
     private String [] hcFName = new String[]{"John", "Admin", "Test"};
     private String [] hcLName = new String[]{"Doe", "Admin", "Test"};
 
+
     /**
      * Sets up the account screen view
      *
@@ -57,30 +58,12 @@ public class AccountActivity extends AppCompatActivity {
                 String userEmail = String.valueOf(emailTV.getText());
                 String userPwd = String.valueOf(passwordTV.getText());
 
-                for(int i = 0; i < hcEmail.length; i++) {
-                    String em = hcEmail[i];
-                    if (userEmail.equals(em)) {
-                        if (hcPassword[i].equals(userPwd)) {
-                            Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
-                            MainActivity.you.logIn(userEmail, userPwd);
-                            MainActivity.you.firstName = hcFName[i];
-                            MainActivity.you.lastName = hcLName[i];
-                            startActivity(accountIntent);
-                            Toast.makeText(AccountActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
-                            break;
-                        } else {
-                            Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
-                            break;
-                        }
-                    }
-                    else {
-                        Toast.makeText(AccountActivity.this,
-                                "We don't recognize your email, try making a new account!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                }
+                BackgroundWorker bw = new BackgroundWorker(AccountActivity.this);
+                bw.execute("login", userEmail, userPwd);
             }
         });
+
+
 
         // Home Button
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
@@ -114,7 +97,7 @@ public class AccountActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                MainActivity.you.logOut();
+                MainActivity.you = null;
                 Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
 
                 startActivity(homeIntent);
@@ -182,4 +165,5 @@ public class AccountActivity extends AppCompatActivity {
             Toast.makeText(AccountActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

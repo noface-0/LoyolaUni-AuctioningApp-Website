@@ -155,6 +155,15 @@ public class MainActivity extends AppCompatActivity {
         you = getUser();
         ais = getAis();
 
+        if(you != null) {
+            if (you.signedIn)
+                Log.w("signed in main", "true");
+            else
+                Log.w("signed in main", "false");
+        }
+        else
+            Log.w("signed in main", "null");
+
         if (you != null) {
             if (you.itemsBidOn.size() > 0) {
                 you.itemsCurrentHighestBidderOn = new LinkedList<>();
@@ -256,16 +265,8 @@ public class MainActivity extends AppCompatActivity {
         String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
         String stringEndTime = DateFormat.getInstance().format(endTime);
 
-        Log.w("number of milis", "start:" + stringStartTime);
-        Log.w("number of milis", "end:" + stringEndTime);
-
-        Log.w("number of milis", "start:" + START_TIME_IN_MILLIS);
-        Log.w("number of milis", "end:" + endTime);
-        Log.w("number of milis", "current:" + currentTime);
 
         timeLeftInMillis = (endTime - currentTimeMillis);
-
-        Log.w("number of milis", "time left:" + timeLeftInMillis);
 
         textViewCountDown = findViewById(R.id.countdown);
 

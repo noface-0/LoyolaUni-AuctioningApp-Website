@@ -82,21 +82,12 @@ public class User{
      * @param email the email of the bidder
      * @param pwd the password of the bidder's account
      */
-    public void logIn(String email, String pwd){
+    public void logIn(String email, String pwd, String fName, String lName){
         this.email = email;
         this.password = pwd;
+        this.firstName = fName;
+        this.lastName = lName;
         this.signedIn = true;
-    }
-
-    /**
-     * Logs bidder out of their account
-     */
-    public void logOut(){
-        this.signedIn = false;
-        this.email = "";
-        this.password = "";
-        this.lastName = "";
-        this.lastName = "";
     }
 
     /**

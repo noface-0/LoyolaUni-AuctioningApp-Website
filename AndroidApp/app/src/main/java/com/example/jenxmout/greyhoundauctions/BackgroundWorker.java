@@ -2,7 +2,9 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,7 +30,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "http://jajeimo.cs.loyola.edu/php/updateDatabase.php";
+        String login_url = "http://jajeimo.cs.loyola.edu/php/login.php";
         if(type.equals("login")) {
             try {
                 String user_name = params[1];
@@ -41,13 +43,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                String post_data = URLEncoder.encode("Email","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
+                        +URLEncoder.encode("Password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStream inputStream = httpURLConnection.getErrorStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
                 String result="";
                 String line="";
@@ -57,6 +59,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
+                Log.w("Fetch result", result);
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -75,8 +78,23 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setMessage(result);
-        alertDialog.show();
+        String[] resultArr;
+
+        if(result != "") {
+            resultArr = result.split("\\s+");
+            for (String str : resultArr) {
+                Log.w("Str in arr", str);
+            }
+            MainActivity.you.logIn(resultArr[0], resultArr[1], resultArr[2], resultArr[3]);
+            if (MainActivity.you.signedIn){
+                alertDialog.setMessage("Welcome Back!");
+                alertDialog.show();
+            }
+        }
+        else{
+            alertDialog.setMessage("Email or password are incorrect!");
+            alertDialog.show();
+        }
     }
 
     @Override
