@@ -53,32 +53,34 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //grab user input for first name
                 EditText firstNameInput = (EditText) findViewById(R.id.firstName);
                 String firstName = String.valueOf(firstNameInput.getText());
 
+                //grab user input for last name
                 EditText lastNameInput = (EditText) findViewById(R.id.lastName);
                 String lastName = String.valueOf(lastNameInput.getText());
 
+                //grab user input for email
                 EditText emailInput = (EditText) findViewById(R.id.email);
                 String userEmail = String.valueOf(emailInput.getText());
 
+                //grab user input for password
                 EditText passwordInput = (EditText) findViewById(R.id.password);
                 String userPassword = String.valueOf(passwordInput.getText());
 
+                //grab user input for confirm password
                 EditText passwordConfirmInput = (EditText) findViewById(R.id.confirmPassword);
                 String userPasswordConfirm = String.valueOf(passwordConfirmInput.getText());
 
+                MainActivity.you = new User();
                 if(!userPassword.equals(userPasswordConfirm)){
                     Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    //set user name, email, password, set signedIn flag using signUp method
-                    Toast.makeText(SignUpActivity.this, "Welcome", Toast.LENGTH_LONG).show();
-
-                    //bring to home
-                    Intent homeIntent = new Intent(SignUpActivity.this, MainActivity.class);
-
-                    startActivity(homeIntent);
+                    //background worker
+                    BackgroundWorker bw = new BackgroundWorker(SignUpActivity.this);
+                    bw.execute("sign-up", firstName, lastName, userEmail, userPassword);
                 }
             }
         });

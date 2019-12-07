@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The start time of the fundraiser
      */
-    private static long START_TIME_IN_MILLIS;
+    protected static long START_TIME_IN_MILLIS;
 
     /**
      * The countdown clock text view
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
      * Boolean to see if the timer is currently
      * running or not
      */
-    private boolean timerRunning = false;
+    protected boolean timerRunning = false;
 
     /**
      * The time left for the fundraiser
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The end time for the fundraiser
      */
-    private long endTime;
+    protected static long endTime;
 
     /**
      * The time interval in between seconds for the
@@ -113,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
      * The user
      */
     protected static User you;
+
+    /**
+     * The event
+     */
+    protected static  FundraiserInfo fInfo;
 
     /**
      * To get the user's information
@@ -132,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         return ais;
     }
 
+    protected FundraiserInfo getFInfo() {return fInfo;}
+
     /**
      * Sets up the main screen view
      *
@@ -142,6 +149,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //run backgroundworker
+        if(fInfo == null) {
+            Log.w("Background worker", "running!");
+            BackgroundWorker bw = new BackgroundWorker(MainActivity.this);
+            bw.execute("fetch event data", "");
+        }
         for(Item i: ais.items){
             i.updateAutoBid();
         }
@@ -241,25 +254,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Creating Countdown Clock
-        FundraiserInfo fInfo = new FundraiserInfo(R.drawable.inner_harbor_info_pic, "desc",
-                "2019.12.05 12:40:00 EST", "2019.12.08 13:30:00 EST");
-        START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
-        endTime = fInfo.getEndTimeMillis();
+        // Creating Countdown Clock while start time and end time exist
+        if(fInfo != null) {
+            START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
+            endTime = fInfo.getEndTimeMillis();
 
-        long currentTimeMillis = System.currentTimeMillis();
-
-        String currentTime = DateFormat.getInstance().format(currentTimeMillis);
-        String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
-        String stringEndTime = DateFormat.getInstance().format(endTime);
+            Log.w("start", String.valueOf(START_TIME_IN_MILLIS));
+            Log.w("end", String.valueOf(endTime));
 
 
-        timeLeftInMillis = (endTime - currentTimeMillis);
+            long currentTimeMillis = System.currentTimeMillis();
 
-        textViewCountDown = findViewById(R.id.countdown);
+            String currentTime = DateFormat.getInstance().format(currentTimeMillis);
+            String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
+            String stringEndTime = DateFormat.getInstance().format(endTime);
 
-        MyCount counter = new MyCount(timeLeftInMillis, 1000);
-        counter.start();
+
+            timeLeftInMillis = (endTime - currentTimeMillis);
+
+            textViewCountDown = findViewById(R.id.countdown);
+
+            MyCount counter = new MyCount(timeLeftInMillis, 1000);
+            counter.start();
+
+        }
 
         // Event Button
         ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);

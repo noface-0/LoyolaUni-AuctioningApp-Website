@@ -43,12 +43,9 @@ public class EventActivity extends AppCompatActivity {
         final TextView eventDescription = (TextView) findViewById(R.id.fundraiserDescription);
 
         // Grabs the resId for the event image and sets the ImageView to that image
-        int resID = getResources().getIdentifier("inner_harbor_info_pic", "drawable",
-                getPackageName());
-        eventImg.setImageResource(resID);
+        eventImg.setImageBitmap(MainActivity.fInfo.fundraiserImage);
 
-        eventDescription.setText("This is a fundraiser to support the cleanliness of the Inner " +
-                "Harbor, all proceeds go towards keeping the Inner Harbor clean!");
+        eventDescription.setText(MainActivity.fInfo.description);
 
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener(){

@@ -40,7 +40,7 @@
         android:layout_height="153dp"
         android:layout_marginStart="88dp"
         android:layout_marginLeft="88dp"
-        android:layout_marginTop="245dp"
+        android:layout_marginTop="300dp"
         android:text="This is a fundraiser to clean up the inner harbor"
         android:textColor="@color/darkGrey"
         android:textSize="18dp"
