@@ -56,11 +56,6 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchBar;
 
     /**
-     * The adapter to update the list view when scrolling
-     */
-    MyAdapter adapter;
-
-    /**
      * The list that holds all the items
      */
     ListView listView;
@@ -200,13 +195,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.w("position", "index " + position);
                 if (ais.items.size() >= position + 1) {
                     Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
-                    //information from each item to populate the custom item intent
-                    itemIntent.putExtra("itemTitle", ais.items.get(position).title);
-                    itemIntent.putExtra("itemImage", ais.items.get(position).resID);
-                    itemIntent.putExtra("itemCHB", ais.items.get(position).currentHighestBid);
-                    itemIntent.putExtra("itemDesc", ais.items.get(position).description);
-                    itemIntent.putExtra("itemCHBr", ais.items.get(position).currentHighestBidder);
-                    itemIntent.putExtra("itemMinInc", ais.items.get(position).minInc);
                     itemIntent.putExtra("itemPosition", position);
 
                     String tagsStr = "";

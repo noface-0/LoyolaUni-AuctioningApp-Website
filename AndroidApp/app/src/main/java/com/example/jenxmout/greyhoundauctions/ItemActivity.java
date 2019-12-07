@@ -31,7 +31,7 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-        int position = getIntent().getIntExtra("itemPosition", 0);
+        int position = getIntent().getIntExtra("itemPosition", -1);
         MainActivity.ais.items.get(position).updateAutoBid();
 
         //set up item display
@@ -39,19 +39,19 @@ public class ItemActivity extends AppCompatActivity {
         titleView.setText(getIntent().getStringExtra("itemTitle"));
 
         TextView highestBid = findViewById(R.id.highestBid);
-        highestBid.setText("Current Highest Bid: $" + getIntent().getDoubleExtra("itemCHB",
-                0.0) + "0");
+        highestBid.setText("Current Highest Bid: $"
+                + MainActivity.ais.items.get(position).currentHighestBid);
 
         TextView minBid = findViewById(R.id.minNextBid);
-        minBid.setText("Min Next Bid: $" + (getIntent().getDoubleExtra("itemCHB",
-                0.0) + getIntent().getDoubleExtra("itemMinInc", 0.0)) + "0");
+        minBid.setText("Min Next Bid: $" + (MainActivity.ais.items.get(position).currentHighestBid
+                + MainActivity.ais.items.get(position).minInc + "0"));
 
         ImageView imgView = findViewById(R.id.itemImage);
-        imgView.setImageResource(getIntent().getIntExtra("itemImage", -1));
+        imgView.setImageResource(MainActivity.ais.items.get(position).resID);
 
         TextView infoView = findViewById(R.id.itemDescription);
-        infoView.setText(getIntent().getStringExtra("itemDesc") +
-                 "\nCurrentHighestBidder: " + getIntent().getStringExtra("itemCHBr") +
+        infoView.setText(MainActivity.ais.items.get(position).description +
+                 "\nCurrentHighestBidder: " + MainActivity.ais.items.get(position).currentHighestBidder +
                 "\n\n" + getIntent().getStringExtra("itemTags"));
 
         // Bid Info Button
@@ -97,9 +97,8 @@ public class ItemActivity extends AppCompatActivity {
                 EditText bidET = findViewById(R.id.bidAmount);
                 String bid = String.valueOf(bidET.getText());
 
-                double minNextBid = getIntent().getDoubleExtra("itemCHB",
-                        0.0) + getIntent().getDoubleExtra("itemMinInc",
-                        0.0);
+                double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
+                        + MainActivity.ais.items.get(position).minInc;
 
                 if (Double.valueOf(bid) >= minNextBid) {
                     if (MainActivity.you != null) {
@@ -144,9 +143,8 @@ public class ItemActivity extends AppCompatActivity {
                 int position = getIntent().getIntExtra("itemPosition", 0);
                 EditText maxBidET = findViewById(R.id.maxBid);
                 double maxBid = Double.valueOf(String.valueOf(maxBidET.getText()));
-                double minNextBid = getIntent().getDoubleExtra("itemCHB",
-                        0.0) + getIntent().getDoubleExtra("itemMinInc",
-                        0.0);
+                double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
+                        + MainActivity.ais.items.get(position).minInc;
 
                 if(maxBid >= minNextBid && maxBid != MainActivity.ais.items.get(position).autoBidMax[0]
                         && maxBid != MainActivity.ais.items.get(position).autoBidMax[1]){
