@@ -1,5 +1,6 @@
 package com.example.jenxmout.greyhoundauctions;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.util.Log;
 
@@ -23,7 +24,7 @@ public class FundraiserInfo {
     /**
      * The image that represents the fundraiser
      */
-    protected int fundraiserImage;
+    protected Bitmap fundraiserImage;
 
     /**
      * The description of the fundraiser event
@@ -49,7 +50,7 @@ public class FundraiserInfo {
      * @param start the start time of the fundraiser
      * @param end the end time of the fundraiser
      */
-    public FundraiserInfo(int resID, String desc, String start, String end){
+    public FundraiserInfo(Bitmap resID, String desc, String start, String end){
         this.fundraiserImage = resID;
         this.description = desc;
         this.startTime = start;

@@ -21,16 +21,8 @@ import android.widget.Toast;
  * @version 1.0 10/21/19
  */
 public class AccountActivity extends AppCompatActivity {
-
-    //hardcoded account info
-    private String [] hcEmail = new String[]{"jdoe@yahoo.com", "admin@loyola.edu", "test@gmail.com"};
-    //hardcoded account info
-    private String [] hcPassword = new String[]{"password", "password", "password"};
-    private String [] hcFName = new String[]{"John", "Admin", "Test"};
-    private String [] hcLName = new String[]{"Doe", "Admin", "Test"};
-
     /**
-     * Sets up the account screen view
+     * Sets up the account screen view and adds button functionality
      *
      * @param savedInstanceState the reference to a Bundle object that is passed
      */
@@ -39,8 +31,11 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Login Button
+        // Functionality for login button
         Button loginButton = (Button) findViewById(R.id.loginButton);
+        /**
+         * This methods logs user into their account when login button is clicked
+         */
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -52,38 +47,27 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.you = new User();
+                //save text views
                 TextView emailTV = findViewById(R.id.email);
                 TextView passwordTV = findViewById(R.id.password);
+
+                //saves input to strings
                 String userEmail = String.valueOf(emailTV.getText());
                 String userPwd = String.valueOf(passwordTV.getText());
 
-                for(int i = 0; i < hcEmail.length; i++) {
-                    String em = hcEmail[i];
-                    if (userEmail.equals(em)) {
-                        if (hcPassword[i].equals(userPwd)) {
-                            Intent accountIntent = new Intent(AccountActivity.this, MainActivity.class);
-                            MainActivity.you.logIn(userEmail, userPwd);
-                            MainActivity.you.firstName = hcFName[i];
-                            MainActivity.you.lastName = hcLName[i];
-                            startActivity(accountIntent);
-                            Toast.makeText(AccountActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
-                            break;
-                        } else {
-                            Toast.makeText(AccountActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
-                            break;
-                        }
-                    }
-                    else {
-                        Toast.makeText(AccountActivity.this,
-                                "We don't recognize your email, try making a new account!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                }
+                //check with database
+                BackgroundWorker bw = new BackgroundWorker(AccountActivity.this);
+                bw.execute("login", userEmail, userPwd);
             }
         });
 
-        // Home Button
+
+
+        // Functionality for home button
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
+        /**
+         * This method takes user back to home page
+         */
         homeButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -96,14 +80,15 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
-
                 startActivity(homeIntent);
             }
-
         });
 
-        //Log Out Button
+        //Functionality for log out button
         Button logOutButton = (Button) findViewById(R.id.logOutButton);
+        /**
+         * This method logs the user out of their account
+         */
         logOutButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -114,16 +99,22 @@ public class AccountActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                MainActivity.you.logOut();
-                Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
+                //reset user
+                MainActivity.you = null;
 
+                Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
                 startActivity(homeIntent);
+
+                //inform user that they have successfully logged out
                 Toast.makeText(AccountActivity.this, "Logging Out!", Toast.LENGTH_LONG).show();
             }
         });
 
-        //Forgot Password button
+        //Functionality for forgot password button
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
+        /**
+         * This method sends an email to the user that allows them to reset their password
+         */
         sendEmailButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -139,8 +130,12 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-
+        //Functionality for sign-up button
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
+        /**
+         * This method takes the user to the page where they can
+         * create a Greyhounds Auction account
+         */
         signUpButton.setOnClickListener(new View.OnClickListener() {
 
         /**
@@ -159,7 +154,7 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     /**
-     * To send an email to if forgot password is clicked
+     * This method sends an email to if forgot password is clicked
      */
     protected void sendEmail() {
         Log.i("Send email", "");
@@ -182,4 +177,5 @@ public class AccountActivity extends AppCompatActivity {
             Toast.makeText(AccountActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
