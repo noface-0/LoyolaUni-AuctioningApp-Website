@@ -63,6 +63,12 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         //URL for event info fetch PHP script
         String event_url = "http://jajeimo.cs.loyola.edu/php/event.php";
 
+        //URL for item data fetch PHP script
+        String itemdata_url = "http://jajeimo.cs.loyola.edu/php/itemData.php";
+
+        //URL updating user fetch PHP script
+        String updateuser_url = "http://jajeimo.cs.loyola.edu/php/updateUser.php";
+
         if(type.equals("login")) {
             try {
                 String email = params[1];
@@ -175,11 +181,83 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        else if(type.equals("fetch item data")){
+            try{
+            Log.w("Item Data", "requesting fetch");
+                URL url = new URL(itemdata_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
 
+                Log.w("URL", "connected!");
+                //grab event info from PHP script
+                InputStream inputStream = httpURLConnection.getInputStream();
+                Log.w("input stream", inputStream.toString());
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                String result = type + ";";
+                String line="";
+                while((line = bufferedReader.readLine())!= null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                Log.w("Fetch result", result);
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
-        //if(type.equals("fetch items data")){}
-        //if(type.equals("update user data")){}
+        else if(type.equals("update user data")){
+            String itemTitles = params[1];
+            String firstName = params[2];
+            String lastName = params[3];
+
+            try {
+                Log.w("update user data", "running");
+                URL url = new URL(updateuser_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("ItemsBidOn","UTF-8")+"="+
+                        URLEncoder.encode(itemTitles,"UTF-8")+
+                        URLEncoder.encode("FirstName", "UTF-8")+"="+URLEncoder.encode(firstName,"UTF-8")+URLEncoder.encode("LastName","UTF-8")+"="+
+                        URLEncoder.encode(lastName,"UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getErrorStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                String result = type + " ";
+                String line="";
+                while((line = bufferedReader.readLine())!= null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                Log.w("Fetch result", result);
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         //if(type.equals("update item data")){}
         return null;
     }
@@ -248,6 +326,23 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             Intent homeIntent = new Intent(context, MainActivity.class);
             context.startActivity(homeIntent);
 
+        }
+        else if(result.contains("fetch item data")){
+            resultArr = result.split(";");
+            MainActivity.ais = new AuctionItems();
+
+            for(int i = 1; i+5 < resultArr.length; i+=6) {
+                String encodedImage = resultArr[i+5];
+                byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+                Bitmap imageBM = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                String [] tagsArr = resultArr[i+3].split(",");
+
+                MainActivity.ais.items.add(new Item(resultArr[i], resultArr[i+1], Double.valueOf(resultArr[i+2]),
+                        tagsArr, Double.valueOf(resultArr[i+4]), imageBM));
+            }
+
+            Intent homeIntent = new Intent(context, MainActivity.class);
+            context.startActivity(homeIntent);
         }
         else{
             Log.w("if else post", "didnt contain any existing strings");

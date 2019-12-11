@@ -312,7 +312,7 @@ public class BidsActivity extends AppCompatActivity{
             }
 
             if(position < items.size()) {
-                images.setImageResource(items.get(position).resID);
+                images.setImageBitmap(items.get(position).resID);
                 myTitle.setText(items.get(position).title);
                 myDescription.setText(items.get(position).description);
                 myCHB.setText("$" + items.get(position).currentHighestBid + "0");
