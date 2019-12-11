@@ -11,6 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
+
 /**
  * This is the Account Activity class that...
  *
@@ -54,10 +59,11 @@ public class AccountActivity extends AppCompatActivity {
                 //saves input to strings
                 String userEmail = String.valueOf(emailTV.getText());
                 String userPwd = String.valueOf(passwordTV.getText());
+                String encryptedUserPwd = encryptPassword(userPwd);
 
                 //check with database
                 BackgroundWorker bw = new BackgroundWorker(AccountActivity.this);
-                bw.execute("login", userEmail, userPwd);
+                bw.execute("login", userEmail, encryptedUserPwd);
             }
         });
 
@@ -176,6 +182,40 @@ public class AccountActivity extends AppCompatActivity {
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(AccountActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    private static String encryptPassword(String password)
+    {
+        String sha1 = "";
+        try
+        {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.reset();
+            crypt.update(password.getBytes("UTF-8"));
+            sha1 = byteToHex(crypt.digest());
+        }
+        catch(NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        catch(UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        return sha1;
+    }
+
+    private static String byteToHex(final byte[] hash)
+    {
+        Formatter formatter = new Formatter();
+        for (byte b : hash)
+        {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
     }
 
 }
