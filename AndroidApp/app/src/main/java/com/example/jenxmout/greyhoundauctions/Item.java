@@ -49,8 +49,16 @@ public class Item {
      */
     protected String currentHighestBidder;
 
+    /**
+     * The list of the top two auto-bid users for a particular item.
+     * The top two have the highest max bid
+     */
     protected User [] autoBidUsers;
 
+    /**
+     * The list of the top two auto-bid maxs for a particular item.
+     * The top two have the highest max bid
+     */
     protected double [] autoBidMax;
 
     /**
@@ -77,6 +85,13 @@ public class Item {
 
     }
 
+    /**
+     * This method ...
+     *
+     * @param user
+     * @param max
+     * @return
+     */
     protected boolean addAutoBid(User user, double max){
         if(autoBidUsers[0] == null){
             autoBidUsers[0] = user;
@@ -100,6 +115,9 @@ public class Item {
         }
     }
 
+    /**
+     * This method...
+     */
     protected void updateAutoBid(){
         if(autoBidUsers[0] == null){
             return;
@@ -126,7 +144,11 @@ public class Item {
         }
     }
 
-
+    /**
+     * This method...
+     *
+     * @return 1 or 0 if...
+     */
     protected int leastMaxIndex(){
         if(autoBidMax[0] > autoBidMax[1])
             return 1;
@@ -134,6 +156,11 @@ public class Item {
             return 0;
     }
 
+    /**
+     * This method...
+     *
+     * @return 1 or 0 if...
+     */
     protected int greatestMaxIndex(){
         if(autoBidMax[0] > autoBidMax[1])
             return 0;

@@ -161,6 +161,10 @@ public class HighestActivity extends AppCompatActivity {
 
         // Event Button
         ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
+
+        /**
+         * This methods takes the user to the EventActivity screen when button is clicked
+         */
         eventButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -180,6 +184,10 @@ public class HighestActivity extends AppCompatActivity {
 
         // Account Button
         ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
+
+        /**
+         * This methods takes the user to the AccountActivity screen when button is clicked
+         */
         accountButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -198,6 +206,10 @@ public class HighestActivity extends AppCompatActivity {
 
         //Home Button
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
+
+        /**
+         * This methods takes the user to the MainActivity screen when button is clicked
+         */
         homeButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -216,6 +228,10 @@ public class HighestActivity extends AppCompatActivity {
 
         // Display User Bids Button
         ImageButton userBidButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
+
+        /**
+         * This methods takes the user to the BidsActivity screen when button is clicked
+         */
         userBidButton.setOnClickListener(new View.OnClickListener() {
 
             /**

@@ -53,6 +53,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Sign Up
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
+
+        /**
+         * This methods creates a user account when button is clicked
+         */
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

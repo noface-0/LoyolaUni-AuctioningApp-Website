@@ -37,7 +37,7 @@ public class FundraiserInfo {
 
     /**
      * The end time of the event
-     * In format of yyyy/mm/dd hh:mm
+     * In format of yyyy.MM.dd HH:mm:ss z
      */
     protected String endTime;
 
