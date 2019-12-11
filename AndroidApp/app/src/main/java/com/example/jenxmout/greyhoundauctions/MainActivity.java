@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The list of auctioned items
      */
-    protected static AuctionItems ais = new AuctionItems();
+    protected static AuctionItems ais;
 
     // CountDown Timer
     /**
@@ -155,229 +155,237 @@ public class MainActivity extends AppCompatActivity {
             BackgroundWorker bw = new BackgroundWorker(MainActivity.this);
             bw.execute("fetch event data", "");
         }
-        for(Item i: ais.items){
-            i.updateAutoBid();
+
+        if(ais == null){
+            Log.w("Background worker", "running!");
+            BackgroundWorker bw = new BackgroundWorker(MainActivity.this);
+            bw.execute("fetch item data", "");
         }
 
-        // grab existing static user and items
-        you = getUser();
-        ais = getAis();
-
-        if(you != null) {
-            if (you.signedIn)
-                Log.w("signed in main", "true");
-            else
-                Log.w("signed in main", "false");
-        }
-        else
-            Log.w("signed in main", "null");
-
-        if (you != null) {
-            if (you.itemsBidOn.size() > 0) {
-                you.itemsCurrentHighestBidderOn = new LinkedList<>();
-                for (Item i : you.itemsBidOn) {
-                    if (i.currentHighestBidder.equals(you.firstName + " " + you.lastName))
-                        you.itemsCurrentHighestBidderOn.add(i);
-                }
+        if(ais != null) {
+            for (Item i : ais.items) {
+                i.updateAutoBid();
             }
-        }
 
-        //instantiate titles
-        titles = new String[ais.items.size()];
-        //create list view
-        listView = (ListView) findViewById(R.id.list_of_items);
-        //adapter for scroll view
-        final MyAdapter adptr = new MyAdapter(this, titles, ais.items);
-        listView.setAdapter(adptr);
+            // grab existing static user and items
+            you = getUser();
+            ais = getAis();
 
-        // now set item click on list view
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            if (you != null) {
+                if (you.signedIn)
+                    Log.w("signed in main", "true");
+                else
+                    Log.w("signed in main", "false");
+            } else
+                Log.w("signed in main", "null");
 
-            /**
-             * This method sets a click listener for when an item is clicked, which takes
-             * the user to that item's page in order to bid/auto-bid
-             *
-             * @param parent the parent...
-             * @param view the view of the current state
-             * @param position the position of the item
-             * @param id the id of the ....
-             */
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.w("items size", ais.items.size() + " items");
-                Log.w("position", "index " + position);
-                if (ais.items.size() >= position + 1) {
-                    Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
-                    itemIntent.putExtra("itemPosition", position);
-
-                    String tagsStr = "";
-                    for (String tag : ais.items.get(position).tags) {
-                        tagsStr += "#" + tag + " ";
+            if (you != null) {
+                if (you.itemsBidOn.size() > 0) {
+                    you.itemsCurrentHighestBidderOn = new LinkedList<>();
+                    for (Item i : you.itemsBidOn) {
+                        if (i.currentHighestBidder.equals(you.firstName + " " + you.lastName))
+                            you.itemsCurrentHighestBidderOn.add(i);
                     }
-
-                    itemIntent.putExtra("itemTags", tagsStr);
-                    startActivity(itemIntent);
                 }
             }
-        });
 
-        // Search Bar
-        searchBar = (SearchView) findViewById(R.id.search_bar);
-        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            //instantiate titles
+            titles = new String[ais.items.size()];
+            //create list view
+            listView = (ListView) findViewById(R.id.list_of_items);
+            //adapter for scroll view
+            final MyAdapter adptr = new MyAdapter(this, titles, ais.items);
+            listView.setAdapter(adptr);
 
-            /**
-             * NOTES...
-             *
-             * @param s
-             * @return false if ...
-             */
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+            // now set item click on list view
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            /**
-             * NOTES...
-             *
-             * @param s
-             * @return true if...
-             */
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (TextUtils.isEmpty(s)) {
-                    adptr.filter("");
-                    listView.clearTextFilter();
-                } else {
-                    adptr.filter(s);
+                /**
+                 * This method sets a click listener for when an item is clicked, which takes
+                 * the user to that item's page in order to bid/auto-bid
+                 *
+                 * @param parent   the parent...
+                 * @param view     the view of the current state
+                 * @param position the position of the item
+                 * @param id       the id of the ....
+                 */
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Log.w("items size", ais.items.size() + " items");
+                    Log.w("position", "index " + position);
+                    if (ais.items.size() >= position + 1) {
+                        Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
+                        itemIntent.putExtra("itemPosition", position);
+
+                        String tagsStr = "";
+                        for (String tag : ais.items.get(position).tags) {
+                            tagsStr += "#" + tag + " ";
+                        }
+
+                        itemIntent.putExtra("itemTags", tagsStr);
+                        startActivity(itemIntent);
+                    }
                 }
-                return true;
+            });
+
+            // Search Bar
+            searchBar = (SearchView) findViewById(R.id.search_bar);
+            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                /**
+                 * NOTES...
+                 *
+                 * @param s
+                 * @return false if ...
+                 */
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                /**
+                 * NOTES...
+                 *
+                 * @param s
+                 * @return true if...
+                 */
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    if (TextUtils.isEmpty(s)) {
+                        adptr.filter("");
+                        listView.clearTextFilter();
+                    } else {
+                        adptr.filter(s);
+                    }
+                    return true;
+                }
+            });
+
+            // Creating Countdown Clock while start time and end time exist
+            if (fInfo != null) {
+                START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
+                endTime = fInfo.getEndTimeMillis();
+
+                Log.w("start", String.valueOf(START_TIME_IN_MILLIS));
+                Log.w("end", String.valueOf(endTime));
+
+
+                long currentTimeMillis = System.currentTimeMillis();
+
+                String currentTime = DateFormat.getInstance().format(currentTimeMillis);
+                String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
+                String stringEndTime = DateFormat.getInstance().format(endTime);
+
+
+                timeLeftInMillis = (endTime - currentTimeMillis);
+
+                textViewCountDown = findViewById(R.id.countdown);
+
+                MyCount counter = new MyCount(timeLeftInMillis, 1000);
+                counter.start();
+
             }
-        });
 
-        // Creating Countdown Clock while start time and end time exist
-        if(fInfo != null) {
-            START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
-            endTime = fInfo.getEndTimeMillis();
+            // Event Button
+            ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
+            eventButton.setOnClickListener(new View.OnClickListener() {
 
-            Log.w("start", String.valueOf(START_TIME_IN_MILLIS));
-            Log.w("end", String.valueOf(endTime));
-
-
-            long currentTimeMillis = System.currentTimeMillis();
-
-            String currentTime = DateFormat.getInstance().format(currentTimeMillis);
-            String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
-            String stringEndTime = DateFormat.getInstance().format(endTime);
-
-
-            timeLeftInMillis = (endTime - currentTimeMillis);
-
-            textViewCountDown = findViewById(R.id.countdown);
-
-            MyCount counter = new MyCount(timeLeftInMillis, 1000);
-            counter.start();
-
-        }
-
-        // Event Button
-        ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
-        eventButton.setOnClickListener(new View.OnClickListener() {
-
-            /**
-             * This method sets a click listener for the button in the UI
-             * When clicked, the user is taken to the next view
-             * EventActivity
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v) {
-                Intent eventIntent = new Intent(MainActivity.this, EventActivity.class);
-                startActivity(eventIntent);
-            }
-        });
+                /**
+                 * This method sets a click listener for the button in the UI
+                 * When clicked, the user is taken to the next view
+                 * EventActivity
+                 *
+                 * @param v the view of the current state
+                 */
+                @Override
+                public void onClick(View v) {
+                    Intent eventIntent = new Intent(MainActivity.this, EventActivity.class);
+                    startActivity(eventIntent);
+                }
+            });
 
 
-        // Account Button
-        ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
-        accountButton.setOnClickListener(new View.OnClickListener() {
+            // Account Button
+            ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
+            accountButton.setOnClickListener(new View.OnClickListener() {
 
-            /**
-             * This method sets a click listener for the button in the UI
-             * When clicked, the user is taken to the next view
-             * AccountActivity
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v) {
-                Intent accountIntent = new Intent(MainActivity.this, AccountActivity.class);
-                startActivity(accountIntent);
-            }
-        });
+                /**
+                 * This method sets a click listener for the button in the UI
+                 * When clicked, the user is taken to the next view
+                 * AccountActivity
+                 *
+                 * @param v the view of the current state
+                 */
+                @Override
+                public void onClick(View v) {
+                    Intent accountIntent = new Intent(MainActivity.this, AccountActivity.class);
+                    startActivity(accountIntent);
+                }
+            });
 
-        // Display User Bids Button
-        ImageButton userBidButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
-        userBidButton.setOnClickListener(new View.OnClickListener() {
+            // Display User Bids Button
+            ImageButton userBidButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
+            userBidButton.setOnClickListener(new View.OnClickListener() {
 
-            /**
-             *This method sets a click listener for the new game button in the UI
-             * When clicked, user can see the bids they have placed
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v) {
-                if (you != null) {
-                    if (you.signedIn) {
-                        Intent userBidIntent = new Intent(MainActivity.this, BidsActivity.class);
-                        startActivity(userBidIntent);
+                /**
+                 * This method sets a click listener for the new game button in the UI
+                 * When clicked, user can see the bids they have placed
+                 *
+                 * @param v the view of the current state
+                 */
+                @Override
+                public void onClick(View v) {
+                    if (you != null) {
+                        if (you.signedIn) {
+                            Intent userBidIntent = new Intent(MainActivity.this, BidsActivity.class);
+                            startActivity(userBidIntent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Log in or sign up to view!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
                     } else {
                         Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
                     }
-                } else {
-                    Toast.makeText(MainActivity.this, "Log in or sign up to view!",
-                            Toast.LENGTH_LONG).show();
-                    Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
-                    startActivity(loginIntent);
                 }
-            }
-        });
+            });
 
-        // Display User Highest Bids Button
-        ImageButton userHighestBidButton = (ImageButton) findViewById(R.id.itemsHighestButton);
-        userHighestBidButton.setOnClickListener(new View.OnClickListener() {
+            // Display User Highest Bids Button
+            ImageButton userHighestBidButton = (ImageButton) findViewById(R.id.itemsHighestButton);
+            userHighestBidButton.setOnClickListener(new View.OnClickListener() {
 
-            /**
-             *This method sets a click listener for the new game button in the UI
-             * When clicked, user can see the bids they have placed that are
-             * currently winning or are the highest bidder
-             *
-             * @param v the view of the current state
-             */
-            @Override
-            public void onClick(View v) {
-                if (you != null) {
-                    if (you.signedIn) {
-                        Intent userHighestBidIntent = new Intent(MainActivity.this, HighestActivity.class);
-                        startActivity(userHighestBidIntent);
+                /**
+                 * This method sets a click listener for the new game button in the UI
+                 * When clicked, user can see the bids they have placed that are
+                 * currently winning or are the highest bidder
+                 *
+                 * @param v the view of the current state
+                 */
+                @Override
+                public void onClick(View v) {
+                    if (you != null) {
+                        if (you.signedIn) {
+                            Intent userHighestBidIntent = new Intent(MainActivity.this, HighestActivity.class);
+                            startActivity(userHighestBidIntent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Log in or sign up to view!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
                     } else {
                         Toast.makeText(MainActivity.this, "Log in or sign up to view!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
                     }
-                } else {
-                    Toast.makeText(MainActivity.this, "Log in or sign up to view!",
-                            Toast.LENGTH_LONG).show();
-                    Intent loginIntent = new Intent(MainActivity.this, AccountActivity.class);
-                    startActivity(loginIntent);
                 }
-            }
-        });
+            });
+        }
     }
 
 
@@ -451,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             if (position < items.size()) {
-                images.setImageResource(items.get(position).resID);
+                images.setImageBitmap(items.get(position).resID);
                 myTitle.setText(items.get(position).title);
                 myDescription.setText(items.get(position).description);
                 myCHB.setText("$" + items.get(position).currentHighestBid + "0");

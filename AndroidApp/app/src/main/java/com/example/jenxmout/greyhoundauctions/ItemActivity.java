@@ -47,7 +47,7 @@ public class ItemActivity extends AppCompatActivity {
                 + MainActivity.ais.items.get(position).minInc + "0"));
 
         ImageView imgView = findViewById(R.id.itemImage);
-        imgView.setImageResource(MainActivity.ais.items.get(position).resID);
+        imgView.setImageBitmap(MainActivity.ais.items.get(position).resID);
 
         TextView infoView = findViewById(R.id.itemDescription);
         infoView.setText(MainActivity.ais.items.get(position).description +
