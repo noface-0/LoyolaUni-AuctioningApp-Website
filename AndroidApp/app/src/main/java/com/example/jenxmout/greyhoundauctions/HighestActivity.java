@@ -29,9 +29,7 @@ import java.util.Locale;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class HighestActivity extends AppCompatActivity {
 

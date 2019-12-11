@@ -9,9 +9,7 @@ import java.util.LinkedList;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Javon Kitson
- * @author Ian Leppo
- * @version 1.0 10/15/19
+ * @version 1.0 12/15/19
  */
 public class Item {
 

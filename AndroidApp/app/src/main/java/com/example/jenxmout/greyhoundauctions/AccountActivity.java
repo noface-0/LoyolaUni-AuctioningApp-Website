@@ -21,9 +21,7 @@ import java.util.Formatter;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class AccountActivity extends AppCompatActivity {
     /**
@@ -38,6 +36,7 @@ public class AccountActivity extends AppCompatActivity {
 
         // Functionality for login button
         Button loginButton = (Button) findViewById(R.id.loginButton);
+
         /**
          * This methods logs user into their account when login button is clicked
          */
@@ -68,9 +67,9 @@ public class AccountActivity extends AppCompatActivity {
         });
 
 
-
         // Functionality for home button
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
+
         /**
          * This method takes user back to home page
          */
@@ -92,6 +91,7 @@ public class AccountActivity extends AppCompatActivity {
 
         //Functionality for log out button
         Button logOutButton = (Button) findViewById(R.id.logOutButton);
+
         /**
          * This method logs the user out of their account
          */
@@ -118,6 +118,7 @@ public class AccountActivity extends AppCompatActivity {
 
         //Functionality for forgot password button
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
+
         /**
          * This method sends an email to the user that allows them to reset their password
          */
@@ -138,6 +139,7 @@ public class AccountActivity extends AppCompatActivity {
 
         //Functionality for sign-up button
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
+
         /**
          * This method takes the user to the page where they can
          * create a Greyhounds Auction account
@@ -184,9 +186,13 @@ public class AccountActivity extends AppCompatActivity {
         }
     }
 
-
-    private static String encryptPassword(String password)
-    {
+    /**
+     * This methods takes a password and encrypts it
+     *
+     * @param password the user's password in the form of a String
+     * @return sha1 the encrypted password in the form of a String
+     */
+    private static String encryptPassword(String password) {
         String sha1 = "";
         try
         {
@@ -206,8 +212,13 @@ public class AccountActivity extends AppCompatActivity {
         return sha1;
     }
 
-    private static String byteToHex(final byte[] hash)
-    {
+    /**
+     * This method converts byte to hex for the password String
+     *
+     * @param hash the user's password in byte form
+     * @return result, the user's password hashed
+     */
+    private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
         for (byte b : hash)
         {
@@ -217,5 +228,4 @@ public class AccountActivity extends AppCompatActivity {
         formatter.close();
         return result;
     }
-
 }
