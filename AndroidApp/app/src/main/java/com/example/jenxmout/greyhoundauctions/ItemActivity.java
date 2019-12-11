@@ -107,6 +107,15 @@ public class ItemActivity extends AppCompatActivity {
                             Log.w("Sucess?", "bid succeeded");
                             Toast.makeText(ItemActivity.this, "Bid placed!",
                                     Toast.LENGTH_LONG).show();
+
+                            String itemsBidOn = "";
+                            for(Item i: MainActivity.you.itemsBidOn){
+                                itemsBidOn += i.title + ",";
+                            }
+
+                            BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                            bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
                             Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                             startActivity(homeIntent);
                         } else {
@@ -154,6 +163,15 @@ public class ItemActivity extends AppCompatActivity {
                                 Toast.makeText(ItemActivity.this, "Bid placed!",
                                         Toast.LENGTH_LONG).show();
                                 MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
+
+                                String itemsBidOn = "";
+                                for(Item i: MainActivity.you.itemsBidOn){
+                                    itemsBidOn += i.title + ",";
+                                }
+
+                                BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                                bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
                                 Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                 startActivity(homeIntent);
                             }
