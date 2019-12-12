@@ -32,9 +32,7 @@ import java.util.Locale;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class BidsActivity extends AppCompatActivity{
     /**
@@ -159,6 +157,10 @@ public class BidsActivity extends AppCompatActivity{
         
         // Event Button
         ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
+
+        /**
+         * This methods takes the user to the EventActivity screen when button is clicked
+         */
         eventButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -178,6 +180,10 @@ public class BidsActivity extends AppCompatActivity{
 
         // Account Button
         ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
+
+        /**
+         * This methods takes the user to the AccountActivity screen when button is clicked
+         */
         accountButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -196,6 +202,10 @@ public class BidsActivity extends AppCompatActivity{
 
         //Home Button
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
+
+        /**
+         * This methods takes the user to the MainActivity screen when button is clicked
+         */
         homeButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -214,6 +224,10 @@ public class BidsActivity extends AppCompatActivity{
 
         // Display User Highest Bids Button
         ImageButton userHighestBidButton = (ImageButton) findViewById(R.id.itemsHighestButton);
+
+        /**
+         * This methods takes the user to the HighestActivity screen when button is clicked
+         */
         userHighestBidButton.setOnClickListener(new View.OnClickListener() {
 
             /**

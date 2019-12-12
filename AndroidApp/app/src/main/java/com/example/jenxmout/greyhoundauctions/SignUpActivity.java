@@ -20,9 +20,7 @@ import java.util.Formatter;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class SignUpActivity extends AppCompatActivity {
 
@@ -55,6 +53,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Sign Up
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
+
+        /**
+         * This methods creates a user account when button is clicked
+         */
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +96,12 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This methods takes a password and encrypts it
+     *
+     * @param password the user's password in the form of a String
+     * @return sha1 the encrypted password in the form of a String
+     */
     private static String encryptPassword(String password)
     {
         String sha1 = "";
@@ -115,6 +123,12 @@ public class SignUpActivity extends AppCompatActivity {
         return sha1;
     }
 
+    /**
+     * This method converts byte to hex for the password String
+     *
+     * @param hash the user's password in byte form
+     * @return result, the user's password hashed
+     */
     private static String byteToHex(final byte[] hash)
     {
         Formatter formatter = new Formatter();

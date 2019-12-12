@@ -15,9 +15,7 @@ import java.util.TimeZone;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class FundraiserInfo {
 
@@ -39,7 +37,7 @@ public class FundraiserInfo {
 
     /**
      * The end time of the event
-     * In format of yyyy/mm/dd hh:mm
+     * In format of yyyy.MM.dd HH:mm:ss z
      */
     protected String endTime;
 

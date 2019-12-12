@@ -42,9 +42,7 @@ import java.util.Date;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -137,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
         return ais;
     }
 
+    /**
+     * To get the fundraiser's information
+     *
+     * @return fInfo the FundraiserInfo object
+     */
     protected FundraiserInfo getFInfo() {return fInfo;}
 
     /**
@@ -198,6 +201,9 @@ public class MainActivity extends AppCompatActivity {
             listView.setAdapter(adptr);
 
             // now set item click on list view
+            /**
+             * This methods takes the user to a particular item's screen when button is clicked
+             */
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 /**
@@ -288,6 +294,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Event Button
             ImageButton eventButton = (ImageButton) findViewById(R.id.eventButton);
+
+            /**
+             * This methods takes the user to the EventActivity screen when button is clicked
+             */
             eventButton.setOnClickListener(new View.OnClickListener() {
 
                 /**
@@ -307,6 +317,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Account Button
             ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
+
+            /**
+             * This methods takes the user to the AccountActivity screen when button is clicked
+             */
             accountButton.setOnClickListener(new View.OnClickListener() {
 
                 /**
@@ -325,6 +339,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Display User Bids Button
             ImageButton userBidButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
+
+            /**
+             * This methods takes the user to the BidsActivity screen when button is clicked
+             */
             userBidButton.setOnClickListener(new View.OnClickListener() {
 
                 /**
@@ -356,6 +374,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Display User Highest Bids Button
             ImageButton userHighestBidButton = (ImageButton) findViewById(R.id.itemsHighestButton);
+
+            /**
+             * This methods takes the user to the HighestActivity screen when button is clicked
+             */
             userHighestBidButton.setOnClickListener(new View.OnClickListener() {
 
                 /**
@@ -388,9 +410,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     // For List
-
     /**
      * This MyAdapter class that updates the ListView
      * when scrolling
@@ -540,7 +560,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // this is not doing anything
+    // this is not doing anything?
     private void updateCountDownText() {
 
        // Log.w("state", "in update countdown text");
@@ -553,7 +573,7 @@ public class MainActivity extends AppCompatActivity {
         textViewCountDown.setText(timeLeftFormatted);
     }
 
-    //not sure if this is doing anything
+    //not sure if this is doing anything?
 
     @Override
     protected void onStop() {
@@ -574,8 +594,6 @@ public class MainActivity extends AppCompatActivity {
             countDownTimer.cancel();
         }
     }
-
-
 }
 
 

@@ -16,9 +16,7 @@ import android.widget.Toast;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class ItemActivity extends AppCompatActivity {
 
@@ -56,6 +54,10 @@ public class ItemActivity extends AppCompatActivity {
 
         // Bid Info Button
         Button bidInfoButton = (Button) findViewById(R.id.helpButton);
+
+        /**
+         * This methods displays a toast about auto-bid when button is clicked
+         */
         bidInfoButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -83,6 +85,10 @@ public class ItemActivity extends AppCompatActivity {
 
         //Bid Button functionality
         Button bidButton = (Button) findViewById(R.id.bidButton);
+
+        /**
+         * This methods allows a user to big when button is clicked
+         */
         bidButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -146,6 +152,10 @@ public class ItemActivity extends AppCompatActivity {
 
         //auto-bid button functionality
         Button autoBidButton = (Button) findViewById(R.id.autoBidButton);
+
+        /**
+         * This methods allows a user to auto-bid when button is clicked
+         */
         autoBidButton.setOnClickListener(new View.OnClickListener() {
 
             /**

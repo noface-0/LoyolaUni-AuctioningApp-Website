@@ -25,10 +25,17 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * Created by ProgrammingKnowledge on 1/5/2016.
+ * This is an BackgroundWorker class that...
+ *
+ * @author Jennifer Moutenot
+ * @author Mollie Morrow
+ * @version 1.0 12/15/19
  */
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
+    /**
+     * The context
+     */
     protected Context context;
 
     /**
@@ -36,6 +43,10 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
      */
     protected AlertDialog alertDialog;
 
+    /**
+     * BackgroundWorker Constructor
+     * @param ctx
+     */
     public BackgroundWorker(Context ctx){
         this.context = ctx;
     }
@@ -367,5 +378,4 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
-
 }

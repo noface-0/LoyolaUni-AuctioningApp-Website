@@ -16,9 +16,7 @@ import android.widget.Toast;
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
- * @author Ian Leppo
- * @author Javon Kitson
- * @version 1.0 10/21/19
+ * @version 1.0 12/15/19
  */
 public class EventActivity extends AppCompatActivity {
 
@@ -48,6 +46,10 @@ public class EventActivity extends AppCompatActivity {
         eventDescription.setText(MainActivity.fInfo.description);
 
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
+
+        /**
+         * This methods takes the user to the MainActivity screen when button is clicked
+         */
         homeButton.setOnClickListener(new View.OnClickListener(){
 
             /**
@@ -65,7 +67,11 @@ public class EventActivity extends AppCompatActivity {
         });
 
         ImageButton accountButton = (ImageButton) findViewById(R.id.loginButton);
-        accountButton.setOnClickListener(new View.OnClickListener(){
+
+        /**
+         * This methods takes the user to the AccountActivity screen when button is clicked
+         */
+        accountButton.setOnClickListener(new View.OnClickListener() {
 
             /**
              * This method sets a click listener for the button in the UI
@@ -82,6 +88,10 @@ public class EventActivity extends AppCompatActivity {
         });
 
         ImageButton userBidsButton = (ImageButton) findViewById(R.id.whatIBidOnButton);
+
+        /**
+         * This methods takes the user to the BidsActivity screen when button is clicked
+         */
         userBidsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -105,6 +115,10 @@ public class EventActivity extends AppCompatActivity {
         });
 
         ImageButton userHighestButton = (ImageButton) findViewById(R.id.itemsHighestButton);
+
+        /**
+         * This methods takes the user to the HighestActivity screen when button is clicked
+         */
         userHighestButton.setOnClickListener(new View.OnClickListener(){
 
             /**
