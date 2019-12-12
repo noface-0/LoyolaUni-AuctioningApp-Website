@@ -345,14 +345,16 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 }
                 MainActivity.you.logIn(resultArr[1], resultArr[2], resultArr[3], resultArr[4]);
                 //populate items bid on
-                for(int i = 5; i<resultArr.length; i++){
-                    Log.w("item title", resultArr[i]);
-                    for(Item item : MainActivity.ais.items){
-                        if((item.title).equals(resultArr[i])){
-                            Log.w("found item in ais", resultArr[i]);
-                            Item bidOn = item;
-                            MainActivity.you.itemsBidOn.add(bidOn);
-                            Log.w("added", resultArr[i]);
+                if(resultArr.length > 5) {
+                    for (int i = 5; i < resultArr.length; i++) {
+                        Log.w("item title", resultArr[i]);
+                        for (Item item : MainActivity.ais.items) {
+                            if ((item.title).equals(resultArr[i])) {
+                                Log.w("found item in ais", resultArr[i]);
+                                Item bidOn = item;
+                                MainActivity.you.itemsBidOn.add(bidOn);
+                                Log.w("added", resultArr[i]);
+                            }
                         }
                     }
                 }
