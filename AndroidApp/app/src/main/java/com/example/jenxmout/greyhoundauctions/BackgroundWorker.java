@@ -359,6 +359,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                     }
                 }
                 if (MainActivity.you.signedIn) {
+                    MainActivity.ais  = null;
                     Intent homeIntent = new Intent(context, MainActivity.class);
                     context.startActivity(homeIntent);
                     Toast.makeText(context, "Welcome Back!", Toast.LENGTH_LONG).show();
@@ -375,6 +376,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 MainActivity.you.signUp(resultArr[1], resultArr[2], resultArr[3], resultArr[4]);
                 Log.w("result", "signed up!");
 
+                MainActivity.ais  = null;
                 Intent homeIntent = new Intent(context, MainActivity.class);
                 context.startActivity(homeIntent);
                 Toast.makeText(context, "Welcome!", Toast.LENGTH_LONG).show();

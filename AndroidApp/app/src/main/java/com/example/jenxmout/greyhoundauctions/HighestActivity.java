@@ -221,6 +221,7 @@ public class HighestActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
+                MainActivity.ais  = null;
                 Intent homeIntent = new Intent(HighestActivity.this, MainActivity.class);
                 startActivity(homeIntent);
             }
