@@ -15,3 +15,8 @@ $('#infoClick').on('click',function(){
         $('#info').show().siblings('div').hide();
     }
 });
+
+function myFunction() {
+        alert("My username is:");
+}
+

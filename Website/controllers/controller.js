@@ -48,7 +48,15 @@ exports.auth = function (req, res) {
 exports.home = function (req, res) {
     if (loggedin) {
         console.log('Welcome back, ' + username + '!');
-        res.sendFile('home.html', {root:'public'});
+        con.query("SELECT * FROM items", function (err, result) {
+            if (err) throw err;
+            // console.log(result);
+            let json = JSON.parse(JSON.stringify(result));
+            for (let i = 0; i < json.length; i++) {
+                console.log(json[i].image.data);
+            };
+            res.render('home',{data: json});
+        });
     } else {
         res.send('Please login to view this page!');
         res.end();
@@ -58,3 +66,31 @@ exports.home = function (req, res) {
 exports.newpass = function (req, res) {
     res.send('new password');
 };
+
+function add(){
+    if (err) throw err;
+    var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+    });
+}
+
+
+// function delete(table, column, info){
+//     if (err) throw err;
+//     var sql = "DELETE FROM " + table +" WHERE " + column + " = '" + info + "'";
+//     con.query(sql, function (err, result) {
+//       if (err) throw err;
+//       console.log("Number of records deleted: " + result.affectedRows);
+//     });
+// }
+
+function edit(table, column, newinfo, oldinfo){
+    if (err) throw err;
+    var sql = "UPDATE " + table + " SET " + column + " = '" + newinfo + "' WHERE " + column + " = '" + oldinfo + "'";
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log(result.affectedRows + " record(s) updated");
+    });
+}
