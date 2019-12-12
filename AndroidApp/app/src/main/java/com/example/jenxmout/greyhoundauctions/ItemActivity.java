@@ -126,8 +126,13 @@ public class ItemActivity extends AppCompatActivity {
 
                             Log.w("items bid on", itemsBidOn);
 
+                            String name = MainActivity.you.firstName + " " + MainActivity.you.lastName;
+
                             BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                             bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
+                            BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
+                            bw2.execute("update item data", bid, name, MainActivity.ais.items.get(position).title);
 
                             Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                             startActivity(homeIntent);
@@ -181,10 +186,6 @@ public class ItemActivity extends AppCompatActivity {
                                         Toast.LENGTH_LONG).show();
                                 MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
 
-                                if(MainActivity.you.itemsBidOn.size() > 0)
-                                    Log.w("items bid on is", "not empty");
-                                Log.w("items bid on is", "empty");
-
                                 String itemsBidOn = "";
                                 int cnt = 0;
                                 for(Item i: MainActivity.you.itemsBidOn){
@@ -199,6 +200,7 @@ public class ItemActivity extends AppCompatActivity {
 
                                 BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                 bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
 
                                 Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                 startActivity(homeIntent);

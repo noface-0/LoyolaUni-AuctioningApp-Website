@@ -77,6 +77,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         //URL updating user fetch PHP script
         String updateuser_url = "http://jajeimo.cs.loyola.edu/php/updateUser.php";
 
+        //URL updating item fetch PHP script
+        String updateitem_url = "http://jajeimo.cs.loyola.edu/php/updateItem.php";
+
         if(type.equals("login")) {
             try {
                 String email = params[1];
@@ -267,7 +270,49 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
-        //if(type.equals("update item data")){}
+        else if(type.equals("update item data")){
+            String itemCHB = params[1];
+            String name = params[2];
+            String itemTitle = params[3];
+
+            try {
+                Log.w("update item data", "running" + itemCHB + name + itemTitle);
+                URL url = new URL(updateitem_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("CHB","UTF-8")+"="+
+                        URLEncoder.encode(itemCHB,"UTF-8")+"&" +
+                        URLEncoder.encode("Name", "UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&" +
+                        URLEncoder.encode("ItemTitle","UTF-8")+"="+
+                        URLEncoder.encode(itemTitle,"UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getErrorStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                String result = type + " ";
+                String line="";
+                while((line = bufferedReader.readLine())!= null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                Log.w("Update user result", result);
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -303,7 +348,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 for(int i = 5; i<resultArr.length; i++){
                     Log.w("item title", resultArr[i]);
                     for(Item item : MainActivity.ais.items){
-                        if((" "+item.title+" ").equals(resultArr[i])){
+                        if((item.title).equals(resultArr[i])){
                             Log.w("found item in ais", resultArr[i]);
                             Item bidOn = item;
                             MainActivity.you.itemsBidOn.add(bidOn);
