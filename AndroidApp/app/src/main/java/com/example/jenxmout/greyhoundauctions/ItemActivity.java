@@ -118,9 +118,9 @@ public class ItemActivity extends AppCompatActivity {
                             int cnt = 0;
                             for(Item i: MainActivity.you.itemsBidOn){
                                 Log.w("item title", i.title);
-                                itemsBidOn += i.title;
                                 if(cnt>0)
                                     itemsBidOn+=",";
+                                itemsBidOn += i.title;
                                 cnt++;
                             }
 
@@ -190,9 +190,9 @@ public class ItemActivity extends AppCompatActivity {
                                 int cnt = 0;
                                 for(Item i: MainActivity.you.itemsBidOn){
                                     Log.w("item title", i.title);
-                                    itemsBidOn += i.title;
                                     if(cnt>0)
                                         itemsBidOn+=",";
+                                    itemsBidOn += i.title;
                                     cnt++;
                                 }
 
