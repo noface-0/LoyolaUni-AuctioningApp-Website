@@ -211,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
                  */
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.w("items size", ais.items.size() + " items");
-                    Log.w("position", "index " + position);
+                    //Log.w("items size", ais.items.size() + " items");
+                    //Log.w("position", "index " + position);
                     if (ais.items.size() >= position + 1) {
                         Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
                         itemIntent.putExtra("itemPosition", position);
@@ -266,8 +266,8 @@ public class MainActivity extends AppCompatActivity {
                 START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
                 endTime = fInfo.getEndTimeMillis();
 
-                Log.w("start", String.valueOf(START_TIME_IN_MILLIS));
-                Log.w("end", String.valueOf(endTime));
+                //Log.w("start", String.valueOf(START_TIME_IN_MILLIS));
+                //Log.w("end", String.valueOf(endTime));
 
 
                 long currentTimeMillis = System.currentTimeMillis();
@@ -543,7 +543,7 @@ public class MainActivity extends AppCompatActivity {
     // this is not doing anything
     private void updateCountDownText() {
 
-        Log.w("state", "in update countdown text");
+       // Log.w("state", "in update countdown text");
 
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
@@ -559,7 +559,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        Log.w("state", "in on stop");
+        //Log.w("state", "in on stop");
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

@@ -109,9 +109,16 @@ public class ItemActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
 
                             String itemsBidOn = "";
+                            int cnt = 0;
                             for(Item i: MainActivity.you.itemsBidOn){
-                                itemsBidOn += i.title + ",";
+                                Log.w("item title", i.title);
+                                itemsBidOn += i.title;
+                                if(cnt>0)
+                                    itemsBidOn+=",";
+                                cnt++;
                             }
+
+                            Log.w("items bid on", itemsBidOn);
 
                             BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                             bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
@@ -164,10 +171,21 @@ public class ItemActivity extends AppCompatActivity {
                                         Toast.LENGTH_LONG).show();
                                 MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
 
+                                if(MainActivity.you.itemsBidOn.size() > 0)
+                                    Log.w("items bid on is", "not empty");
+                                Log.w("items bid on is", "empty");
+
                                 String itemsBidOn = "";
+                                int cnt = 0;
                                 for(Item i: MainActivity.you.itemsBidOn){
-                                    itemsBidOn += i.title + ",";
+                                    Log.w("item title", i.title);
+                                    itemsBidOn += i.title;
+                                    if(cnt>0)
+                                        itemsBidOn+=",";
+                                    cnt++;
                                 }
+
+                                Log.w("items bid on", itemsBidOn);
 
                                 BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                 bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);

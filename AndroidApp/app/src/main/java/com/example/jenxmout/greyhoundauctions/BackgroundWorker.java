@@ -86,7 +86,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getErrorStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result = type + " ";
+                String result = type + ",";
                 String line="";
                 while((line = bufferedReader.readLine())!= null) {
                     result += line;
@@ -219,7 +219,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             String lastName = params[3];
 
             try {
-                Log.w("update user data", "running");
+                Log.w("update user data", "running" + itemTitles + firstName + lastName);
                 URL url = new URL(updateuser_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -228,8 +228,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data = URLEncoder.encode("ItemsBidOn","UTF-8")+"="+
-                        URLEncoder.encode(itemTitles,"UTF-8")+
-                        URLEncoder.encode("FirstName", "UTF-8")+"="+URLEncoder.encode(firstName,"UTF-8")+URLEncoder.encode("LastName","UTF-8")+"="+
+                        URLEncoder.encode(itemTitles,"UTF-8")+"&" +
+                        URLEncoder.encode("FirstName", "UTF-8")+"="+URLEncoder.encode(firstName,"UTF-8")+"&" +
+                        URLEncoder.encode("LastName","UTF-8")+"="+
                         URLEncoder.encode(lastName,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -245,7 +246,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                Log.w("Fetch result", result);
+                Log.w("Update user result", result);
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -282,11 +283,23 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 Toast.makeText(context, "Email or password are incorrect!", Toast.LENGTH_LONG).show();
             }
             else{
-                resultArr = result.split("\\s+");
+                resultArr = result.split(",");
                 for (String str : resultArr) {
                     Log.w("Str in arr", str);
                 }
                 MainActivity.you.logIn(resultArr[1], resultArr[2], resultArr[3], resultArr[4]);
+                //populate items bid on
+                for(int i = 5; i<resultArr.length; i++){
+                    Log.w("item title", resultArr[i]);
+                    for(Item item : MainActivity.ais.items){
+                        if((" "+item.title+" ").equals(resultArr[i])){
+                            Log.w("found item in ais", resultArr[i]);
+                            Item bidOn = item;
+                            MainActivity.you.itemsBidOn.add(bidOn);
+                            Log.w("added", resultArr[i]);
+                        }
+                    }
+                }
                 if (MainActivity.you.signedIn) {
                     Intent homeIntent = new Intent(context, MainActivity.class);
                     context.startActivity(homeIntent);
