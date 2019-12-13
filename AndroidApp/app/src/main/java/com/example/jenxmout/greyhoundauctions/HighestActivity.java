@@ -317,12 +317,7 @@ public class HighestActivity extends AppCompatActivity {
 
             if(MainActivity.you != null) {
                 if (MainActivity.you.signedIn) {
-                    if(MainActivity.you.itemsBidOn.contains(MainActivity.ais.items.get(position))) {
-                        if (MainActivity.you.itemsCurrentHighestBidderOn.contains(MainActivity.ais.items.get(position)))
-                            row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
-                        else
-                            row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
-                    }
+                    row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
                 }
             }
 

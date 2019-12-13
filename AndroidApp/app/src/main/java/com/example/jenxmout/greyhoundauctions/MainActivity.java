@@ -468,11 +468,15 @@ public class MainActivity extends AppCompatActivity {
 
             if(you != null) {
                 if (you.signedIn) {
-                    if(you.itemsBidOn.contains(ais.items.get(position))) {
-                        if (you.itemsCurrentHighestBidderOn.contains(ais.items.get(position)))
-                            row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
-                        else
-                            row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
+                    Log.w("adapter", "signed in");
+                    for (Item item : you.itemsBidOn) {
+                        Log.w("adapter", "checking" + item.title);
+                        if (item.title.equals(ais.items.get(position).title)) {
+                            if (you.itemsCurrentHighestBidderOn.contains(item))
+                                row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
+                            else
+                                row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
+                        }
                     }
                 }
             }
