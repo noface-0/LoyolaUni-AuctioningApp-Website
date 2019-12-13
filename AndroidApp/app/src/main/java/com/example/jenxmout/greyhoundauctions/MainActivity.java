@@ -584,9 +584,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putLong("millisLeft", timeLeftInMillis);
-        editor.putBoolean("timerRunning", timerRunning);
-        editor.putLong("endTime", endTime);
+        //editor.putLong("millisLeft", timeLeftInMillis);
+        //editor.putBoolean("timerRunning", timerRunning);
+        //editor.putLong("endTime", endTime);
 
         editor.apply();
 
