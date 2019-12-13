@@ -102,13 +102,8 @@ public class BidsActivity extends AppCompatActivity{
                 if (MainActivity.you.itemsBidOn.size() >= position+1) {
                     Intent itemIntent = new Intent(BidsActivity.this, ItemActivity.class);
                     //information from each item to populate the custom item intent
-                    itemIntent.putExtra("itemTitle", MainActivity.you.itemsBidOn.get(position).title);
-                    itemIntent.putExtra("itemImage", MainActivity.you.itemsBidOn.get(position).resID);
-                    itemIntent.putExtra("itemCHB", MainActivity.you.itemsBidOn.get(position).currentHighestBid);
-                    itemIntent.putExtra("itemDesc", MainActivity.you.itemsBidOn.get(position).description);
-                    itemIntent.putExtra("itemCHBr", MainActivity.you.itemsBidOn.get(position).currentHighestBidder);
-                    itemIntent.putExtra("itemMinInc", MainActivity.you.itemsBidOn.get(position).minInc);
                     itemIntent.putExtra("itemPosition", position);
+                    itemIntent.putExtra("from", "bids");
 
                     String tagsStr = "";
                     for (String tag : MainActivity.you.itemsBidOn.get(position).tags) {
@@ -218,7 +213,7 @@ public class BidsActivity extends AppCompatActivity{
              */
             @Override
             public void onClick(View v) {
-                MainActivity.ais  = null;
+                //MainActivity.ais  = null;
                 Intent homeIntent = new Intent(BidsActivity.this, MainActivity.class);
                 startActivity(homeIntent);
             }

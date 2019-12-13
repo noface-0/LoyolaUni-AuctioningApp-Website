@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                     if (ais.items.size() >= position + 1) {
                         Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
                         itemIntent.putExtra("itemPosition", position);
-
+                        itemIntent.putExtra("from", "main");
                         String tagsStr = "";
                         for (String tag : ais.items.get(position).tags) {
                             tagsStr += "#" + tag + " ";

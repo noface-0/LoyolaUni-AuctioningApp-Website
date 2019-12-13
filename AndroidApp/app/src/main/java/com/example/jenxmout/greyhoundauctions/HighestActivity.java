@@ -108,12 +108,7 @@ public class HighestActivity extends AppCompatActivity {
                 if (MainActivity.you.itemsCurrentHighestBidderOn.size() >= position+1) {
                     Intent itemIntent = new Intent(HighestActivity.this, ItemActivity.class);
                     //information from each item to populate the custom item intent
-                    itemIntent.putExtra("itemTitle", MainActivity.you.itemsCurrentHighestBidderOn.get(position).title);
-                    itemIntent.putExtra("itemImage", MainActivity.you.itemsCurrentHighestBidderOn.get(position).resID);
-                    itemIntent.putExtra("itemCHB", MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBid);
-                    itemIntent.putExtra("itemDesc", MainActivity.you.itemsCurrentHighestBidderOn.get(position).description);
-                    itemIntent.putExtra("itemCHBr", MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBidder);
-                    itemIntent.putExtra("itemMinInc", MainActivity.you.itemsCurrentHighestBidderOn.get(position).minInc);
+                    itemIntent.putExtra("from", "highest");
                     itemIntent.putExtra("itemPosition", position);
 
                     String tagsStr = "";

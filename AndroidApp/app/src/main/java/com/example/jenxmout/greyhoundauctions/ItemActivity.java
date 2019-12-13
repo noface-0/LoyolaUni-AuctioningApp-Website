@@ -20,6 +20,10 @@ import android.widget.Toast;
  */
 public class ItemActivity extends AppCompatActivity {
 
+    boolean fromMain = false;
+    boolean fromBids = false;
+    boolean fromHighest = false;
+
     /**
      * Sets up the item screen view
      *
@@ -30,27 +34,76 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
         int position = getIntent().getIntExtra("itemPosition", -1);
-        MainActivity.ais.items.get(position).updateAutoBid();
 
-        //set up item display
-        TextView titleView = findViewById(R.id.itemTitleView);
-        titleView.setText(getIntent().getStringExtra("itemTitle"));
-
-        TextView highestBid = findViewById(R.id.highestBid);
-        highestBid.setText("Current Highest Bid: $"
-                + MainActivity.ais.items.get(position).currentHighestBid);
-
-        TextView minBid = findViewById(R.id.minNextBid);
-        minBid.setText("Min Next Bid: $" + (MainActivity.ais.items.get(position).currentHighestBid
-                + MainActivity.ais.items.get(position).minInc + "0"));
-
-        ImageView imgView = findViewById(R.id.itemImage);
-        imgView.setImageBitmap(MainActivity.ais.items.get(position).resID);
 
         TextView infoView = findViewById(R.id.itemDescription);
-        infoView.setText(MainActivity.ais.items.get(position).description +
-                 "\nCurrentHighestBidder: " + MainActivity.ais.items.get(position).currentHighestBidder +
-                "\n\n" + getIntent().getStringExtra("itemTags"));
+        TextView titleView = findViewById(R.id.itemTitleView);
+        TextView highestBid = findViewById(R.id.highestBid);
+        TextView minBid = findViewById(R.id.minNextBid);
+        ImageView imgView = findViewById(R.id.itemImage);
+
+
+        if(getIntent().getStringExtra("from").equals("main")){
+            fromMain = true;
+        }
+        else if(getIntent().getStringExtra("from").equals("bids")){
+            fromBids = true;
+        }
+        else if(getIntent().getStringExtra("from").equals("highest")){
+            fromHighest = true;
+        }
+
+        if(fromMain) {
+            MainActivity.ais.items.get(position).updateAutoBid();
+
+
+            titleView.setText(MainActivity.ais.items.get(position).title);
+
+            highestBid.setText("Current Highest Bid: $"
+                    + MainActivity.ais.items.get(position).currentHighestBid);
+
+            minBid.setText("Min Next Bid: $" + (MainActivity.ais.items.get(position).currentHighestBid
+                    + MainActivity.ais.items.get(position).minInc) + "0");
+
+            imgView.setImageBitmap(MainActivity.ais.items.get(position).resID);
+
+            infoView.setText(MainActivity.ais.items.get(position).description +
+                    "\nCurrentHighestBidder: " + MainActivity.ais.items.get(position).currentHighestBidder +
+                    "\n\n" + getIntent().getStringExtra("itemTags"));
+        }
+        else if(fromBids){
+            MainActivity.you.itemsBidOn.get(position).updateAutoBid();
+
+            titleView.setText(MainActivity.you.itemsBidOn.get(position).title);
+
+            highestBid.setText("Current Highest Bid: $"
+                    + MainActivity.you.itemsBidOn.get(position).currentHighestBid);
+
+            minBid.setText("Min Next Bid: $" + (MainActivity.you.itemsBidOn.get(position).currentHighestBid
+                    + MainActivity.you.itemsBidOn.get(position).minInc) + "0");
+
+            imgView.setImageBitmap(MainActivity.you.itemsBidOn.get(position).resID);
+
+            infoView.setText(MainActivity.you.itemsBidOn.get(position).description +
+                    "\nCurrentHighestBidder: " + MainActivity.you.itemsBidOn.get(position).currentHighestBidder +
+                    "\n\n" + getIntent().getStringExtra("itemTags"));
+        }
+        else if(fromHighest){
+            MainActivity.you.itemsCurrentHighestBidderOn.get(position).updateAutoBid();
+            titleView.setText(MainActivity.you.itemsCurrentHighestBidderOn.get(position).title);
+
+            highestBid.setText("Current Highest Bid: $"
+                    + MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBid);
+
+            minBid.setText("Min Next Bid: $" + (MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBid
+                    + MainActivity.you.itemsCurrentHighestBidderOn.get(position).minInc) + "0");
+
+            imgView.setImageBitmap(MainActivity.you.itemsCurrentHighestBidderOn.get(position).resID);
+
+            infoView.setText(MainActivity.you.itemsCurrentHighestBidderOn.get(position).description +
+                    "\nCurrentHighestBidder: " + MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBidder +
+                    "\n\n" + getIntent().getStringExtra("itemTags"));
+        }
 
         // Bid Info Button
         Button bidInfoButton = (Button) findViewById(R.id.helpButton);
@@ -77,11 +130,6 @@ public class ItemActivity extends AppCompatActivity {
             }
         });
 
-        // ....
-        boolean signedIn = false;
-        if(MainActivity.you != null)
-            signedIn = true;
-        Log.w("user signed in",String.valueOf(signedIn));
 
         //Bid Button functionality
         Button bidButton = (Button) findViewById(R.id.bidButton);
@@ -103,56 +151,165 @@ public class ItemActivity extends AppCompatActivity {
                 EditText bidET = findViewById(R.id.bidAmount);
                 String bid = String.valueOf(bidET.getText());
 
-                double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
-                        + MainActivity.ais.items.get(position).minInc;
+                if(fromMain){
 
-                if (Double.valueOf(bid) >= minNextBid) {
-                    if (MainActivity.you != null) {
-                        if (MainActivity.you.signedIn) {
-                            MainActivity.you.bid(Double.valueOf(bid), MainActivity.ais.items.get(position));
-                            Log.w("Sucess?", "bid succeeded");
-                            Toast.makeText(ItemActivity.this, "Bid placed!",
-                                    Toast.LENGTH_LONG).show();
+                    double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
+                            + MainActivity.ais.items.get(position).minInc;
 
-                            String itemsBidOn = "";
-                            int cnt = 0;
-                            for(Item i: MainActivity.you.itemsBidOn){
-                                Log.w("item title", i.title);
-                                if(cnt>0)
-                                    itemsBidOn+=",";
-                                itemsBidOn += i.title;
-                                cnt++;
+                    if (Double.valueOf(bid) >= minNextBid) {
+                        if (MainActivity.you != null) {
+                            if (MainActivity.you.signedIn) {
+                                MainActivity.you.bid(Double.valueOf(bid), MainActivity.ais.items.get(position));
+                                Log.w("Sucess?", "bid succeeded");
+                                Toast.makeText(ItemActivity.this, "Bid placed!",
+                                        Toast.LENGTH_LONG).show();
+
+                                String itemsBidOn = "";
+                                int cnt = 0;
+                                for (Item i : MainActivity.you.itemsBidOn) {
+                                    Log.w("item title", i.title);
+                                    if (cnt > 0)
+                                        itemsBidOn += ",";
+                                    itemsBidOn += i.title;
+                                    cnt++;
+                                }
+
+                                Log.w("items bid on", itemsBidOn);
+
+                                String name = MainActivity.you.firstName + " " + MainActivity.you.lastName;
+
+                                BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                                bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
+                                BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
+                                bw2.execute("update item data", bid, name, MainActivity.ais.items.get(position).title);
+
+                                //MainActivity.ais  = null;
+
+                                Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                                startActivity(homeIntent);
+                            } else {
+                                Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                        Toast.LENGTH_LONG).show();
+                                Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                                startActivity(loginIntent);
                             }
-
-                            Log.w("items bid on", itemsBidOn);
-
-                            String name = MainActivity.you.firstName + " " + MainActivity.you.lastName;
-
-                            BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
-                            bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
-
-                            BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
-                            bw2.execute("update item data", bid, name, MainActivity.ais.items.get(position).title);
-
-                            MainActivity.ais  = null;
-
-                            Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
-                            startActivity(homeIntent);
                         } else {
                             Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
                                     Toast.LENGTH_LONG).show();
                             Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
                             startActivity(loginIntent);
                         }
-                    } else {
-                        Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
-                                Toast.LENGTH_LONG).show();
-                        Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
-                        startActivity(loginIntent);
-                    }
-                } else
-                    Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
-                            String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+                    } else
+                        Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
+                                String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+                }
+                else if(fromBids){
+                    double minNextBid = MainActivity.you.itemsBidOn.get(position).currentHighestBid
+                            + MainActivity.you.itemsBidOn.get(position).minInc;
+
+                    if (Double.valueOf(bid) >= minNextBid) {
+                        if (MainActivity.you != null) {
+                            if (MainActivity.you.signedIn) {
+                                MainActivity.you.bid(Double.valueOf(bid), MainActivity.you.itemsBidOn.get(position));
+                                Log.w("Sucess?", "bid succeeded");
+                                Toast.makeText(ItemActivity.this, "Bid placed!",
+                                        Toast.LENGTH_LONG).show();
+
+                                String itemsBidOn = "";
+                                int cnt = 0;
+                                for (Item i : MainActivity.you.itemsBidOn) {
+                                    Log.w("item title", i.title);
+                                    if (cnt > 0)
+                                        itemsBidOn += ",";
+                                    itemsBidOn += i.title;
+                                    cnt++;
+                                }
+
+                                Log.w("items bid on", itemsBidOn);
+
+                                String name = MainActivity.you.firstName + " " + MainActivity.you.lastName;
+
+                                BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                                bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
+                                BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
+                                bw2.execute("update item data", bid, name, MainActivity.you.itemsBidOn.get(position).title);
+
+                                //MainActivity.ais  = null;
+
+                                Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                                startActivity(homeIntent);
+                            } else {
+                                Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                        Toast.LENGTH_LONG).show();
+                                Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                                startActivity(loginIntent);
+                            }
+                        } else {
+                            Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
+                    } else
+                        Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
+                                String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+
+                }
+                else if(fromHighest){
+                    double minNextBid = MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBid
+                            + MainActivity.you.itemsCurrentHighestBidderOn.get(position).minInc;
+
+                    if (Double.valueOf(bid) >= minNextBid) {
+                        if (MainActivity.you != null) {
+                            if (MainActivity.you.signedIn) {
+                                MainActivity.you.bid(Double.valueOf(bid), MainActivity.you.itemsCurrentHighestBidderOn.get(position));
+                                Log.w("Sucess?", "bid succeeded");
+                                Toast.makeText(ItemActivity.this, "Bid placed!",
+                                        Toast.LENGTH_LONG).show();
+
+                                String itemsBidOn = "";
+                                int cnt = 0;
+                                for (Item i : MainActivity.you.itemsBidOn) {
+                                    Log.w("item title", i.title);
+                                    if (cnt > 0)
+                                        itemsBidOn += ",";
+                                    itemsBidOn += i.title;
+                                    cnt++;
+                                }
+
+                                Log.w("items bid on", itemsBidOn);
+
+                                String name = MainActivity.you.firstName + " " + MainActivity.you.lastName;
+
+                                BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                                bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+
+                                BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
+                                bw2.execute("update item data", bid, name, MainActivity.you.itemsCurrentHighestBidderOn.get(position).title);
+
+                                //MainActivity.ais  = null;
+
+                                Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                                startActivity(homeIntent);
+                            } else {
+                                Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                        Toast.LENGTH_LONG).show();
+                                Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                                startActivity(loginIntent);
+                            }
+                        } else {
+                            Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
+                    } else
+                        Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
+                                String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+
+                }
             }
         });
 
@@ -172,28 +329,75 @@ public class ItemActivity extends AppCompatActivity {
              * @param v the view of the current state
              */
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 int position = getIntent().getIntExtra("itemPosition", 0);
                 EditText maxBidET = findViewById(R.id.maxBid);
                 double maxBid = Double.valueOf(String.valueOf(maxBidET.getText()));
-                double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
-                        + MainActivity.ais.items.get(position).minInc;
 
-                if(maxBid >= minNextBid && maxBid != MainActivity.ais.items.get(position).autoBidMax[0]
-                        && maxBid != MainActivity.ais.items.get(position).autoBidMax[1]){
-                    if(MainActivity.you != null) {
-                        if(MainActivity.you.signedIn) {
-                            if (MainActivity.ais.items.get(position).addAutoBid(MainActivity.you, maxBid)) {
+                if (fromMain) {
+                    double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
+                            + MainActivity.ais.items.get(position).minInc;
+
+                    if (maxBid >= minNextBid && maxBid != MainActivity.ais.items.get(position).autoBidMax[0]
+                            && maxBid != MainActivity.ais.items.get(position).autoBidMax[1]) {
+                        if (MainActivity.you != null) {
+                            if (MainActivity.you.signedIn) {
+                                if (MainActivity.ais.items.get(position).addAutoBid(MainActivity.you, maxBid)) {
+                                    Toast.makeText(ItemActivity.this, "Bid placed!",
+                                            Toast.LENGTH_LONG).show();
+                                    MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
+
+                                    String itemsBidOn = "";
+                                    int cnt = 0;
+                                    for (Item i : MainActivity.you.itemsBidOn) {
+                                        Log.w("item title", i.title);
+                                        if (cnt > 0)
+                                            itemsBidOn += ",";
+                                        itemsBidOn += i.title;
+                                        cnt++;
+                                    }
+
+                                    Log.w("items bid on", itemsBidOn);
+
+                                    BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                                    bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+                                    MainActivity.ais = null;
+
+                                    Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                                    startActivity(homeIntent);
+                                } else {
+                                    Toast.makeText(ItemActivity.this, "You've been outbid!",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        } else {
+                            Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
+                    } else
+                        Toast.makeText(ItemActivity.this, "Max bid must be greater than or "
+                                + "equal to $" + String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+                }
+            else if(fromBids) {
+                double minNextBid = MainActivity.you.itemsBidOn.get(position).currentHighestBid
+                        + MainActivity.you.itemsBidOn.get(position).minInc;
+
+                if (maxBid >= minNextBid && maxBid != MainActivity.you.itemsBidOn.get(position).autoBidMax[0]
+                        && maxBid != MainActivity.you.itemsBidOn.get(position).autoBidMax[1]) {
+                    if (MainActivity.you != null) {
+                        if (MainActivity.you.signedIn) {
+                            if (MainActivity.you.itemsBidOn.get(position).addAutoBid(MainActivity.you, maxBid)) {
                                 Toast.makeText(ItemActivity.this, "Bid placed!",
                                         Toast.LENGTH_LONG).show();
-                                MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
 
                                 String itemsBidOn = "";
                                 int cnt = 0;
-                                for(Item i: MainActivity.you.itemsBidOn){
+                                for (Item i : MainActivity.you.itemsBidOn) {
                                     Log.w("item title", i.title);
-                                    if(cnt>0)
-                                        itemsBidOn+=",";
+                                    if (cnt > 0)
+                                        itemsBidOn += ",";
                                     itemsBidOn += i.title;
                                     cnt++;
                                 }
@@ -202,27 +406,71 @@ public class ItemActivity extends AppCompatActivity {
 
                                 BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                 bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
-                                MainActivity.ais  = null;
+                                MainActivity.ais = null;
 
                                 Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                 startActivity(homeIntent);
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(ItemActivity.this, "You've been outbid!",
                                         Toast.LENGTH_LONG).show();
                             }
                         }
-                    }
-                    else{
+                    } else {
                         Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
                                 Toast.LENGTH_LONG).show();
                         Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
                         startActivity(loginIntent);
                     }
-                }
-                else
+                } else
                     Toast.makeText(ItemActivity.this, "Max bid must be greater than or "
-                            + "equal to $" + String.valueOf(minNextBid) , Toast.LENGTH_LONG).show();
+                            + "equal to $" + String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+            }
+                else if (fromHighest) {
+                    double minNextBid = MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBid
+                            + MainActivity.you.itemsCurrentHighestBidderOn.get(position).minInc;
+
+                    if (maxBid >= minNextBid && maxBid != MainActivity.ais.items.get(position).autoBidMax[0]
+                            && maxBid != MainActivity.ais.items.get(position).autoBidMax[1]) {
+                        if (MainActivity.you != null) {
+                            if (MainActivity.you.signedIn) {
+                                if (MainActivity.you.itemsCurrentHighestBidderOn.get(position).addAutoBid(MainActivity.you, maxBid)) {
+                                    Toast.makeText(ItemActivity.this, "Bid placed!",
+                                            Toast.LENGTH_LONG).show();
+
+                                    String itemsBidOn = "";
+                                    int cnt = 0;
+                                    for (Item i : MainActivity.you.itemsBidOn) {
+                                        Log.w("item title", i.title);
+                                        if (cnt > 0)
+                                            itemsBidOn += ",";
+                                        itemsBidOn += i.title;
+                                        cnt++;
+                                    }
+
+                                    Log.w("items bid on", itemsBidOn);
+
+                                    BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
+                                    bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
+                                    MainActivity.ais = null;
+
+                                    Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
+                                    startActivity(homeIntent);
+                                } else {
+                                    Toast.makeText(ItemActivity.this, "You've been outbid!",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        } else {
+                            Toast.makeText(ItemActivity.this, "Log in or sign up to bid!",
+                                    Toast.LENGTH_LONG).show();
+                            Intent loginIntent = new Intent(ItemActivity.this, AccountActivity.class);
+                            startActivity(loginIntent);
+                        }
+                    }
+                    else
+                        Toast.makeText(ItemActivity.this, "Max bid must be greater than or "
+                                + "equal to $" + String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

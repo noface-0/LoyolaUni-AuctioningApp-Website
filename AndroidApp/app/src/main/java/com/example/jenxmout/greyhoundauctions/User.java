@@ -103,7 +103,9 @@ public class User{
                 //user is now the current highest bidder
             item.currentHighestBidder = this.firstName + " " + this.lastName;
                 //add the item to the user's itemsBidOn
-            this.itemsBidOn.add(item);
+            if(!this.itemsBidOn.contains(item)) {
+                this.itemsBidOn.add(item);
+            }
             return true;
         }
         else{

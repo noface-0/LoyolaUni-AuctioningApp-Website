@@ -401,14 +401,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             resultArr = result.split(";");
             MainActivity.ais = new AuctionItems();
 
-            for(int i = 1; i+5 < resultArr.length; i+=6) {
+            for(int i = 1; i+6 < resultArr.length; i+=7) {
                 String encodedImage = resultArr[i+5];
                 byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
                 Bitmap imageBM = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 String [] tagsArr = resultArr[i+3].split(",");
 
                 MainActivity.ais.items.add(new Item(resultArr[i], resultArr[i+1], Double.valueOf(resultArr[i+2]),
-                        tagsArr, Double.valueOf(resultArr[i+4]), imageBM));
+                        tagsArr, Double.valueOf(resultArr[i+4]), imageBM, resultArr[i+6]));
             }
 
             Intent homeIntent = new Intent(context, MainActivity.class);
