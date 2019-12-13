@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                     if (ais.items.size() >= position + 1) {
                         Intent itemIntent = new Intent(MainActivity.this, ItemActivity.class);
                         itemIntent.putExtra("itemPosition", position);
-
+                        itemIntent.putExtra("from", "main");
                         String tagsStr = "";
                         for (String tag : ais.items.get(position).tags) {
                             tagsStr += "#" + tag + " ";
@@ -468,11 +468,15 @@ public class MainActivity extends AppCompatActivity {
 
             if(you != null) {
                 if (you.signedIn) {
-                    if(you.itemsBidOn.contains(ais.items.get(position))) {
-                        if (you.itemsCurrentHighestBidderOn.contains(ais.items.get(position)))
-                            row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
-                        else
-                            row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
+                    Log.w("adapter", "signed in");
+                    for (Item item : you.itemsBidOn) {
+                        Log.w("adapter", "checking" + item.title);
+                        if (item.title.equals(ais.items.get(position).title)) {
+                            if (you.itemsCurrentHighestBidderOn.contains(item))
+                                row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
+                            else
+                                row.setBackgroundColor(getResources().getColor(R.color.losingBidRed));
+                        }
                     }
                 }
             }
@@ -584,9 +588,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putLong("millisLeft", timeLeftInMillis);
-        editor.putBoolean("timerRunning", timerRunning);
-        editor.putLong("endTime", endTime);
+        //editor.putLong("millisLeft", timeLeftInMillis);
+        //editor.putBoolean("timerRunning", timerRunning);
+        //editor.putLong("endTime", endTime);
 
         editor.apply();
 
