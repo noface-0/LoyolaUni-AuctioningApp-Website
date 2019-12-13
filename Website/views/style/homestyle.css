@@ -19,12 +19,12 @@ body {
   background-color: white;
 }
 
-#about{
-  background-color: green;
+#admin{
+  /* background-color: green; */
 }
 
-#info{
-  background-color: blue;
+#about{
+  /* background-color: blue; */
 }
 
 table {

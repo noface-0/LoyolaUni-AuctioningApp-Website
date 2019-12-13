@@ -48,15 +48,28 @@ exports.auth = function (req, res) {
 exports.home = function (req, res) {
     if (loggedin) {
         console.log('Welcome back, ' + username + '!');
+        // var json;
+        // let json2;
+        https://github.com/mysqljs/mysql/issues/1361
         con.query("SELECT * FROM items", function (err, result) {
             if (err) throw err;
-            // console.log(result);
-            let json = JSON.parse(JSON.stringify(result));
-            for (let i = 0; i < json.length; i++) {
-                console.log(json[i].image.data);
-            };
-            res.render('home',{data: json});
+            console.log(result);
+            json = JSON.parse(JSON.stringify(result));
+            // for (let i = 0; i < json.length; i++) {
+            //     console.log(json[i].image.data);
+            // };
+            res.render('home',{dataItem: json});
         });
+        // con.query("SELECT * FROM admins", function (err, result) {
+        //     if (err) throw err;
+        //     console.log(result);
+        //      json2 = JSON.parse(JSON.stringify(result));
+        //     // for (let i = 0; i < json.length; i++) {
+        //     //     console.log(json[i].image.data);
+        //     // };
+            
+        // });
+        // res.render('home',{dataItem: json, dataAdmin: json2});
     } else {
         res.send('Please login to view this page!');
         res.end();
