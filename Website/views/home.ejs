@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="img/favicon.ico?v=1.1" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="style/homestyle.css" type="text/css">
+  <title>Greyhound Admin</title>
+</head>
+
+<body>
+  <!-- <div class="sideview">
+      <a id="homeClick" href="#"><li>Home</li></a>
+      <a id="aboutClick" href="#"><li>About</li></a>
+      <a id="infoClick" href="#"><li>Info</li></a>
+    </ul>
+  </div> -->
+  <div class="topnav">
+      <a id="itemClick" class="active" href="#">Items</a>
+      <a id="eventClick" href="#">Events</a>
+      <a id="aboutClick" href="#">About</a>
+  </div>
+  <div class="mainview">
+    <div id="home">
+      <center>
+        <h1>Items</h1>
+        <button onclick="myFunction()">Add</button>
+        <button onclick="myFunction()">Delete</button>
+        <button onclick="myFunction()">Edit</button>
+      </center>
+      <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Min Increment</th>
+          <th>Tags</th>
+          <th>Highest Bid</th>
+          <th>Highest Bidder</th>
+          <th>Image</th>
+        </tr>
+        <% data.forEach(function(data){ %>
+        <tr>
+          <td><%= data.id %></td>
+          <td><%= data.title %></td>
+          <td><%= data.description %></td>
+          <td><%= data.minInc %></td>
+          <td><%= data.tags %></td>
+          <td><%= data.curentHighestBid %></td>
+          <td><%= data.currentHighestBidder %></td>
+          <td><%= data.image %></td>
+        </tr>
+        <% })%>
+      </table>
+    </div>
+    <div id="about" style="display:none;">
+      <h1>LOGGED IN ABOUT</h1>
+    </div>
+      <div id="info" style="display:none;">
+          <h1>LOGGED IN INFO</h1>
+      </div>
+
+    <!-- </div> -->
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>

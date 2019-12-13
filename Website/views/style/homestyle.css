@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.mainview{
+  position: fixed;
+  right: 0vw;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+}
+
+#home{
+  background-color: white;
+}
+
+#about{
+  background-color: green;
+}
+
+#info{
+  background-color: blue;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #b5e5cc;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 10px 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+} 
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
