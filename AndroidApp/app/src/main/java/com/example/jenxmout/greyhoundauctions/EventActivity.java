@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This is the Event Activity class that...
+ * This is the Event Activity class that informs the user about the event
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow

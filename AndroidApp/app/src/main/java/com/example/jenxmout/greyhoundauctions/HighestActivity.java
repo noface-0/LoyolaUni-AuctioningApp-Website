@@ -30,7 +30,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
- * This is the Highest Activity class that...
+ * This is the Highest Activity class that displays the items for which the user is the current
+ * highest bidder
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -84,8 +85,6 @@ public class HighestActivity extends AppCompatActivity {
         for(Item i: MainActivity.ais.items){
             i.updateAutoBid();
         }
-
-        Log.w("open bids view", "true");
 
         this.titles = new String[MainActivity.you.itemsCurrentHighestBidderOn.size()];
 
