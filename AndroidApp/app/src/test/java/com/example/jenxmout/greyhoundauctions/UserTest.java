@@ -10,7 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
+/**
+ * This is a UserTest class to test the methods
+ * of the User class
+ *
+ * @author Mollie Morrow
+ * @version 1.0 12/14/19
+ */
 public class UserTest {
 
     User user;
@@ -21,7 +27,7 @@ public class UserTest {
         user = new User();
         String [] tags = {"ipad", "tech", "apple"};
         item = new Item("iPad Pro", "Brand new 2019 iPad Pro with stylus.", 25.00,
-                tags, 100.00,"Jen Moutenot");
+                tags, 100.00,"");
     }
 
     @After
@@ -67,15 +73,62 @@ public class UserTest {
 
     @Test
     public void bidCHBTest() {
+        user.logIn("mfmorrow@loyola.edu", "12345","Mollie", "Morrow");
         user.bid(150.00, item);
-        assertEquals(item.currentHighestBid, 150.00, 0.00);
+        assertEquals(150.00, item.currentHighestBid, 0.00);
 
     }
 
     @Test
     public void bidCHBrTest() {
+        user.logIn("mfmorrow@loyola.edu", "12345","Mollie", "Morrow");
         user.bid(150.00, item);
-        assertEquals(item.currentHighestBidder, "Jen Moutenot");
+        assertEquals("Mollie Morrow", item.currentHighestBidder);
+
+    }
+    @Test
+    public void bidCHBTest2() {
+        user.logIn("mfmorrow@loyola.edu", "12345","Mollie", "Morrow");
+        user.bid(250.00, item);
+        assertEquals(250.00, item.currentHighestBid, 0.00);
+
+    }
+
+    @Test
+    public void bidCHBrTest2() {
+        user.logIn("jmoutenot@loyola.edu", "54321","Jen", "Moutenot");
+        user.bid(250.00, item);
+        assertEquals("Jen Moutenot", item.currentHighestBidder);
+
+    }
+
+    @Test
+    public void bidCHBTest3() {
+        user.bid(125.00, item);
+        assertEquals(100.00, item.currentHighestBid, 0.00);
+
+    }
+
+    @Test
+    public void bidCHBrTest3() {
+        user.bid(50.00, item);
+        assertEquals("", item.currentHighestBidder);
+
+    }
+
+    @Test
+    public void bidCHBTest4() {
+        user.signUp("Jen", "Moutenot","jmoutenot@loyola.edu", "54321");
+        user.bid(item.currentHighestBid+item.minInc, item);
+        assertEquals(125.00, item.currentHighestBid, 0.00);
+
+    }
+
+    @Test
+    public void bidCHBrTest4() {
+        user.signUp("Javon", "Kitson", "jckitson@loyola.edu", "76549");
+        user.bid(50.00, item);
+        assertEquals("Javon Kitson", item.currentHighestBidder);
 
     }
 }

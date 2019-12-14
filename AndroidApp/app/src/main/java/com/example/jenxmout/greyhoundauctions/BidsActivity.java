@@ -187,7 +187,6 @@ public class BidsActivity extends AppCompatActivity{
              */
             @Override
             public void onClick(View v) {
-                MainActivity.ais  = null;
                 Intent eventIntent = new Intent(BidsActivity.this, EventActivity.class);
                 startActivity(eventIntent);
             }
@@ -233,7 +232,6 @@ public class BidsActivity extends AppCompatActivity{
              */
             @Override
             public void onClick(View v) {
-                //MainActivity.ais  = null;
                 Intent homeIntent = new Intent(BidsActivity.this, MainActivity.class);
                 startActivity(homeIntent);
             }
