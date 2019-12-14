@@ -297,6 +297,7 @@ public class BidsActivity extends AppCompatActivity{
 
         /**
          * MyAdapter Constructor
+         *
          * @param c the context of the current activity
          * @param titles the titles of all the items
          * @param items the linked list of items

@@ -85,6 +85,7 @@ public class ItemActivity extends AppCompatActivity {
                             position).currentHighestBidder + "\n\n" + getIntent().getStringExtra(
                                     "itemTags"));
         }
+
         //if navigating from bids activity, the relevant list is the user's itemsBidOn list
         else if(fromBids){
             MainActivity.you.itemsBidOn.get(position).updateAutoBid();
@@ -105,6 +106,7 @@ public class ItemActivity extends AppCompatActivity {
                             position).currentHighestBidder + "\n\n" + getIntent().getStringExtra(
                                     "itemTags"));
         }
+
         //if navigating from highest activity, the relevant list is the user's
         // itemsCurrentHighestBidderOn list
         else if(fromHighest){
@@ -187,21 +189,17 @@ public class ItemActivity extends AppCompatActivity {
                             if (MainActivity.you.signedIn) {
                                 MainActivity.you.bid(Double.valueOf(bid),
                                         MainActivity.ais.items.get(position));
-                                Log.w("Sucess?", "bid succeeded");
                                 Toast.makeText(ItemActivity.this, "Bid placed!",
                                         Toast.LENGTH_LONG).show();
 
                                 String itemsBidOn = "";
                                 int cnt = 0;
                                 for (Item i : MainActivity.you.itemsBidOn) {
-                                    Log.w("item title", i.title);
                                     if (cnt > 0)
                                         itemsBidOn += ",";
                                     itemsBidOn += i.title;
                                     cnt++;
                                 }
-
-                                Log.w("items bid on", itemsBidOn);
 
                                 String name = MainActivity.you.firstName + " "
                                         + MainActivity.you.lastName;
@@ -249,21 +247,17 @@ public class ItemActivity extends AppCompatActivity {
                             if (MainActivity.you.signedIn) {
                                 MainActivity.you.bid(Double.valueOf(bid),
                                         MainActivity.you.itemsBidOn.get(position));
-                                Log.w("Sucess?", "bid succeeded");
                                 Toast.makeText(ItemActivity.this, "Bid placed!",
                                         Toast.LENGTH_LONG).show();
 
                                 String itemsBidOn = "";
                                 int cnt = 0;
                                 for (Item i : MainActivity.you.itemsBidOn) {
-                                    Log.w("item title", i.title);
                                     if (cnt > 0)
                                         itemsBidOn += ",";
                                     itemsBidOn += i.title;
                                     cnt++;
                                 }
-
-                                Log.w("items bid on", itemsBidOn);
 
                                 String name = MainActivity.you.firstName + " "
                                         + MainActivity.you.lastName;
@@ -313,21 +307,17 @@ public class ItemActivity extends AppCompatActivity {
                             if (MainActivity.you.signedIn) {
                                 MainActivity.you.bid(Double.valueOf(bid),
                                         MainActivity.you.itemsCurrentHighestBidderOn.get(position));
-                                Log.w("Sucess?", "bid succeeded");
                                 Toast.makeText(ItemActivity.this, "Bid placed!",
                                         Toast.LENGTH_LONG).show();
 
                                 String itemsBidOn = "";
                                 int cnt = 0;
                                 for (Item i : MainActivity.you.itemsBidOn) {
-                                    Log.w("item title", i.title);
                                     if (cnt > 0)
                                         itemsBidOn += ",";
                                     itemsBidOn += i.title;
                                     cnt++;
                                 }
-
-                                Log.w("items bid on", itemsBidOn);
 
                                 String name = MainActivity.you.firstName + " "
                                         + MainActivity.you.lastName;
@@ -422,14 +412,12 @@ public class ItemActivity extends AppCompatActivity {
                                     String itemsBidOn = "";
                                     int cnt = 0;
                                     for (Item i : MainActivity.you.itemsBidOn) {
-                                        Log.w("item title", i.title);
                                         if (cnt > 0)
                                             itemsBidOn += ",";
                                         itemsBidOn += i.title;
                                         cnt++;
                                     }
 
-                                    Log.w("items bid on", itemsBidOn);
                                     String name = MainActivity.you.firstName + " "
                                             + MainActivity.you.lastName;
 
@@ -478,7 +466,6 @@ public class ItemActivity extends AppCompatActivity {
                                 String itemsBidOn = "";
                                 int cnt = 0;
                                 for (Item i : MainActivity.you.itemsBidOn) {
-                                    Log.w("item title", i.title);
                                     if (cnt > 0)
                                         itemsBidOn += ",";
                                     itemsBidOn += i.title;
@@ -487,7 +474,6 @@ public class ItemActivity extends AppCompatActivity {
 
                                 String name = MainActivity.you.firstName + " "
                                         + MainActivity.you.lastName;
-                                Log.w("items bid on", itemsBidOn);
 
                                 BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                 bw.execute("update user data", itemsBidOn,
@@ -535,7 +521,6 @@ public class ItemActivity extends AppCompatActivity {
                                     String itemsBidOn = "";
                                     int cnt = 0;
                                     for (Item i : MainActivity.you.itemsBidOn) {
-                                        Log.w("item title", i.title);
                                         if (cnt > 0)
                                             itemsBidOn += ",";
                                         itemsBidOn += i.title;
@@ -544,7 +529,6 @@ public class ItemActivity extends AppCompatActivity {
 
                                     String name = MainActivity.you.firstName + " "
                                             + MainActivity.you.lastName;
-                                    Log.w("items bid on", itemsBidOn);
 
                                     BackgroundWorker bw = new BackgroundWorker(
                                             ItemActivity.this);
