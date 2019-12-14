@@ -98,7 +98,6 @@ public class User {
      */
     public boolean bid(double amountBid, Item item) {
         if(signedIn) {
-            Log.w("signedIn", "true");
                 //set current highest bid to user's bid
             item.currentHighestBid = amountBid;
                 //user is now the current highest bidder
@@ -110,7 +109,6 @@ public class User {
             return true;
         }
         else{
-            Log.w("signedIn", "false");
             return false;
         }
     }

@@ -10,16 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72b67262-0d36-47b9-b814-5c9c21e15cac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/jenxmout/greyhoundauctions/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/jenxmout/greyhoundauctions/UserTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="24" />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
@@ -37,55 +41,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5790">
-              <caret line="410" column="91" selection-start-line="410" selection-start-column="91" selection-end-line="410" selection-end-column="91" />
+            <state relative-caret-position="337">
+              <caret line="457" column="56" selection-start-line="457" selection-start-column="56" selection-end-line="457" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1230#1231#0" expanded="true" />
-                <element signature="e#1264#1265#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="588" column="10" selection-start-line="588" selection-start-column="10" selection-end-line="588" selection-end-column="10" />
-              <folding>
-                <element signature="e#2843#2844#0" expanded="true" />
-                <element signature="e#2869#2870#0" expanded="true" />
-                <element signature="e#3016#3017#0" expanded="true" />
-                <element signature="e#3042#3043#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="105" column="56" selection-start-line="105" selection-start-column="56" selection-end-line="105" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/jenxmout/greyhoundauctions/UserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="393" column="66" selection-start-line="393" selection-start-column="66" selection-end-line="393" selection-end-column="66" />
+            <state relative-caret-position="231">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -93,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
+            <state relative-caret-position="249">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,41 +74,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-419">
-              <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+            <state relative-caret-position="328">
+              <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/EventActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="43" column="68" selection-start-line="43" selection-start-column="68" selection-end-line="43" selection-end-column="68" />
+            <state relative-caret-position="1695">
+              <caret line="393" selection-start-line="393" selection-end-line="393" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5773#15594#0" expanded="true" />
+                <element signature="e#15593#15594#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AccountActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="59" column="56" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AuctionItems.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -169,6 +118,7 @@
       <find>items</find>
       <find>item</find>
       <find>log</find>
+      <find>autobid</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,12 +143,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_fundraiser_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AuctionItems.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/User.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java" />
+        <option value="$PROJECT_DIR$/app/src/test/java/com/example/jenxmout/greyhoundauctions/UserTest.java" />
       </list>
     </option>
   </component>
@@ -283,7 +234,55 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android JUnit.UserTest (2)">
+    <configuration name="UserTest (1)" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.jenxmout.greyhoundauctions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.jenxmout.greyhoundauctions" />
+      <option name="MAIN_CLASS_NAME" value="com.example.jenxmout.greyhoundauctions.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest (2)" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.jenxmout.greyhoundauctions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.jenxmout.greyhoundauctions" />
+      <option name="MAIN_CLASS_NAME" value="com.example.jenxmout.greyhoundauctions.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.jenxmout.greyhoundauctions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.jenxmout.greyhoundauctions" />
+      <option name="MAIN_CLASS_NAME" value="com.example.jenxmout.greyhoundauctions.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -399,6 +398,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.UserTest (2)" />
+        <item itemvalue="Android JUnit.UserTest (1)" />
+        <item itemvalue="Android JUnit.UserTest" />
         <item itemvalue="Android App.MainActivity" />
       </list>
     </recent_temporary>
@@ -715,15 +717,58 @@
       <option name="project" value="LOCAL" />
       <updated>1576199843773</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="bug fixes">
+      <created>1576346314780</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1576346314780</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix autobid.. ish">
+      <created>1576349881684</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1576349881684</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="UserTest - 2019.12.14 at 14h 55m 08s.xml">
+      <configuration name="UserTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest - 2019.12.14 at 14h 55m 32s.xml">
+      <configuration name="UserTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 05m 28s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 05m 54s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 14m 47s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 15m 35s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 17m 55s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 20m 51s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="UserTest_(1) - 2019.12.14 at 15h 30m 46s.xml">
+      <configuration name="UserTest (1)" configurationId="AndroidJUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.13085622" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20113085" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -731,16 +776,17 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" weight="0.32956383" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4983845" weight="0.20958903" />
+      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.4983845" visible="true" weight="0.27671233" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.4178082" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5016155" side_tool="true" weight="0.40273973" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.08219178" />
-      <window_info active="true" anchor="bottom" id="Build" order="7" visible="true" weight="0.19589041" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.19589041" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32876712" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32876712" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.15024233" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -787,7 +833,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added countdown Timer" />
     <MESSAGE value="formatted textviews in linear layouts for the scroll view for each item" />
     <MESSAGE value="changing name of buttons and allowing you to go to item screen after pressing image button" />
     <MESSAGE value="fixing design of item view" />
@@ -812,7 +857,19 @@
     <MESSAGE value="quick fix 3" />
     <MESSAGE value="update items" />
     <MESSAGE value="bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fixes" />
+    <MESSAGE value="fix autobid.. ish" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix autobid.. ish" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AndroidApp$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1576353329443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.jenxmout.greyhoundauctions.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AndroidApp$UserTest__2_.ic" NAME="UserTest (2) Coverage Results" MODIFIED="1576356440445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.jenxmout.greyhoundauctions.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AndroidApp$UserTest__1_.ic" NAME="UserTest (1) Coverage Results" MODIFIED="1576354849033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.jenxmout.greyhoundauctions.*</FILTER>
+    </SUITE>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/auction_item_golf_clubs.jpg">
@@ -889,9 +946,6 @@
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/example/jenxmout/greyhoundauctions/BuildConfig 2.java" />
     <entry file="file://$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/r/androidx/versionedparcelable/R 2.java" />
     <entry file="file://$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/r/androidx/navigation/common/R 2.java" />
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5595">
@@ -932,32 +986,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5790">
-          <caret line="410" column="91" selection-start-line="410" selection-start-column="91" selection-end-line="410" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1230#1231#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="105" column="56" selection-start-line="105" selection-start-column="56" selection-end-line="105" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/EventActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -968,9 +996,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/HighestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="925">
+          <caret line="132" column="59" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="787">
+          <caret line="196" column="33" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BidsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="125" column="56" selection-start-line="125" selection-start-column="56" selection-end-line="125" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AccountActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
+        <state relative-caret-position="650">
           <caret line="59" column="56" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -980,35 +1032,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/AuctionItems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="588" column="10" selection-start-line="588" selection-start-column="10" selection-end-line="588" selection-end-column="10" />
-          <folding>
-            <element signature="e#2843#2844#0" expanded="true" />
-            <element signature="e#2869#2870#0" expanded="true" />
-            <element signature="e#3016#3017#0" expanded="true" />
-            <element signature="e#3042#3043#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-419">
-          <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+        <state relative-caret-position="195">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
+        <state relative-caret-position="249">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/BackgroundWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="457" column="56" selection-start-line="457" selection-start-column="56" selection-end-line="457" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1017,8 +1059,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/ItemActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="393" column="66" selection-start-line="393" selection-start-column="66" selection-end-line="393" selection-end-column="66" />
+        <state relative-caret-position="1695">
+          <caret line="393" selection-start-line="393" selection-end-line="393" />
+          <folding>
+            <element signature="e#5773#15594#0" expanded="true" />
+            <element signature="e#15593#15594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jenxmout/greyhoundauctions/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/jenxmout/greyhoundauctions/UserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>

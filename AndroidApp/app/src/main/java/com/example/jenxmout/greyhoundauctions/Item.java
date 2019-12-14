@@ -69,11 +69,25 @@ public class Item {
      * @param tags the list of tags that pertain to an item
      * @param currentHighestBid the current highest bid of an item
      */
+
     public Item(String title, String desc, double minInc, String [] tags,
                 double currentHighestBid, Bitmap resID, String currentHighestBidder){
         this.title = title;
         this.description = desc;
         this.resID = resID;
+        this.minInc = minInc;
+        this.tags = tags;
+        this.currentHighestBid = currentHighestBid;
+        this.currentHighestBidder = currentHighestBidder;
+        this.autoBidUsers = new User[] {null, null};
+        this.autoBidMax = new double[] {0.0, 0.0};
+    }
+
+
+    public Item(String title, String desc, double minInc, String [] tags,
+                double currentHighestBid, String currentHighestBidder){
+        this.title = title;
+        this.description = desc;
         this.minInc = minInc;
         this.tags = tags;
         this.currentHighestBid = currentHighestBid;
