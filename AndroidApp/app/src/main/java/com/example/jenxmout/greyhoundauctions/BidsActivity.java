@@ -351,7 +351,7 @@ public class BidsActivity extends AppCompatActivity{
 
         /**
          * This method filters out the items according to
-         * the query at the search bar 
+         * the query at the search bar
          *
          * @param charText
          */

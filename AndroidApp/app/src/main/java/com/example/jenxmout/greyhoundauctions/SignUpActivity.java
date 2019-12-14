@@ -6,17 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 /**
- * This is the SignUp Activity class that...
- *
+ * This is the SignUp Activity class that
+ * allows a user to sign up and create an account.
+ * The user can enter the credentials to sign up and
+ * go back to home.
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
