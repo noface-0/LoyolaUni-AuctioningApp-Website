@@ -57,6 +57,18 @@ public class FundraiserInfo {
     }
 
     /**
+     * FundraiserInfo Constructor
+     * @param desc the description for the fundraiser
+     * @param start the start time of the fundraiser
+     * @param end the end time of the fundraiser
+     */
+    public FundraiserInfo(String desc, String start, String end){
+        this.description = desc;
+        this.startTime = start;
+        this.endTime = end;
+    }
+
+    /**
      * Converts end time to milliseconds for the countdown clock
      *
      * @return endTimeMillis the date of the end time in milliseconds
@@ -73,10 +85,7 @@ public class FundraiserInfo {
             e.printStackTrace();
         }
 
-        Log.w("end time millis", String.valueOf(endTimeMillis));
-
         return endTimeMillis;
-
     }
 
     /**
@@ -95,8 +104,6 @@ public class FundraiserInfo {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        Log.w("start time millis", String.valueOf(startTimeMillis));
         return startTimeMillis;
     }
 }
