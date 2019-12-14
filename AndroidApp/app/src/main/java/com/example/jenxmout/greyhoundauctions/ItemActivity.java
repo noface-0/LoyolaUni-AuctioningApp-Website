@@ -345,7 +345,8 @@ public class ItemActivity extends AppCompatActivity {
                                 if (MainActivity.ais.items.get(position).addAutoBid(MainActivity.you, maxBid)) {
                                     Toast.makeText(ItemActivity.this, "Bid placed!",
                                             Toast.LENGTH_LONG).show();
-                                    MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
+                                    if(!MainActivity.you.itemsBidOn.contains(MainActivity.ais.items.get(position)))
+                                        MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
 
                                     String itemsBidOn = "";
                                     int cnt = 0;
