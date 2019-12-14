@@ -2,9 +2,6 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.CountDownTimer;
-import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,35 +13,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.os.CountDownTimer;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 /**
- * This is the Bids Activity class that...
+ * This is the Bids Activity class that displays the
+ * bids placed by the current user for the UI
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
  * @version 1.0 12/15/19
  */
 public class BidsActivity extends AppCompatActivity{
+
     /**
      * The search bar to search items by tag
      */
     SearchView searchBar;
 
     /**
-     * The list to view all the items that are in it
+     * The listview that displays all items that
+     * the user has bid on
      */
     ListView listView;
 
@@ -85,8 +80,6 @@ public class BidsActivity extends AppCompatActivity{
         for(Item i: MainActivity.ais.items){
             i.updateAutoBid();
         }
-
-        Log.w("open bids view", "true");
         
         this.titles = new String[MainActivity.you.itemsBidOn.size()];
 
@@ -117,10 +110,9 @@ public class BidsActivity extends AppCompatActivity{
              */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.w("items size", MainActivity.you.itemsBidOn.size() + " items");
-                Log.w("position", "index " + position);
                 if (MainActivity.you.itemsBidOn.size() >= position+1) {
                     Intent itemIntent = new Intent(BidsActivity.this, ItemActivity.class);
+
                     //information from each item to populate the custom item intent
                     itemIntent.putExtra("itemPosition", position);
                     itemIntent.putExtra("from", "bids");
@@ -141,10 +133,13 @@ public class BidsActivity extends AppCompatActivity{
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
             /**
-             * NOTES...
+             * This method takes the string that
+             * the user types in at the search bar
+             * and submits the query to search
              *
-             * @param s
-             * @return false if ...
+             * @param s the string the user searches at the
+             *          search bar
+             * @return false if the method is called
              */
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -152,10 +147,14 @@ public class BidsActivity extends AppCompatActivity{
             }
 
             /**
-             * NOTES...
+             * This method takes the string that the user
+             * types in at the search bar and filters the
+             * list according to the the changes of the string
+             * being searched
              *
-             * @param s
-             * @return true if...
+             * @param s the string the user searches at the
+             *          search bar
+             * @return true if the method is called
              */
             @Override
             public boolean onQueryTextChange(String s) {
