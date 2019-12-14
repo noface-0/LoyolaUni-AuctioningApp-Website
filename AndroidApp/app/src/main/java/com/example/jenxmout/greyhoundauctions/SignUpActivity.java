@@ -6,17 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 /**
- * This is the SignUp Activity class that
- * allows a user to sign up and create an account.
- * The user can enter the credentials to sign up and
- * go back to home.
+ * This is the SignUp Activity class that allows a new user to create a GreyhoundAuctions accoount
+ *
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -58,6 +58,13 @@ public class SignUpActivity extends AppCompatActivity {
          * This methods creates a user account when button is clicked
          */
         signUpButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user's account is either created or an
+             * error is diplayed
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 //grab user input for first name
