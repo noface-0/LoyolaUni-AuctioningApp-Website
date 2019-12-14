@@ -288,7 +288,7 @@ public class HighestActivity extends AppCompatActivity {
     class MyAdapter extends ArrayAdapter<String> {
 
         /**
-         * The context
+         * The context of the current activity
          */
         protected Context context;
 
@@ -298,15 +298,15 @@ public class HighestActivity extends AppCompatActivity {
         protected LinkedList<Item> items;
 
         /**
-         * The items list???
+         * The updated linked list of items post-search
          */
         protected LinkedList<Item> itemsList;
 
         /**
          * MyAdapter Constructor
-         * @param c .....
-         * @param titles .....
-         * @param items .....
+         * @param c the context of the current activity
+         * @param titles the titles of all the items
+         * @param items the linked list of items
          */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
@@ -317,12 +317,13 @@ public class HighestActivity extends AppCompatActivity {
         }
 
         /**
-         * NOTES
+         * This method returns the updated list view
+         * post-search based on the query at the search bar
          *
-         * @param position ...
-         * @param convertView ...
-         * @param parent ....
-         * @return the View ...
+         * @param position the positon of the item in the list view
+         * @param convertView the view of the list
+         * @param parent the parent of the ViewGroup
+         * @return the View of the updated list view
          */
         @NonNull
         @Override
@@ -352,7 +353,8 @@ public class HighestActivity extends AppCompatActivity {
         }
 
         /**
-         * To filter...
+         * This method filters out the items according to
+         * the query at the search bar
          *
          * @param charText
          */
