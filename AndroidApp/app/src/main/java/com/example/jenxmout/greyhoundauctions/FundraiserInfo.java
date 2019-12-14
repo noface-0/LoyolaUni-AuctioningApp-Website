@@ -1,9 +1,7 @@
 package com.example.jenxmout.greyhoundauctions;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.util.Log;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +9,9 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * This is the Fundraiser Info class that...
+ * This is the Fundraiser Info class that defines the
+ * silent auction event and gives functionality
+ * to the countdown clock
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -20,7 +20,8 @@ import java.util.TimeZone;
 public class FundraiserInfo {
 
     /**
-     * The image that represents the fundraiser
+     * The bitmap of the image
+     * that represents the fundraiser
      */
     protected Bitmap fundraiserImage;
 
@@ -31,7 +32,7 @@ public class FundraiserInfo {
 
     /**
      * The start time of the event
-     * In format of yyyy/mm/dd hh:mm
+     * In format of yyyy.MM.dd HH:mm:ss z
      */
     protected String startTime;
 
@@ -43,8 +44,8 @@ public class FundraiserInfo {
 
     /**
      * FundraiserInfo Constructor
-     * @param resID the image int red id to represent the fundraiser
-     * @param desc the descripion for the fundraiser
+     * @param resID the bitmap of the image to represent the fundraiser
+     * @param desc the description for the fundraiser
      * @param start the start time of the fundraiser
      * @param end the end time of the fundraiser
      */
@@ -56,7 +57,7 @@ public class FundraiserInfo {
     }
 
     /**
-     * Getter to get the end time in milliseconds
+     * Converts end time to milliseconds for the countdown clock
      *
      * @return endTimeMillis the date of the end time in milliseconds
      */
@@ -79,7 +80,7 @@ public class FundraiserInfo {
     }
 
     /**
-     * Getter to get the start time in milliseconds
+     * Converts start time to milliseconds for the countdown clock
      *
      * @return startTimeMillis the date of the start time in milliseconds
      */

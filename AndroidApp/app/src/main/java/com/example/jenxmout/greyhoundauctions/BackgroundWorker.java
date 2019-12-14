@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
@@ -25,7 +24,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * This is an BackgroundWorker class that...
+ * This is an BackgroundWorker class that enables communication
+ * between the Android app and the database where the auction information
+ * is stored
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -34,7 +35,7 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     /**
-     * The context
+     * The context of the current activity
      */
     protected Context context;
 
@@ -45,17 +46,19 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     /**
      * BackgroundWorker Constructor
-     * @param ctx
+     * @param ctx the context of the current activity
      */
     public BackgroundWorker(Context ctx){
         this.context = ctx;
     }
 
     /**
-     * This method allows the application to perform reads, writes, and checks with the database
+     * This method allows the application to perform reads, writes,
+     * and checks with the database depending on the type of request
      *
      * @param params parameters necessary to perform each interaction with the database
-     * @return output from PHP script
+     * @return the string that is being outputted from PHP script in
+     *         communication with the database
      */
     @Override
     protected String doInBackground(String... params) {
@@ -327,6 +330,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     /**
      * This method executes after superclass's execute function
+     * and finishes the request with the information from the
+     * database
      */
     @Override
     protected void onPostExecute(String result) {
@@ -421,7 +426,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     }
 
     /**
-     * This method ....
+     * This method runs on the UI thread after publishProgress()
+     * is invoked
      */
     @Override
     protected void onProgressUpdate(Void... values) {

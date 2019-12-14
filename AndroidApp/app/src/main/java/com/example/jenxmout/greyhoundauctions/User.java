@@ -1,19 +1,18 @@
 package com.example.jenxmout.greyhoundauctions;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 
 import java.util.LinkedList;
 
 /**
- * This is a User class that...
+ * This is a User class that defines a GreyhoundsAuctions
+ * user and includes methods for that user's behavior
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
  * @version 1.0 12/15/19
  */
-public class User{
+public class User {
 
     /**
      * The first name of the bidder
@@ -24,6 +23,7 @@ public class User{
      * The last name of the bidder
      */
     protected String lastName;
+
     /**
      * The email of the bidder
      */
@@ -35,7 +35,8 @@ public class User{
     private String password;
 
     /**
-     * Whether the bidder has signed in or not
+     * The flag for whether or not the user
+     * is signed in
      */
     protected boolean signedIn;
 
@@ -59,7 +60,7 @@ public class User{
     }
 
     /**
-     * Signs a bidder create an account, allowing them to bid
+     * Signs a bidder up to create an account, allowing them to bid
      *
      * @param fName the first name of the bidder
      * @param lName the last name of the bidder
@@ -110,28 +111,6 @@ public class User{
         }
         else{
             Log.w("signedIn", "false");
-            return false;
-        }
-    }
-
-    /**
-     * Bidder places an auto-bid on an item
-     *
-     * @param maxBid the maximum amount the bidder would like to increment their bid to
-     * @param item the item the bidder would like to bid on
-     * @return true if the user is signed in, false if they are not signed in
-     */
-    public boolean autoBid(double maxBid, Item item) {
-        if(signedIn) {
-            //while the user is not the current highest bidder and the current highest bid is less
-            //than the user's max bid, bid the current highest bid + the user's increment
-            while (!item.currentHighestBidder.equals(this.firstName + " " + this.lastName) && item.currentHighestBid < maxBid) {
-                this.bid(item.currentHighestBid + item.minInc, item);
-            }
-            return true;
-        }
-        else{
-            //navigate to log-in page
             return false;
         }
     }

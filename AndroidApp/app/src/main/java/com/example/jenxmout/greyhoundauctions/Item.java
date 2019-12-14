@@ -1,13 +1,11 @@
 package com.example.jenxmout.greyhoundauctions;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.util.Log;
 
-import java.util.LinkedList;
-
 /**
- * This is a Item class...
+ * This is a Item class that defines an item
+ * to be used for the GreyhoundsAuctions event
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -26,7 +24,7 @@ public class Item {
     protected String description;
 
     /**
-     * The resID that represents the image of the item
+     * The resID that represents the bitmap of the image
      */
     protected Bitmap resID;
 
@@ -52,13 +50,13 @@ public class Item {
 
     /**
      * The list of the top two auto-bid users for a particular item.
-     * The top two have the highest max bid
+     * The top two have the highest max bids
      */
     protected User [] autoBidUsers;
 
     /**
-     * The list of the top two auto-bid maxs for a particular item.
-     * The top two have the highest max bid
+     * The list of the top two auto-bid values for a particular item.
+     * The top two have the highest max bids
      */
     protected double [] autoBidMax;
 
@@ -67,7 +65,7 @@ public class Item {
      * @param title the title of the item
      * @param desc the description of the item
      * @param resID the image bitmap of the item
-     * @param minInc the minimum increment the item can be auto-bidded
+     * @param minInc the minimum increment of the item's next bid
      * @param tags the list of tags that pertain to an item
      * @param currentHighestBid the current highest bid of an item
      */
@@ -80,17 +78,20 @@ public class Item {
         this.tags = tags;
         this.currentHighestBid = currentHighestBid;
         this.currentHighestBidder = currentHighestBidder;
-
         this.autoBidUsers = new User[] {null, null};
         this.autoBidMax = new double[] {0.0, 0.0};
-
     }
 
     /**
-     * This method ...
+     * This method is called when a user auto-bids
+     * on an item.
+     * The user and their max bid are added to the auto-bid lists
+     * if there are no other users or one other user in the auto-bid lists
+     * or the users max bid is higher than the values in the auto-bid
+     * max list
      *
-     * @param user
-     * @param max
+     * @param user the user placing an auto-bid
+     * @param max the user's max bid value on an item
      * @return
      */
     protected boolean addAutoBid(User user, double max){
@@ -120,7 +121,12 @@ public class Item {
     }
 
     /**
-     * This method...
+     * This method, when called, evaluates the current
+     * highest bid in regard to the two current highest
+     * max bids.
+     * This method also updates the current highest bid and
+     * current highest bidder according to the highest
+     * auto-bid request.
      */
     protected void updateAutoBid(){
         Log.w("IN AUTOBID", "top of method");
@@ -154,9 +160,12 @@ public class Item {
     }
 
     /**
-     * This method...
+     * This method returns the index of
+     * the smaller value of the two max bid values
+     * in the list
      *
-     * @return 1 or 0 if...
+     * @return 1 if the smallest value is in the second index
+     *         0 if the smallest value is in the first index
      */
     protected int leastMaxIndex(){
         if(autoBidMax[0] > autoBidMax[1])
@@ -166,9 +175,12 @@ public class Item {
     }
 
     /**
-     * This method...
+     * This method returns the index of
+     * the greatest value of the two max bid values
+     * in the list
      *
-     * @return 1 or 0 if...
+     * @return 1 if the greatest value is in the second index
+     *         0 if the greatest value is in the first index
      */
     protected int greatestMaxIndex(){
         if(autoBidMax[0] > autoBidMax[1])

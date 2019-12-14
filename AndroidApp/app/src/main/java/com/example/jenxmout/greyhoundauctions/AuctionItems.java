@@ -3,7 +3,9 @@ package com.example.jenxmout.greyhoundauctions;
 import java.util.LinkedList;
 
 /**
- * This is an Auction Items class that...
+ * This is an Auction Items class that
+ * holds all the items that are being
+ * auctioned for the event
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
