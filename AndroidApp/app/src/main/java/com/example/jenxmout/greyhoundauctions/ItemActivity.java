@@ -200,7 +200,6 @@ public class ItemActivity extends AppCompatActivity {
                                 BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
                                 bw2.execute("update item data", bid, name, MainActivity.ais.items.get(position).title);
 
-                                //MainActivity.ais  = null;
 
                                 Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                 startActivity(homeIntent);
@@ -390,9 +389,6 @@ public class ItemActivity extends AppCompatActivity {
                                     BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                     bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
 
-                                    BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
-                                    bw.execute("autobid", name, String.valueOf(maxBid));
-
                                     Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                     startActivity(homeIntent);
                                 } else {
@@ -438,8 +434,6 @@ public class ItemActivity extends AppCompatActivity {
                                 BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                 bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
 
-                                BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
-                                bw.execute("autobid", name, String.valueOf(maxBid));
 
                                 Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                 startActivity(homeIntent);
@@ -486,8 +480,6 @@ public class ItemActivity extends AppCompatActivity {
                                     BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                     bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
 
-                                    BackgroundWorker bw2 = new BackgroundWorker(ItemActivity.this);
-                                    bw.execute("autobid", name, String.valueOf(maxBid));
 
                                     Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                     startActivity(homeIntent);
