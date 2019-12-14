@@ -1,9 +1,6 @@
 # 482f19-jajeimo
 This is the repository for team jajeimo to develop their Auction application in Fall 2019 Software Engineering course.
 
-# Java Doc
-file:///Users/jenxmout/AndroidStudioProjects/482f19-jajeimo/JavaDoc/index.html 
-
 # Team Members
 1. Javon Kitson (ja)
 2. Jennifer Moutenot (je)
