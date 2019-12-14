@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -275,7 +274,6 @@ public class BidsActivity extends AppCompatActivity{
         });
     }
 
-    // For List
     /**
      * This is the MyAdapter class that updates the ListView
      * when scrolling
@@ -283,7 +281,7 @@ public class BidsActivity extends AppCompatActivity{
     class MyAdapter extends ArrayAdapter<String> {
 
         /**
-         * The context
+         * The context of the current activity
          */
         protected Context context;
 
@@ -293,15 +291,15 @@ public class BidsActivity extends AppCompatActivity{
         protected LinkedList<Item> items;
 
         /**
-         * The items list????
+         * The updated linked list of items post-search
          */
         protected LinkedList<Item> itemsList;
 
         /**
          * MyAdapter Constructor
-         * @param c .....
-         * @param titles .....
-         * @param items .....
+         * @param c the context of the current activity
+         * @param titles the titles of all the items
+         * @param items the linked list of items
          */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
@@ -312,12 +310,13 @@ public class BidsActivity extends AppCompatActivity{
         }
 
         /**
-         * NOTES
+         * This method returns the updated list view
+         * post-search based on the query at the search bar
          *
-         * @param position ...
-         * @param convertView ...
-         * @param parent ....
-         * @return the View ...
+         * @param position the positon of the item in the list view
+         * @param convertView the view of the list
+         * @param parent the parent of the ViewGroup
+         * @return the View of the updated list view
          */
         @NonNull
         @Override
@@ -332,7 +331,6 @@ public class BidsActivity extends AppCompatActivity{
 
             if(MainActivity.you != null) {
                 if (MainActivity.you.signedIn) {
-                    Log.w("adapterbids", "signed in");
 
                     if (MainActivity.you.itemsCurrentHighestBidderOn.contains(MainActivity.you.itemsBidOn.get(position)))
                         row.setBackgroundColor(getResources().getColor(R.color.winningBidGreen));
@@ -352,7 +350,8 @@ public class BidsActivity extends AppCompatActivity{
         }
 
         /**
-         * To filter....
+         * This method filters out the items according to
+         * the query at the search bar 
          *
          * @param charText
          */
