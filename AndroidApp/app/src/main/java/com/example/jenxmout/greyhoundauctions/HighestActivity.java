@@ -148,9 +148,13 @@ public class HighestActivity extends AppCompatActivity {
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
             /**
-             * NOTES...
-             * @param s ...
-             * @return false if ...
+             * This method takes the string that
+             * the user types in at the search bar
+             * and submits the query to search
+             *
+             * @param s the string the user searches at the
+             *          search bar
+             * @return false if the method is called
              */
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -158,9 +162,14 @@ public class HighestActivity extends AppCompatActivity {
             }
 
             /**
-             * NOTES...
-             * @param s
-             * @return true if....
+             * This method takes the string that the user
+             * types in at the search bar and filters the
+             * list according to the the changes of the string
+             * being searched
+             *
+             * @param s the string the user searches at the
+             *          search bar
+             * @return true if the method is called
              */
             @Override
             public boolean onQueryTextChange(String s) {
