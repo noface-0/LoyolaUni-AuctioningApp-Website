@@ -42,7 +42,7 @@ exports.auth = function (req, res) {
             res.end();
         });
     } else {
-        res.send('Please enter Username and Password!');
+        res.format({'text/html': function () {res.send('<center><h1>Please enter Username and Password!</h1></center>')}});
         res.end();
     }
 };
@@ -54,12 +54,15 @@ exports.home = function (req, res) {
         con.query("SELECT * FROM items", function (err, result) {
             if (err) throw err;
             json = JSON.parse(JSON.stringify(result));
+            console.log(json[0].image.data);
             con.query("SELECT * FROM admins", function (err, result) {
                 if (err) throw err;
                 json2 = JSON.parse(JSON.stringify(result));
+
                 con.query("SELECT * FROM event", function (err, result) {
                     if (err) throw err;
                     json3 = JSON.parse(JSON.stringify(result));
+
                     console.log(json3[0].end);
                     var d = new Date();
                     console.log(d);
@@ -76,7 +79,7 @@ exports.home = function (req, res) {
             });
         });
     } else {
-        res.send('Please login to view this page!');
+        res.format({'text/html': function () {res.send('<center><h1>Please enter Username and Password!</h1></center>')}});
         res.end();
     }
 };

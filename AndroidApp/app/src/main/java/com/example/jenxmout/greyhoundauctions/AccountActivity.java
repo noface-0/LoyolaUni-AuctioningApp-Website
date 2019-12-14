@@ -17,7 +17,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 /**
- * This is the Account Activity class that...
+ * This is the Account Activity class that, when created, allows the user to log in to an existing
+ * account, log out if they are signed in, navigate back to home, or navigate to the SignUpActivity
+ * class
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -36,7 +38,6 @@ public class AccountActivity extends AppCompatActivity {
 
         // Functionality for login button
         Button loginButton = (Button) findViewById(R.id.loginButton);
-
         /**
          * This methods logs user into their account when login button is clicked
          */
@@ -69,7 +70,6 @@ public class AccountActivity extends AppCompatActivity {
 
         // Functionality for home button
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
-
         /**
          * This method takes user back to home page
          */
@@ -84,6 +84,7 @@ public class AccountActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
+                //navigate to home
                 Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
                 startActivity(homeIntent);
             }
@@ -91,7 +92,6 @@ public class AccountActivity extends AppCompatActivity {
 
         //Functionality for log out button
         Button logOutButton = (Button) findViewById(R.id.logOutButton);
-
         /**
          * This method logs the user out of their account
          */
@@ -105,9 +105,10 @@ public class AccountActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                //reset user
+                //clear all user data
                 MainActivity.you = null;
 
+                //navigate to home
                 Intent homeIntent = new Intent(AccountActivity.this, MainActivity.class);
                 startActivity(homeIntent);
 
@@ -118,7 +119,6 @@ public class AccountActivity extends AppCompatActivity {
 
         //Functionality for forgot password button
         Button sendEmailButton = (Button) findViewById(R.id.sendEmailButton);
-
         /**
          * This method sends an email to the user that allows them to reset their password
          */
