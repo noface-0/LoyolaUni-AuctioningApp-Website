@@ -24,6 +24,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,10 +82,21 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewCountDown;
 
     /**
+     * The text view that displays if a user
+     * is logged in or not
+     */
+    private TextView textViewLoggedIn;
+
+    /**
      * The CountDownTimer object that keeps track
      * of time
      */
     private CountDownTimer countDownTimer;
+
+    /**
+     * Whether the auction is over or not
+     */
+    protected static boolean auctionOver;
 
     /**
      * Boolean to see if the timer is currently
@@ -179,12 +192,18 @@ public class MainActivity extends AppCompatActivity {
             you = getUser();
             ais = getAis();
 
+            textViewLoggedIn = findViewById(R.id.loggedIn);
             if (you != null) {
-                if (you.signedIn)
+                if (you.signedIn) {
+                    textViewLoggedIn.setText("Logged In");
                     Log.w("signed in main", "true");
-                else
+                }
+                else {
+                    textViewLoggedIn.setText("Logged Out");
                     Log.w("signed in main", "false");
+                }
             } else
+                textViewLoggedIn.setText("Logged Out");
                 Log.w("signed in main", "null");
 
             if (you != null) {
@@ -549,6 +568,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
             textViewCountDown.setText("Auction Over!");
+            auctionOver = true;
+
         }
 
         /**

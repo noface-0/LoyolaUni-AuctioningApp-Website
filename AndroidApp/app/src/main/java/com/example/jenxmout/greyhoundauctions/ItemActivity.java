@@ -20,8 +20,19 @@ import android.widget.Toast;
  */
 public class ItemActivity extends AppCompatActivity {
 
+    /**
+     * ...
+     */
     boolean fromMain = false;
+
+    /**
+     * ...
+     */
     boolean fromBids = false;
+
+    /**
+     * ...
+     */
     boolean fromHighest = false;
 
     /**
@@ -132,10 +143,14 @@ public class ItemActivity extends AppCompatActivity {
 
 
         //Bid Button functionality
-        Button bidButton = (Button) findViewById(R.id.bidButton);
+        final Button bidButton = (Button) findViewById(R.id.bidButton);
 
+        if(MainActivity.auctionOver)
+            bidButton.setEnabled(false);
+        else
+            bidButton.setEnabled(true);
         /**
-         * This methods allows a user to big when button is clicked
+         * This methods allows a user to bid when button is clicked
          */
         bidButton.setOnClickListener(new View.OnClickListener() {
 
@@ -147,11 +162,12 @@ public class ItemActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
+
                 int position = getIntent().getIntExtra("itemPosition", 0);
                 EditText bidET = findViewById(R.id.bidAmount);
                 String bid = String.valueOf(bidET.getText());
 
-                if(fromMain){
+                if (fromMain) {
 
                     double minNextBid = MainActivity.ais.items.get(position).currentHighestBid
                             + MainActivity.ais.items.get(position).minInc;
@@ -204,7 +220,7 @@ public class ItemActivity extends AppCompatActivity {
                         Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
                                 String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
                 }
-                else if(fromBids){
+                else if (fromBids) {
                     double minNextBid = MainActivity.you.itemsBidOn.get(position).currentHighestBid
                             + MainActivity.you.itemsBidOn.get(position).minInc;
 
@@ -257,7 +273,7 @@ public class ItemActivity extends AppCompatActivity {
                                 String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
 
                 }
-                else if(fromHighest){
+                else if (fromHighest) {
                     double minNextBid = MainActivity.you.itemsCurrentHighestBidderOn.get(position).currentHighestBid
                             + MainActivity.you.itemsCurrentHighestBidderOn.get(position).minInc;
 
@@ -308,14 +324,19 @@ public class ItemActivity extends AppCompatActivity {
                     } else
                         Toast.makeText(ItemActivity.this, "Bid must be greater than or equal to $" +
                                 String.valueOf(minNextBid), Toast.LENGTH_LONG).show();
-
                 }
+
             }
         });
 
 
         //auto-bid button functionality
         Button autoBidButton = (Button) findViewById(R.id.autoBidButton);
+
+        if(MainActivity.auctionOver)
+            autoBidButton.setEnabled(false);
+        else
+            autoBidButton.setEnabled(true);
 
         /**
          * This methods allows a user to auto-bid when button is clicked

@@ -2,7 +2,9 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.os.CountDownTimer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,8 +24,10 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This is the Highest Activity class that...
@@ -50,6 +55,17 @@ public class HighestActivity extends AppCompatActivity {
     String[] titles;
 
     /**
+     * The text view that displays if a user
+     * is logged in or not
+     */
+    private TextView textViewLoggedIn;
+
+    /**
+     * The countdown clock text view
+     */
+    private TextView textViewCountDown;
+
+    /**
      * Sets up the bids screen view
      *
      * @param savedInstanceState the reference to a Bundle object that is passed
@@ -58,6 +74,12 @@ public class HighestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textViewCountDown = findViewById(R.id.countdown);
+        textViewCountDown.setAlpha(0.0f);
+
+        textViewLoggedIn = findViewById(R.id.loggedIn);
+        textViewLoggedIn.setAlpha(0.0f);
 
         for(Item i: MainActivity.ais.items){
             i.updateAutoBid();
@@ -358,4 +380,5 @@ public class HighestActivity extends AppCompatActivity {
             notifyDataSetChanged();
         }
     }
+
 }
