@@ -49,21 +49,24 @@ describe('Status and content', function () {
             connection.connect(done);
         });
     });
-
+    var assert = chai.assert;
     describe('Login', function () {
         it('Shows that login works', function (done) {
-            var username = test;
-            var password = test;
+            var username = "test";
+            var password = "test";
             var loggedin;
-            if (username && password) {
-                con.query('SELECT * FROM admins WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
-                    if (results.length > 0) {
-                        loggedin = true;
-                    } else {
-                        loggedin = false;
-                    }
-                });}
-            assert.equal(loggedin);
+
+            con.query('SELECT * FROM admins WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
+                if (results.length > 0) {
+                    loggedin = true;
+                } else {
+                    loggedin = false;
+                }
+            });
+            
+            var assert = require('chai').assert, loggedin = true;
+            assert(loggedin == true);
+            done();
         });
     });
 
