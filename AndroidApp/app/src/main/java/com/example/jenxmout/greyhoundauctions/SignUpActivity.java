@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 /**
- * This is the SignUp Activity class that...
+ * This is the SignUp Activity class that allows a new user to create a GreyhoundAuctions accoount
  *
  *
  * @author Jennifer Moutenot
@@ -58,6 +58,13 @@ public class SignUpActivity extends AppCompatActivity {
          * This methods creates a user account when button is clicked
          */
         signUpButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method sets a click listener for the button in the UI
+             * When clicked, the user's account is either created or an
+             * error is diplayed
+             *
+             * @param v the view of the current state
+             */
             @Override
             public void onClick(View v) {
                 //grab user input for first name
