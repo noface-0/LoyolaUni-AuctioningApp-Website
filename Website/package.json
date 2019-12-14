@@ -4,14 +4,17 @@
   "description": "Website for admin on auctioning site. school project with team jajaimo",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/.bin/mocha"
   },
   "author": "J.C Kitson",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "mocha": "^6.2.2",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1"
   }
