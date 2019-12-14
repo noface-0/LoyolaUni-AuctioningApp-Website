@@ -2,6 +2,7 @@ package com.example.jenxmout.greyhoundauctions;
 
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.util.Log;
 
 import java.util.LinkedList;
 
@@ -96,6 +97,9 @@ public class Item {
         if(autoBidUsers[0] == null){
             autoBidUsers[0] = user;
             autoBidMax[0] = max;
+
+            this.currentHighestBidder = user.firstName + " " + user.lastName;
+            this.currentHighestBid = this.currentHighestBid + this.minInc;
             return true;
         }
         else if(autoBidUsers[1] == null){
@@ -119,11 +123,15 @@ public class Item {
      * This method...
      */
     protected void updateAutoBid(){
+        Log.w("IN AUTOBID", "top of method");
         if(autoBidUsers[0] == null){
+            Log.w("IN AUTOBID", "no users in list");
             return;
         }
         else if(autoBidUsers[1] == null){
+            Log.w("IN AUTOBID", "1 user in list");
             if(!this.currentHighestBidder.equals(autoBidUsers[0].firstName + " " + autoBidUsers[0].lastName)) {
+                Log.w("IN AUTOBID", "1 user in list is already CHBr");
                 this.currentHighestBid += minInc;
                 this.currentHighestBidder = autoBidUsers[0].firstName + " " + autoBidUsers[0].lastName;
             }
@@ -131,6 +139,7 @@ public class Item {
                 return;
         }
         else {
+            Log.w("IN AUTOBID", "2 users in list");
             double sum = this.autoBidMax[this.leastMaxIndex()] + this.minInc;
             if (sum <= this.autoBidMax[this.greatestMaxIndex()]) {
                 this.currentHighestBid = sum;

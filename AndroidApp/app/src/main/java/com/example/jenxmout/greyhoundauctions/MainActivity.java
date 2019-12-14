@@ -168,6 +168,11 @@ public class MainActivity extends AppCompatActivity {
         if(ais != null) {
             for (Item i : ais.items) {
                 i.updateAutoBid();
+                Log.w("updating autobid for", i.title);
+                String name = i.currentHighestBidder;
+                String bid = String.valueOf(i.currentHighestBid);
+                BackgroundWorker bw = new BackgroundWorker(MainActivity.this);
+                bw.execute("update item data", bid, name, i.title);
             }
 
             // grab existing static user and items

@@ -345,8 +345,13 @@ public class ItemActivity extends AppCompatActivity {
                                 if (MainActivity.ais.items.get(position).addAutoBid(MainActivity.you, maxBid)) {
                                     Toast.makeText(ItemActivity.this, "Bid placed!",
                                             Toast.LENGTH_LONG).show();
-                                    if(!MainActivity.you.itemsBidOn.contains(MainActivity.ais.items.get(position)))
-                                        MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
+
+                                    for(Item i : MainActivity.you.itemsBidOn){
+                                        if(i.title.equals(MainActivity.ais.items.get(position).title)){
+                                            MainActivity.you.itemsBidOn.remove(i);
+                                        }
+                                    }
+                                    MainActivity.you.itemsBidOn.add(MainActivity.ais.items.get(position));
 
                                     String itemsBidOn = "";
                                     int cnt = 0;
@@ -359,10 +364,10 @@ public class ItemActivity extends AppCompatActivity {
                                     }
 
                                     Log.w("items bid on", itemsBidOn);
+                                    String name = MainActivity.you.firstName + " " + MainActivity.you.lastName;
 
                                     BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                     bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
-                                    MainActivity.ais = null;
 
                                     Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                     startActivity(homeIntent);
@@ -407,7 +412,6 @@ public class ItemActivity extends AppCompatActivity {
 
                                 BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                 bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
-                                MainActivity.ais = null;
 
                                 Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                 startActivity(homeIntent);
@@ -452,7 +456,6 @@ public class ItemActivity extends AppCompatActivity {
 
                                     BackgroundWorker bw = new BackgroundWorker(ItemActivity.this);
                                     bw.execute("update user data", itemsBidOn, MainActivity.you.firstName, MainActivity.you.lastName);
-                                    MainActivity.ais = null;
 
                                     Intent homeIntent = new Intent(ItemActivity.this, MainActivity.class);
                                     startActivity(homeIntent);
