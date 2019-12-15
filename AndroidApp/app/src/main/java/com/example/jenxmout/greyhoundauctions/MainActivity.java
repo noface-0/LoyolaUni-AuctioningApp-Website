@@ -49,7 +49,6 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Search Bar & List View
     /**
      * The search bar to search item by tag
      */
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
      */
     protected static AuctionItems ais;
 
-    // CountDown Timer
     /**
      * The start time of the fundraiser
      */
@@ -87,22 +85,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private TextView textViewLoggedIn;
 
-    /**
-     * The CountDownTimer object that keeps track
-     * of time
-     */
-    private CountDownTimer countDownTimer;
 
     /**
-     * Whether the auction is over or not
+     * Auction over flag
      */
     protected static boolean auctionOver;
 
-    /**
-     * Boolean to see if the timer is currently
-     * running or not
-     */
-    protected boolean timerRunning = false;
 
     /**
      * The time left for the fundraiser
@@ -113,12 +101,6 @@ public class MainActivity extends AppCompatActivity {
      * The end time for the fundraiser
      */
     protected static long endTime;
-
-    /**
-     * The time interval in between seconds for the
-     * CountDownTimer object
-     */
-    private long interval = 1000;
 
     /**
      * The user
@@ -263,10 +245,13 @@ public class MainActivity extends AppCompatActivity {
             searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
                 /**
-                 * NOTES...
+                 * This method takes the string that
+                 * the user types in at the search bar
+                 * and submits the query to search
                  *
-                 * @param s
-                 * @return false if ...
+                 * @param s the string the user searches at the
+                 *          search bar
+                 * @return false if the method is called
                  */
                 @Override
                 public boolean onQueryTextSubmit(String s) {
@@ -274,10 +259,14 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 /**
-                 * NOTES...
+                 * This method takes the string that the user
+                 * types in at the search bar and filters the
+                 * list according to the the changes of the string
+                 * being searched
                  *
-                 * @param s
-                 * @return true if...
+                 * @param s the string the user searches at the
+                 *          search bar
+                 * @return true if the method is called
                  */
                 @Override
                 public boolean onQueryTextChange(String s) {
@@ -296,16 +285,12 @@ public class MainActivity extends AppCompatActivity {
                 START_TIME_IN_MILLIS = fInfo.getStartTimeMillis();
                 endTime = fInfo.getEndTimeMillis();
 
-                //Log.w("start", String.valueOf(START_TIME_IN_MILLIS));
-                //Log.w("end", String.valueOf(endTime));
-
 
                 long currentTimeMillis = System.currentTimeMillis();
 
                 String currentTime = DateFormat.getInstance().format(currentTimeMillis);
                 String stringStartTime = DateFormat.getInstance().format(START_TIME_IN_MILLIS);
                 String stringEndTime = DateFormat.getInstance().format(endTime);
-
 
                 timeLeftInMillis = (endTime - currentTimeMillis);
 
@@ -434,7 +419,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // For List
     /**
      * This MyAdapter class that updates the ListView
      * when scrolling
@@ -442,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
     class MyAdapter extends ArrayAdapter<String> {
 
         /**
-         * The context
+         * The context of the current activity
          */
         protected Context context;
 
@@ -452,16 +436,16 @@ public class MainActivity extends AppCompatActivity {
         protected LinkedList<Item> items;
 
         /**
-         * The items list????
+         * The updated linked list of items post-search
          */
         protected LinkedList<Item> itemsList;
 
         /**
          * MyAdapter Constructor
          *
-         * @param c      .....
-         * @param titles .....
-         * @param items  .....
+         * @param c the context of the current activity
+         * @param titles the titles of all the items
+         * @param items the linked list of items
          */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
@@ -472,12 +456,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /**
-         * NOTES
+         * This method returns the updated list view
+         * post-search based on the query at the search bar
          *
-         * @param position    ...
-         * @param convertView ...
-         * @param parent      ....
-         * @return the View ...
+         * @param position the positon of the item in the list view
+         * @param convertView the view of the list
+         * @param parent the parent of the ViewGroup
+         * @return the View of the updated list view
          */
         @NonNull
         @Override
@@ -505,7 +490,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-
             if (position < items.size()) {
                 images.setImageBitmap(items.get(position).resID);
                 myTitle.setText(items.get(position).title);
@@ -517,7 +501,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /**
-         * To filter....
+         * This method filters out the items according to
+         * the query at the search bar
          *
          * @param charText
          */
@@ -555,8 +540,9 @@ public class MainActivity extends AppCompatActivity {
         /**
          * MyCount Constructor
          *
-         * @param millisInFuture
-         * @param countDownInterval
+         * @param millisInFuture the milliseconds left
+         * @param countDownInterval the interval in between
+         *                          the countdown ticks
          */
         MyCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -575,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * To update the countdown timer text view
          * on every second tick
-         * @param millisUntilFinished
+         * @param millisUntilFinished the milliseconds left
          */
         @Override
         public void onTick(long millisUntilFinished) {
@@ -586,42 +572,6 @@ public class MainActivity extends AppCompatActivity {
                     + (TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
 
             textViewCountDown.setText(/*context.getString(R.string.ends_in) + " " +*/ hms);
-        }
-    }
-
-
-    // this is not doing anything?
-    private void updateCountDownText() {
-
-       // Log.w("state", "in update countdown text");
-
-        int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        int seconds = (int) (timeLeftInMillis / 1000) % 60;
-
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-        textViewCountDown.setText(timeLeftFormatted);
-    }
-
-    //not sure if this is doing anything?
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        //Log.w("state", "in on stop");
-
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        //editor.putLong("millisLeft", timeLeftInMillis);
-        //editor.putBoolean("timerRunning", timerRunning);
-        //editor.putLong("endTime", endTime);
-
-        editor.apply();
-
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
         }
     }
 }

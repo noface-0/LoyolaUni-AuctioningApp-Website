@@ -30,7 +30,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
- * This is the Highest Activity class that...
+ * This is the Highest Activity class that displays the items for which the user is the current
+ * highest bidder
  *
  * @author Jennifer Moutenot
  * @author Mollie Morrow
@@ -84,8 +85,6 @@ public class HighestActivity extends AppCompatActivity {
         for(Item i: MainActivity.ais.items){
             i.updateAutoBid();
         }
-
-        Log.w("open bids view", "true");
 
         this.titles = new String[MainActivity.you.itemsCurrentHighestBidderOn.size()];
 
@@ -149,9 +148,13 @@ public class HighestActivity extends AppCompatActivity {
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
             /**
-             * NOTES...
-             * @param s ...
-             * @return false if ...
+             * This method takes the string that
+             * the user types in at the search bar
+             * and submits the query to search
+             *
+             * @param s the string the user searches at the
+             *          search bar
+             * @return false if the method is called
              */
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -159,9 +162,14 @@ public class HighestActivity extends AppCompatActivity {
             }
 
             /**
-             * NOTES...
-             * @param s
-             * @return true if....
+             * This method takes the string that the user
+             * types in at the search bar and filters the
+             * list according to the the changes of the string
+             * being searched
+             *
+             * @param s the string the user searches at the
+             *          search bar
+             * @return true if the method is called
              */
             @Override
             public boolean onQueryTextChange(String s) {
@@ -289,7 +297,7 @@ public class HighestActivity extends AppCompatActivity {
     class MyAdapter extends ArrayAdapter<String> {
 
         /**
-         * The context
+         * The context of the current activity
          */
         protected Context context;
 
@@ -299,15 +307,15 @@ public class HighestActivity extends AppCompatActivity {
         protected LinkedList<Item> items;
 
         /**
-         * The items list???
+         * The updated linked list of items post-search
          */
         protected LinkedList<Item> itemsList;
 
         /**
          * MyAdapter Constructor
-         * @param c .....
-         * @param titles .....
-         * @param items .....
+         * @param c the context of the current activity
+         * @param titles the titles of all the items
+         * @param items the linked list of items
          */
         public MyAdapter(Context c, String[] titles, LinkedList<Item> items) {
             super(c, R.layout.row, R.id.item_title, titles);
@@ -318,12 +326,13 @@ public class HighestActivity extends AppCompatActivity {
         }
 
         /**
-         * NOTES
+         * This method returns the updated list view
+         * post-search based on the query at the search bar
          *
-         * @param position ...
-         * @param convertView ...
-         * @param parent ....
-         * @return the View ...
+         * @param position the positon of the item in the list view
+         * @param convertView the view of the list
+         * @param parent the parent of the ViewGroup
+         * @return the View of the updated list view
          */
         @NonNull
         @Override
@@ -353,7 +362,8 @@ public class HighestActivity extends AppCompatActivity {
         }
 
         /**
-         * To filter...
+         * This method filters out the items according to
+         * the query at the search bar
          *
          * @param charText
          */
