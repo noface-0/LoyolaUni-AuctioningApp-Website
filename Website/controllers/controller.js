@@ -4,6 +4,7 @@ var db_config = require('../db/dbaccess.js');
 var loggedin;
 var username;
 var result = [];
+const fs = require('fs');
 
 var con = mysql.createConnection({
     host: db_config.host,
@@ -37,12 +38,20 @@ exports.auth = function (req, res) {
                 loggedin = true;
                 res.redirect('/home');
             } else {
-                res.send('Incorrect Username and/or Password!');
+                res.format({
+                    'text/html': function () {
+                        res.send('<center><h1>Incorrect Username and/or Password!</h1></center>')
+                    }
+                });
             }
             res.end();
         });
     } else {
-        res.format({'text/html': function () {res.send('<center><h1>Please enter Username and Password!</h1></center>')}});
+        res.format({
+            'text/html': function () {
+                res.send('<center><h1>Please enter Username and Password!</h1></center>')
+            }
+        });
         res.end();
     }
 };
@@ -50,11 +59,16 @@ exports.auth = function (req, res) {
 exports.home = function (req, res) {
     if (loggedin) {
         console.log('Welcome back, ' + username + '!');
-
         con.query("SELECT * FROM items", function (err, result) {
             if (err) throw err;
             json = JSON.parse(JSON.stringify(result));
-            console.log(json[0].image.data);
+            for (let i = 0; i < json.length; i++) {
+                var outputfile = "./views/img/" + json[i].id.toString() + ".png";
+                var data = json[i].image.data;
+                var buf = new Buffer(data, "binary");
+                fs.writeFileSync(outputfile, buf);
+            };
+
             con.query("SELECT * FROM admins", function (err, result) {
                 if (err) throw err;
                 json2 = JSON.parse(JSON.stringify(result));
@@ -63,26 +77,51 @@ exports.home = function (req, res) {
                     if (err) throw err;
                     json3 = JSON.parse(JSON.stringify(result));
 
+                    var outputfile = "./views/img/event.png";
+                    var data = json3[0].image.data;
+                    var buf = new Buffer(data, "binary");
+                    fs.writeFileSync(outputfile, buf);
+
                     console.log(json3[0].end);
                     var d = new Date();
                     console.log(d);
-                    if(false){
-                        res.render('home', {dataItem: json, dataAdmin: json2, dataEvent: json3});
-                    }else{
+                    if (false) {
+                        res.render('home', {
+                            dataItem: json,
+                            dataAdmin: json2,
+                            dataEvent: json3
+                        });
+                    } else {
                         con.query("SELECT * FROM users WHERE FirstName IN ('Mollie' AND 'Jennifer')", function (err, result) {
                             if (err) throw err;
                             json4 = JSON.parse(JSON.stringify(result));
-                            res.render('home', {dataItem: json, dataAdmin: json2, dataEvent: json3, dataWin: json4});
+                            res.render('home', {
+                                dataItem: json,
+                                dataAdmin: json2,
+                                dataEvent: json3,
+                                dataWin: json4
+                            });
                         });
                     }
                 });
             });
         });
     } else {
-        res.format({'text/html': function () {res.send('<center><h1>Please enter Username and Password!</h1></center>')}});
+        res.format({
+            'text/html': function () {
+                res.send('<center><h1>Please enter Username and Password!</h1></center>')
+            }
+        });
         res.end();
     }
 };
+
+function blobToFile(theBlob, fileName) {
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+}
 
 exports.newpass = function (req, res) {
     res.send('new password');

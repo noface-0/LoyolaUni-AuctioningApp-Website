@@ -45,17 +45,17 @@
           <td><%= dataItem.tags %></td>
           <td><%= dataItem.currentHighestBid %></td>
           <td><%= dataItem.currentHighestBidder %></td>
-          <td><%= dataItem.image %></td>
+          <td><img src="/img/<%= dataItem.id %>.png" /></td>
         </tr>
         <% })%>
       </table>
     </div>
     <div id="event" style="display:none;">
-    <center>
-      <h1>Event</h1>
-      <button onclick="del()">Delete</button>
-      <button onclick="edit()">Edit</button>
-    </center>
+      <center>
+        <h1>Event</h1>
+        <button onclick="del()">Delete</button>
+        <button onclick="edit()">Edit</button>
+      </center>
       <table style="width:100%">
         <tr>
           <th>Description</th>
@@ -68,7 +68,8 @@
           <td><%= dataEvent.description %></td>
           <td><%= dataEvent.start %></td>
           <td><%= dataEvent.end %></td>
-          <td><%= dataEvent.image %></td>
+          <!-- <td><%= dataEvent.image %></td> -->
+          <td><img src="/img/event.png" /></td>
         </tr>
         <% })%>
       </table>
@@ -90,29 +91,29 @@
           <th>modified</th>
         </tr>
         <% dataAdmin.forEach(function(dataAdmin){ %>
-          <tr>
-            <td><%= dataAdmin.id %></td>
-            <td><%= dataAdmin.username %></td>
-            <td><%= dataAdmin.password %></td>
-            <td><%= dataAdmin.email %></td>
-            <td><%= dataAdmin.created %></td>
-            <td><%= dataAdmin.modified%></td>
-          </tr>
-          <% })%>
+        <tr>
+          <td><%= dataAdmin.id %></td>
+          <td><%= dataAdmin.username %></td>
+          <td><%= dataAdmin.password %></td>
+          <td><%= dataAdmin.email %></td>
+          <td><%= dataAdmin.created %></td>
+          <td><%= dataAdmin.modified%></td>
+        </tr>
+        <% })%>
       </table>
     </div>
     <div id="winners" style="display:none;">
       <center>
-      <h1>Winners</h1>
-      <table style="width:100%">
-        <tr>
-          <th>ID</th>
-          <th>FirstName</th>
-          <th>LastName</th>
-          <th>Email</th>
-          <th>Item</th>
-        </tr>
-        <% dataWin.forEach(function(dataWin){ %>
+        <h1>Winners</h1>
+        <table style="width:100%">
+          <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Item</th>
+          </tr>
+          <% dataWin.forEach(function(dataWin){ %>
           <tr>
             <td><%= dataWin.id %></td>
             <td><%= dataWin.FirstName %></td>
@@ -121,40 +122,54 @@
             <td><%= dataWin.ItemsBidOn %></td>
           </tr>
           <% })%>
-      </table>
+        </table>
       </center>
     </div>
     <div id="about" style="display:none;">
       <center>
-      <h1>About Team JAJEIMO</h1>
-      <img src="img/egg.png" alt="Italian Trulli">
-      <h2>Members</h2>
-      <p>Javon Kitson</p>
-      <p>Jennifer Moutenot</p>
-      <p>Ian Leppo</p>
-      <p>Mollie Morrow</p>
+        <h1>About Team JAJEIMO</h1>
+        <img src="img/egg.png" alt="Italian Trulli">
+        <h2>Members</h2>
+        <p>Javon Kitson</p>
+        <p>Jennifer Moutenot</p>
+        <p>Ian Leppo</p>
+        <p>Mollie Morrow</p>
       </center>
     </div>
     <div id="add" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>ADD</p>
+        <!-- <span class="close">&times;</span> -->
+        <center><h1>ADD</h1></center>
+        <p>Title</p> <input type="text" name="title"><br>
+        <p>Description</p> <input type="text" name="description" ><br>
+        <p>Min Increment</p> <input type="number" name="minInc" ><br>
+        <p>Tags</p> <input type="text" name="Tags" ><br>
+        <p>Image</p> <input type="file" name="img" >
+        <br><br>
+        <input type="submit" value="Submit">
       </div>
-    
+
     </div>
     <div id="edit" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>EDIT</p>
+        <!-- <span class="close">&times;</span> -->
+        <center><h1>EDIT</h1></center>
+        <p>Title</p> <input type="text" name="title"><br>
+        <p>Description</p> <input type="text" name="description" ><br>
+        <p>Image</p> <input type="file" name="img" >
+        <br><br>
+        <input type="submit" value="Submit">
       </div>
-    
+
     </div>
     <div id="delete" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>DELETE</p>
+        <!-- <span class="close">&times;</span> -->
+        <center><h1>DELETE</h1></center>
+        <center><p>ID</p> <input type="number" name="ID" ></center><br>
+        <center> <input type="submit" value="Submit"></center>
       </div>
-    
+
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
