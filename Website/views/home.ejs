@@ -53,8 +53,8 @@
     <div id="event" style="display:none;">
       <center>
         <h1>Event</h1>
-        <button onclick="del()">Delete</button>
-        <button onclick="edit()">Edit</button>
+        <button onclick="delEvent()">Delete</button>
+        <button onclick="editEvent()">Edit</button>
       </center>
       <table style="width:100%">
         <tr>
@@ -77,15 +77,14 @@
     <div id="admin" style="display:none;">
       <center>
         <h1>Admins</h1>
-        <button onclick="add()">Add</button>
-        <button onclick="del()">Delete</button>
-        <button onclick="edit()">Edit</button>
+        <button onclick="addAdmin()">Add</button>
+        <button onclick="delAdmin()">Delete</button>
+        <button onclick="editAdmin()">Edit</button>
       </center>
       <table style="width:100%">
         <tr>
           <th>ID</th>
           <th>username</th>
-          <th>password</th>
           <th>email</th>
           <th>created</th>
           <th>modified</th>
@@ -94,7 +93,6 @@
         <tr>
           <td><%= dataAdmin.id %></td>
           <td><%= dataAdmin.username %></td>
-          <td><%= dataAdmin.password %></td>
           <td><%= dataAdmin.email %></td>
           <td><%= dataAdmin.created %></td>
           <td><%= dataAdmin.modified%></td>
@@ -113,15 +111,17 @@
             <th>Email</th>
             <th>Item</th>
           </tr>
-          <% dataWin.forEach(function(dataWin){ %>
-          <tr>
-            <td><%= dataWin.id %></td>
-            <td><%= dataWin.FirstName %></td>
-            <td><%= dataWin.LastName %></td>
-            <td><%= dataWin.Email %></td>
-            <td><%= dataWin.ItemsBidOn %></td>
-          </tr>
-          <% })%>
+          <%if(typeof dataWin !== 'undefined') { %>
+            <% dataWin.forEach(function(dataWin){ %>
+              <tr>
+                <td><%= dataWin.id %></td>
+                <td><%= dataWin.FirstName %></td>
+                <td><%= dataWin.LastName %></td>
+                <td><%= dataWin.Email %></td>
+                <td><%= dataWin.ItemsBidOn %></td>
+              </tr>
+            <% })%>
+          <% }%>
         </table>
       </center>
     </div>
@@ -138,7 +138,6 @@
     </div>
     <div id="add" class="modal">
       <div class="modal-content">
-        <!-- <span class="close">&times;</span> -->
         <center><h1>ADD</h1></center>
         <p>Title</p> <input type="text" name="title"><br>
         <p>Description</p> <input type="text" name="description" ><br>
@@ -148,11 +147,11 @@
         <br><br>
         <input type="submit" value="Submit">
       </div>
-
     </div>
-    <div id="edit" class="modal">
+    
+    <form id="edit" class="modal">
+      <!-- <form id="edit" class="modal" action="welcome.php"> -->
       <div class="modal-content">
-        <!-- <span class="close">&times;</span> -->
         <center><h1>EDIT</h1></center>
         <p>Title</p> <input type="text" name="title"><br>
         <p>Description</p> <input type="text" name="description" ><br>
@@ -160,15 +159,63 @@
         <br><br>
         <input type="submit" value="Submit">
       </div>
+    </form>
 
-    </div>
-    <div id="delete" class="modal">
+    <form id="delete" class="modal">
       <div class="modal-content">
-        <!-- <span class="close">&times;</span> -->
         <center><h1>DELETE</h1></center>
         <center><p>ID</p> <input type="number" name="ID" ></center><br>
         <center> <input type="submit" value="Submit"></center>
       </div>
+    </form>
+
+    <form id="eventDelete" class="modal">
+      <div class="modal-content">
+        <center><h1>Are you sure you want to delete the event?</h1></center>
+        <center> <input type="submit" value="Yes"></center>
+      </div>
+    </form>
+
+    <form id="eventEdit" class="modal">
+      <div class="modal-content">
+        <center><h1>EDIT</h1></center>
+        <p>Description</p> <input type="text" name="description" ><br>
+        <p>End</p> <input type="date" name="date" ><br>
+        <p>Image</p> <input type="file" name="img" >
+        <br><br>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+
+    <form id="adminAdd" class="modal">
+      <div class="modal-content">
+        <center><h1>ADD</h1></center>
+        <p>Username</p> <input type="text" name="username"><br>
+        <p>Email</p> <input type="email" name="email" ><br>
+        <p>Password</p> <input type="password" name="password" ><br>
+        <br><br>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+
+    <form id="adminEdit" class="modal">
+      <div class="modal-content">
+        <center><h1>EDIT</h1></center>
+        <p>Username</p> <input type="text" name="username"><br>
+        <p>Email</p> <input type="text" name="description" ><br>
+        <p>Password</p> <input type="password" name="password" ><br>
+        <br><br>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+
+    <form id="adminDelete" class="modal">
+      <div class="modal-content">
+        <center><h1>DELETE</h1></center>
+        <center><p>ID</p> <input type="number" name="ID" ></center><br>
+        <center> <input type="submit" value="Submit"></center>
+      </div>
+    </form>
 
     </div>
   </div>

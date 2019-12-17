@@ -75,23 +75,38 @@ exports.home = function (req, res) {
 
                 con.query("SELECT * FROM event", function (err, result) {
                     if (err) throw err;
+                    
                     json3 = JSON.parse(JSON.stringify(result));
 
                     var outputfile = "./views/img/event.png";
                     var data = json3[0].image.data;
                     var buf = new Buffer(data, "binary");
+                    
                     fs.writeFileSync(outputfile, buf);
+                    
+                    var currDate = new Date();
+                    var endDate = json3[0].end.slice(0, json3[0].end.length - 13);
+                    
+                    endDate = endDate.split(".");
+                    currDate = JSON.stringify(currDate);
+                    currDate = currDate.slice(0, currDate.length - 15);
+                    currDate = currDate.substr(1);
+                    currDate = currDate.split("-");
 
-                    console.log(json3[0].end);
-                    var d = new Date();
-                    console.log(d);
-                    if (false) {
-                        res.render('home', {
-                            dataItem: json,
-                            dataAdmin: json2,
-                            dataEvent: json3
-                        });
-                    } else {
+                    console.log(endDate);
+                    console.log(currDate);
+                    
+                    var done;
+                    
+                    if(endDate[0] === currDate[0] &&  endDate[1] === currDate[1] && parseInt(endDate[2]) >= parseInt(currDate[2])){
+                        // console.log("true");
+                        done == true;
+                    }else{
+                        // console.log("false");
+                        done == false;
+                    }
+
+                    if (done) {
                         con.query("SELECT * FROM users WHERE FirstName IN ('Mollie' AND 'Jennifer')", function (err, result) {
                             if (err) throw err;
                             json4 = JSON.parse(JSON.stringify(result));
@@ -101,6 +116,12 @@ exports.home = function (req, res) {
                                 dataEvent: json3,
                                 dataWin: json4
                             });
+                        });
+                    } else {
+                        res.render('home', {
+                            dataItem: json,
+                            dataAdmin: json2,
+                            dataEvent: json3
                         });
                     }
                 });
@@ -115,13 +136,6 @@ exports.home = function (req, res) {
         res.end();
     }
 };
-
-function blobToFile(theBlob, fileName) {
-    //A Blob() is almost a File() - it's just missing the two properties below which we will add
-    theBlob.lastModifiedDate = new Date();
-    theBlob.name = fileName;
-    return theBlob;
-}
 
 exports.newpass = function (req, res) {
     res.send('new password');

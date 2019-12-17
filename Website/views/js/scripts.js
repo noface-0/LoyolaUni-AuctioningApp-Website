@@ -66,46 +66,48 @@ function edit() {
 function del() {
     modal2.style.display = "block";
 }
+
+function editEvent() {
+    modal3.style.display = "block";
+}
+
+function delEvent() {
+    modal4.style.display = "block";
+}
+
+function addAdmin() {
+    modal5.style.display = "block";
+}
+
+function delAdmin() {
+    modal6.style.display = "block";
+}
+
+function editAdmin() {
+    modal7.style.display = "block";
+}
+
+// Items
 var modal = document.getElementById("add");
 var modal1 = document.getElementById("edit");
 var modal2 = document.getElementById("delete");
-
+// Events
+var modal3 = document.getElementById("eventEdit");
+var modal4 = document.getElementById("eventDelete");
+// Admins
+var modal5 = document.getElementById("adminAdd");
+var modal6 = document.getElementById("adminDelete");
+var modal7 = document.getElementById("adminEdit");
 
 window.onclick = function (event) {
-    if (event.target == modal || event.target == modal1 || event.target == modal2) {
+    if (event.target == modal || event.target == modal1 || event.target == modal2 || event.target == modal3 || event.target == modal4 || event.target == modal5 || event.target == modal6 || event.target == modal7) {
         modal.style.display = "none";
         modal1.style.display = "none";
         modal2.style.display = "none";
+        modal3.style.display = "none";
+        modal4.style.display = "none";
+        modal5.style.display = "none";
+        modal6.style.display = "none";
+        modal7.style.display = "none";
     }
 }
-
-span.onclick = function () {
-    modal.style.display = "none";
-    // modal1.style.display = "none";
-    // modal2.style.display = "none";
-}
-// // Get the modal
-// var modal = document.getElementById("myModal");
-
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // When the user clicks the button, open the modal 
-// btn.onclick = function() {
-//   modal.style.display = "block";
-// }
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//   modal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
